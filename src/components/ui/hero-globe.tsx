@@ -108,7 +108,7 @@ export function HeroGlobe() {
       c.dampingFactor = 0.08;
       c.enablePan = false;
       c.enableRotate = false;
-      g.pointOfView({ lat: 20, lng: -30, altitude: 1.4 }, 0);
+      g.pointOfView({ lat: 20, lng: -30, altitude: 1.18 }, 0);
 
       (async () => {
         const [THREE, composerMod, renderPassMod, bloomMod] = await Promise.all([

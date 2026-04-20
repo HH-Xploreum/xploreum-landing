@@ -17,11 +17,16 @@ export function Hero() {
               <div className="rise rise-2">Ask</div>
               <div className="rise rise-3">Plan</div>
               <div className="rise rise-4">Pack</div>
-              <div className="rise rise-5 flex items-center gap-[0.02em]">
+              <div className="rise rise-5 flex items-center gap-[0.03em]">
                 <span>G</span>
                 <span
                   className="relative inline-block aspect-square rounded-full overflow-hidden shrink-0"
-                  style={{ width: '0.98em', height: '0.98em' }}
+                  style={{
+                    width: '1.05em',
+                    height: '1.05em',
+                    boxShadow:
+                      '0 0 0 2px rgba(255,255,255,0.95), 0 0 50px 6px rgba(200,220,240,0.18), 0 0 120px 20px rgba(255,255,255,0.08)',
+                  }}
                 >
                   <HeroGlobe />
                 </span>
