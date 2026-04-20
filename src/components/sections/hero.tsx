@@ -18,14 +18,19 @@ export function Hero() {
               <div className="rise rise-3">Plan</div>
               <div className="rise rise-4">Pack</div>
               <div className="rise rise-5 flex items-center gap-[0.03em]">
-                <span>G</span>
+                <span
+                  className="text-transparent"
+                  style={{ WebkitTextStroke: '0.04em rgba(255,255,255,0.95)' }}
+                >
+                  G
+                </span>
                 <span
                   className="relative inline-block aspect-square rounded-full overflow-hidden shrink-0"
                   style={{
                     width: '0.72em',
                     height: '0.72em',
                     boxShadow:
-                      '0 0 0 1px rgba(255,255,255,0.45), 0 0 14px 1px rgba(200,220,240,0.05)',
+                      '0 0 0 0.04em rgba(255,255,255,0.95), 0 0 14px 1px rgba(200,220,240,0.05)',
                   }}
                 >
                   <HeroGlobe />
