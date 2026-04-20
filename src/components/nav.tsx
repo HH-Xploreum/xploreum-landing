@@ -17,7 +17,7 @@ export function Nav() {
             <button
               onClick={() => setMenuOpen(true)}
               aria-label="Open menu"
-              className="flex flex-col items-end gap-[6px] py-2 px-1"
+              className="flex flex-col items-start gap-[6px] py-2 px-1"
             >
               <span className="block w-6 h-[2px] bg-forest" />
               <span className="block w-3.5 h-[2px] bg-forest" />
