@@ -1,24 +1,22 @@
 'use client';
 
-import { Canvas, useFrame, useLoader } from '@react-three/fiber';
+import { Canvas, useLoader } from '@react-three/fiber';
+import { OrbitControls } from '@react-three/drei';
 import { EffectComposer, Bloom } from '@react-three/postprocessing';
-import { Suspense, useRef } from 'react';
-import { TextureLoader, SRGBColorSpace, type Mesh } from 'three';
+import { Suspense } from 'react';
+import { TextureLoader, SRGBColorSpace } from 'three';
 
 export type GlobeStyle = 'night' | 'topo' | 'minimal' | 'day';
+
+const INITIAL_ROTATION: [number, number, number] = [0.3, -2.4, 0];
 
 function NightEarth() {
   const tex = useLoader(TextureLoader, '/textures/night.jpg');
   tex.colorSpace = SRGBColorSpace;
   tex.anisotropy = 8;
 
-  const mesh = useRef<Mesh>(null);
-  useFrame((_, dt) => {
-    if (mesh.current) mesh.current.rotation.y += dt * 0.055;
-  });
-
   return (
-    <mesh ref={mesh} rotation={[0.35, -1.2, 0]}>
+    <mesh rotation={INITIAL_ROTATION}>
       <sphereGeometry args={[1, 128, 128]} />
       <meshStandardMaterial
         map={tex}
@@ -38,20 +36,10 @@ function SingleTextureEarth({ src, tint }: { src: string; tint: string }) {
   tex.colorSpace = SRGBColorSpace;
   tex.anisotropy = 8;
 
-  const mesh = useRef<Mesh>(null);
-  useFrame((_, dt) => {
-    if (mesh.current) mesh.current.rotation.y += dt * 0.055;
-  });
-
   return (
-    <mesh ref={mesh} rotation={[0.35, -1.2, 0]}>
+    <mesh rotation={INITIAL_ROTATION}>
       <sphereGeometry args={[1, 96, 96]} />
-      <meshStandardMaterial
-        map={tex}
-        color={tint}
-        roughness={0.85}
-        metalness={0}
-      />
+      <meshStandardMaterial map={tex} color={tint} roughness={0.85} metalness={0} />
     </mesh>
   );
 }
@@ -71,7 +59,13 @@ function Atmosphere({ color, opacity = 0.12 }: { color: string; opacity?: number
   );
 }
 
-export function GlobeCanvas({ style = 'night' }: { style?: GlobeStyle }) {
+export function GlobeCanvas({
+  style = 'night',
+  interactive = true,
+}: {
+  style?: GlobeStyle;
+  interactive?: boolean;
+}) {
   const isNight = style === 'night';
 
   const lighting = {
@@ -105,6 +99,17 @@ export function GlobeCanvas({ style = 'night' }: { style?: GlobeStyle }) {
         )}
         <Atmosphere color={lighting.atmosphere} opacity={lighting.atmOpacity} />
       </Suspense>
+
+      <OrbitControls
+        enablePan={false}
+        enableZoom={false}
+        enableRotate={interactive}
+        autoRotate
+        autoRotateSpeed={0.7}
+        enableDamping
+        dampingFactor={0.08}
+        rotateSpeed={0.6}
+      />
 
       {isNight && (
         <EffectComposer>
