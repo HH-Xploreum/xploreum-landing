@@ -24,7 +24,7 @@ npm run build   # verify production build
 - `src/components/` — Nav, menu overlay, footer, and `sections/*` for hero/how-it-works/xperts/about
 - `src/components/ui/` — Shared primitives (`wordmark`, `button`, `phone-mock`)
 - `src/lib/links.ts` — Single source of truth for outbound/anchor URLs
-- `public/logo.png` — Brand mark (combined icon + "XPLOREUM" wordmark, rendered at 32px height)
+- `public/logo.png` — Brand mark (combined icon + "XPLOREUM" wordmark, rendered at 48px height)
 
 ## Theme tokens
 
