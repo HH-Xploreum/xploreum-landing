@@ -123,10 +123,7 @@ export function HeroGlobe() {
 
   return (
     <div className="relative mx-auto w-full max-w-[640px]">
-      <div
-        ref={containerRef}
-        className="relative aspect-square rounded-3xl overflow-hidden bg-black"
-      >
+      <div ref={containerRef} className="relative aspect-square">
         {size.w > 0 && (
           <Globe
             ref={globeRef}
@@ -191,18 +188,14 @@ export function HeroGlobe() {
           />
         )}
 
-        <div className="absolute top-5 left-5 font-mono text-[10px] tracking-[0.25em] uppercase text-bone/60">
-          — Xploreum Network
-        </div>
-
-        <div className="absolute bottom-5 left-5 right-5 flex justify-between items-end font-mono text-[10px] tracking-[0.2em] uppercase text-bone/60">
-          <span>Lighting up where we&apos;re live</span>
-          <span>North America · +22 countries</span>
-        </div>
       </div>
 
-      <div className="block text-center mt-4 font-mono text-[10px] tracking-[0.2em] uppercase text-moss">
-        — Live now
+      <div className="mt-4 flex justify-between items-center font-mono text-[10px] tracking-[0.2em] uppercase text-forest/60">
+        <span>— Xploreum Network</span>
+        <span>Live now</span>
+      </div>
+      <div className="mt-1 font-mono text-[10px] tracking-[0.2em] uppercase text-forest/40">
+        Lighting up where we&apos;re live · North America · +22 countries
       </div>
     </div>
   );
