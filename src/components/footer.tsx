@@ -4,7 +4,7 @@ export function Footer() {
   return (
     <footer id="mobile" className="bg-forest-deep text-bone">
       <div className="max-w-7xl mx-auto px-5 md:px-8 py-20 md:py-24">
-        <div className="grid md:grid-cols-[1.3fr_1fr_1fr_1fr] gap-12">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-[1.3fr_1fr_1fr_1fr] gap-10 md:gap-12">
           <div>
             <div className="flex items-center gap-2.5">
               <div className="font-black tracking-tight text-xl text-bone">

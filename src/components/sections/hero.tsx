@@ -11,7 +11,7 @@ export function Hero() {
             Meet X — Your AI Travel Agent
           </div>
 
-          <h1 className="rise rise-2 font-black tracking-[-0.035em] leading-[0.95] text-forest text-[clamp(3rem,7.5vw,6.5rem)]">
+          <h1 className="rise rise-2 font-black tracking-[-0.035em] leading-[0.95] text-forest text-[clamp(2.5rem,6.5vw,6rem)]">
             The trip that takes 16 hours to plan. Built in one conversation.
           </h1>
 
