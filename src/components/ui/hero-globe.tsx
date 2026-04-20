@@ -209,7 +209,7 @@ export function HeroGlobe() {
       c.enableZoom = false;
       c.enableDamping = true;
       c.dampingFactor = 0.08;
-      g.pointOfView({ lat: 30, lng: -95, altitude: 1.3 }, 0);
+      g.pointOfView({ lat: 30, lng: -95, altitude: 1.15 }, 0);
 
       runBloom(g);
       return true;
@@ -306,7 +306,7 @@ export function HeroGlobe() {
   }, [size.w === 0]);
 
   return (
-    <div className="relative mx-auto w-full max-w-[800px]">
+    <div className="relative mx-auto w-full max-w-[900px]">
       <div
         aria-hidden
         className="pointer-events-none absolute -inset-10 rounded-full bg-[radial-gradient(circle,rgba(255,236,192,0.10),transparent_65%)] blur-2xl"
