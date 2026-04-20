@@ -9,7 +9,7 @@ export function Wordmark({ className = '' }: { className?: string }) {
         width={1001}
         height={342}
         priority
-        className="h-8 w-auto"
+        className="h-12 w-auto"
       />
     </a>
   );
