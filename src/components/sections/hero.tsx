@@ -17,14 +17,23 @@ export function Hero() {
               <div className="rise rise-2">Ask</div>
               <div className="rise rise-3">Plan</div>
               <div className="rise rise-4">Pack</div>
-              <div className="rise rise-5 flex items-center gap-[0.03em]">
-                <span
-                  className="text-transparent"
-                  style={{ WebkitTextStroke: '0.04em rgba(255,255,255,0.95)' }}
+              <div className="rise rise-5 flex items-center gap-[0.04em]">
+                <span className="sr-only">Go</span>
+                <svg
+                  viewBox="0 0 80 80"
+                  style={{ width: '0.72em', height: '0.72em' }}
+                  fill="none"
+                  stroke="rgba(255,255,255,0.95)"
+                  strokeWidth="4.5"
+                  strokeLinecap="butt"
+                  strokeLinejoin="miter"
+                  className="shrink-0"
+                  aria-hidden
                 >
-                  G
-                </span>
+                  <path d="M 70 25 A 30 30 0 1 0 70 55 L 55 55 L 55 42" />
+                </svg>
                 <span
+                  aria-hidden
                   className="relative inline-block aspect-square rounded-full overflow-hidden shrink-0"
                   style={{
                     width: '0.72em',
