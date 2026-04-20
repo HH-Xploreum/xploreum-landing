@@ -17,11 +17,34 @@ export function Nav() {
             <button
               onClick={() => setMenuOpen(true)}
               aria-label="Open menu"
-              className="flex flex-col gap-[5px] py-2 px-1"
+              className="py-2 px-1 text-forest"
             >
-              <span className="block w-6 h-[2px] bg-forest" />
-              <span className="block w-6 h-[2px] bg-forest" />
-              <span className="block w-6 h-[2px] bg-forest" />
+              <svg
+                width="24"
+                height="18"
+                viewBox="0 0 24 18"
+                fill="none"
+                aria-hidden="true"
+              >
+                <path
+                  d="M1 3 Q 7 0, 13 3 T 23 3"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                />
+                <path
+                  d="M1 9 Q 9 6, 15 9 T 23 9"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                />
+                <path
+                  d="M1 15 Q 5 18, 11 15 T 23 15"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                />
+              </svg>
             </button>
             <Wordmark />
           </div>
