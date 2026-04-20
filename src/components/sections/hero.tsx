@@ -34,15 +34,27 @@ export function Hero() {
                 </svg>
                 <span
                   aria-hidden
-                  className="relative inline-block aspect-square rounded-full overflow-hidden shrink-0"
-                  style={{
-                    width: '0.72em',
-                    height: '0.72em',
-                    boxShadow:
-                      '0 0 0 0.04em rgba(255,255,255,0.95), 0 0 14px 1px rgba(200,220,240,0.05)',
-                  }}
+                  className="relative inline-block shrink-0"
+                  style={{ width: '0.72em', height: '0.72em' }}
                 >
-                  <HeroGlobe />
+                  <span
+                    className="absolute rounded-full overflow-hidden"
+                    style={{
+                      width: '0.64em',
+                      height: '0.64em',
+                      left: '50%',
+                      top: '50%',
+                      transform: 'translate(-50%, -50%)',
+                    }}
+                  >
+                    <HeroGlobe />
+                  </span>
+                  <span
+                    className="absolute inset-0 rounded-full pointer-events-none"
+                    style={{
+                      border: '0.04em solid rgba(255,255,255,0.95)',
+                    }}
+                  />
                 </span>
               </div>
             </div>
