@@ -2,18 +2,15 @@ import Image from 'next/image';
 
 export function Wordmark({ className = '' }: { className?: string }) {
   return (
-    <a href="/" className={`flex items-center gap-2.5 ${className}`}>
+    <a href="/" className={`flex items-center ${className}`} aria-label="Xploreum">
       <Image
-        src="/logo.svg"
+        src="/logo.png"
         alt="Xploreum"
-        width={32}
-        height={32}
+        width={1001}
+        height={342}
         priority
-        className="w-8 h-8"
+        className="h-8 w-auto"
       />
-      <span className="font-bold tracking-[-0.02em] text-lg text-forest">
-        XPLOREUM
-      </span>
     </a>
   );
 }
