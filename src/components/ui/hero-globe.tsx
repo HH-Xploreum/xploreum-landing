@@ -336,15 +336,15 @@ export function HeroGlobe() {
             pointAltitude={(d: object) => {
               const p = d as Point;
               const v = hashVariation(p.lat, p.lng);
-              if (p.role === 'xpert') return 0.012 + v * 0.003;
-              if (p.role === 'xplorer') return 0.005 + v * 0.002;
+              if (p.role === 'xpert') return 0.022 + v * 0.004;
+              if (p.role === 'xplorer') return 0.009 + v * 0.003;
               return 0.003 + v * 0.002;
             }}
             pointRadius={(d: object) => {
               const p = d as Point;
               const v = hashVariation(p.lat + 1, p.lng);
-              if (p.role === 'xpert') return 0.14 * (0.9 + v * 0.4);
-              if (p.role === 'xplorer') return 0.1 * (0.8 + v * 0.5);
+              if (p.role === 'xpert') return 0.45 * (0.9 + v * 0.4);
+              if (p.role === 'xplorer') return 0.2 * (0.8 + v * 0.5);
               return 0.09 * (0.7 + v * 0.8);
             }}
             pointLabel={(d: object) => {
@@ -372,6 +372,14 @@ export function HeroGlobe() {
                 </div>
               `;
             }}
+            ringsData={XPERTS}
+            ringLat="lat"
+            ringLng="lng"
+            ringAltitude={0.006}
+            ringColor={() => (t: number) => `rgba(255,251,230,${0.85 * (1 - t)})`}
+            ringMaxRadius={4.2}
+            ringPropagationSpeed={1.6}
+            ringRepeatPeriod={1600}
           />
         )}
       </div>
@@ -381,7 +389,7 @@ export function HeroGlobe() {
         <span>Live now</span>
       </div>
       <div className="mt-1 font-sans text-[11px] tracking-[0.2em] uppercase text-bone/35">
-        Live across North America · +22 countries
+        {HOTSPOTS.length + XPERTS.length} cities live · {XPERTS.length} certified Xperts on the ground
       </div>
     </div>
   );
