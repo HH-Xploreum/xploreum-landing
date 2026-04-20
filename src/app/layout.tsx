@@ -13,7 +13,7 @@ export const metadata: Metadata = {
   title: 'Xploreum — Your AI travel agent',
   description:
     'The trip that takes 16 hours to plan. Built in one conversation. Ask X what you\'re chasing and it builds the whole trip — flights, lodging, gear, and the local experts who make it happen.',
-  metadataBase: new URL('https://xploreum.com'),
+  metadataBase: new URL('https://xploreum.io'),
   openGraph: {
     title: 'Xploreum — Your AI travel agent',
     description: 'The trip that takes 16 hours to plan. Built in one conversation.',
