@@ -15,7 +15,7 @@ export function Hero() {
           Meet X — Your AI Travel Agent
         </div>
 
-        <div className="grid md:grid-cols-[1.15fr_1fr] gap-10 md:gap-12 flex-1 items-center">
+        <div className="grid md:grid-cols-[1fr_1.15fr] gap-10 md:gap-12 flex-1 items-center">
           <div className="order-last md:order-first">
             <div className="font-black uppercase leading-[0.85] tracking-[-0.04em] text-bone text-[clamp(4rem,13vw,12rem)]">
               <div className="rise rise-2">Ask</div>

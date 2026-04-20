@@ -187,25 +187,35 @@ export function HeroGlobe() {
   }, [size]);
 
   useEffect(() => {
-    const g = globeRef.current;
-    if (!g || size.w === 0) return;
+    if (size.w === 0) return;
     let cancelled = false;
+    let intervalId: ReturnType<typeof setInterval> | null = null;
+    let setupStarted = false;
 
-    const c = g.controls() as {
-      autoRotate: boolean;
-      autoRotateSpeed: number;
-      enableZoom: boolean;
-      enableDamping: boolean;
-      dampingFactor: number;
+    const tryRun = () => {
+      const g = globeRef.current;
+      if (!g || setupStarted) return !!setupStarted;
+      setupStarted = true;
+
+      const c = g.controls() as {
+        autoRotate: boolean;
+        autoRotateSpeed: number;
+        enableZoom: boolean;
+        enableDamping: boolean;
+        dampingFactor: number;
+      };
+      c.autoRotate = true;
+      c.autoRotateSpeed = 0.25;
+      c.enableZoom = false;
+      c.enableDamping = true;
+      c.dampingFactor = 0.08;
+      g.pointOfView({ lat: 30, lng: -95, altitude: 1.3 }, 0);
+
+      runBloom(g);
+      return true;
     };
-    c.autoRotate = true;
-    c.autoRotateSpeed = 0.25;
-    c.enableZoom = false;
-    c.enableDamping = true;
-    c.dampingFactor = 0.08;
-    g.pointOfView({ lat: 30, lng: -95, altitude: 1.35 }, 0);
 
-    (async () => {
+    const runBloom = (g: GlobeMethods) => (async () => {
       const [THREE, composerMod, renderPassMod, bloomMod] = await Promise.all([
         import('three'),
         import('three/examples/jsm/postprocessing/EffectComposer.js'),
@@ -279,13 +289,24 @@ export function HeroGlobe() {
       };
     })();
 
+    if (!tryRun()) {
+      intervalId = setInterval(() => {
+        if (cancelled) {
+          if (intervalId) clearInterval(intervalId);
+          return;
+        }
+        if (tryRun() && intervalId) clearInterval(intervalId);
+      }, 60);
+    }
+
     return () => {
       cancelled = true;
+      if (intervalId) clearInterval(intervalId);
     };
   }, [size.w === 0]);
 
   return (
-    <div className="relative mx-auto w-full max-w-[720px]">
+    <div className="relative mx-auto w-full max-w-[800px]">
       <div
         aria-hidden
         className="pointer-events-none absolute -inset-10 rounded-full bg-[radial-gradient(circle,rgba(255,236,192,0.10),transparent_65%)] blur-2xl"
