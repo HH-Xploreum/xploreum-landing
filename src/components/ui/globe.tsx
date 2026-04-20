@@ -6,81 +6,53 @@ import { TextureLoader, SRGBColorSpace, type Mesh } from 'three';
 
 export type GlobeStyle = 'night' | 'topo' | 'minimal' | 'day';
 
-const TEX: Record<GlobeStyle, string> = {
-  night: '/textures/night.jpg',
-  topo: '/textures/topo.png',
-  minimal: '/textures/minimal.jpg',
-  day: '/textures/day.jpg',
-};
+function NightEarth() {
+  const [dayTex, nightTex] = useLoader(TextureLoader, [
+    '/textures/day.jpg',
+    '/textures/night.jpg',
+  ]);
+  dayTex.colorSpace = SRGBColorSpace;
+  nightTex.colorSpace = SRGBColorSpace;
+  dayTex.anisotropy = 8;
+  nightTex.anisotropy = 8;
 
-type StyleParams = {
-  ambient: number;
-  directional: number;
-  emissiveColor: string;
-  emissiveIntensity: number;
-  tint?: string;
-  useEmissiveMap: boolean;
-  atmosphere: string;
-};
+  const mesh = useRef<Mesh>(null);
+  useFrame((_, dt) => {
+    if (mesh.current) mesh.current.rotation.y += dt * 0.055;
+  });
 
-const PARAMS: Record<GlobeStyle, StyleParams> = {
-  night: {
-    ambient: 0.75,
-    directional: 0.45,
-    emissiveColor: '#ffd7a3',
-    emissiveIntensity: 0.9,
-    useEmissiveMap: true,
-    atmosphere: '#7fb3ff',
-  },
-  topo: {
-    ambient: 0.55,
-    directional: 0.9,
-    emissiveColor: '#ffffff',
-    emissiveIntensity: 0,
-    useEmissiveMap: false,
-    tint: '#b8c6cf',
-    atmosphere: '#9fc0ff',
-  },
-  minimal: {
-    ambient: 0.35,
-    directional: 1.2,
-    emissiveColor: '#ffffff',
-    emissiveIntensity: 0,
-    useEmissiveMap: false,
-    tint: '#cfd7de',
-    atmosphere: '#b0c8ff',
-  },
-  day: {
-    ambient: 0.5,
-    directional: 1.1,
-    emissiveColor: '#ffffff',
-    emissiveIntensity: 0,
-    useEmissiveMap: false,
-    atmosphere: '#9fc0ff',
-  },
-};
+  return (
+    <mesh ref={mesh} rotation={[0.35, -1.2, 0]}>
+      <sphereGeometry args={[1, 96, 96]} />
+      <meshStandardMaterial
+        map={dayTex}
+        emissiveMap={nightTex}
+        emissive="#ffb877"
+        emissiveIntensity={1.8}
+        color="#7d98b3"
+        roughness={0.85}
+        metalness={0}
+      />
+    </mesh>
+  );
+}
 
-function Earth({ style }: { style: GlobeStyle }) {
-  const tex = useLoader(TextureLoader, TEX[style]);
+function SingleTextureEarth({ src, tint }: { src: string; tint: string }) {
+  const tex = useLoader(TextureLoader, src);
   tex.colorSpace = SRGBColorSpace;
   tex.anisotropy = 8;
 
   const mesh = useRef<Mesh>(null);
   useFrame((_, dt) => {
-    if (mesh.current) mesh.current.rotation.y += dt * 0.04;
+    if (mesh.current) mesh.current.rotation.y += dt * 0.055;
   });
-
-  const p = PARAMS[style];
 
   return (
     <mesh ref={mesh} rotation={[0.35, -1.2, 0]}>
       <sphereGeometry args={[1, 96, 96]} />
       <meshStandardMaterial
         map={tex}
-        emissiveMap={p.useEmissiveMap ? tex : undefined}
-        emissive={p.emissiveColor}
-        emissiveIntensity={p.emissiveIntensity}
-        color={p.tint ?? '#ffffff'}
+        color={tint}
         roughness={0.85}
         metalness={0}
       />
@@ -90,32 +62,58 @@ function Earth({ style }: { style: GlobeStyle }) {
 
 function Atmosphere({ color }: { color: string }) {
   return (
-    <mesh scale={1.035}>
-      <sphereGeometry args={[1, 64, 64]} />
-      <meshBasicMaterial
-        color={color}
-        transparent
-        opacity={0.08}
-        depthWrite={false}
-      />
-    </mesh>
+    <>
+      <mesh scale={1.035}>
+        <sphereGeometry args={[1, 64, 64]} />
+        <meshBasicMaterial
+          color={color}
+          transparent
+          opacity={0.12}
+          depthWrite={false}
+        />
+      </mesh>
+      <mesh scale={1.08}>
+        <sphereGeometry args={[1, 64, 64]} />
+        <meshBasicMaterial
+          color={color}
+          transparent
+          opacity={0.04}
+          depthWrite={false}
+        />
+      </mesh>
+    </>
   );
 }
 
 export function GlobeCanvas({ style = 'night' }: { style?: GlobeStyle }) {
-  const p = PARAMS[style];
+  const lighting = {
+    night: { ambient: 1.1, directional: 1.0, atmosphere: '#8fb8ff' },
+    topo: { ambient: 0.7, directional: 1.1, atmosphere: '#a0c0ff' },
+    minimal: { ambient: 0.5, directional: 1.3, atmosphere: '#b0c8ff' },
+    day: { ambient: 0.7, directional: 1.2, atmosphere: '#9fc0ff' },
+  }[style];
+
   return (
     <Canvas
       camera={{ position: [0, 0, 2.55], fov: 35 }}
       gl={{ antialias: true, alpha: true, powerPreference: 'high-performance' }}
       dpr={[1, 2]}
     >
-      <ambientLight intensity={p.ambient} />
-      <directionalLight position={[4, 2, 5]} intensity={p.directional} color="#cfe2ff" />
-      <directionalLight position={[-4, -1, -3]} intensity={0.15} color="#ffb27a" />
+      <ambientLight intensity={lighting.ambient} />
+      <directionalLight position={[4, 2, 5]} intensity={lighting.directional} color="#ffffff" />
+      <directionalLight position={[-3, -1, -2]} intensity={0.25} color="#a8c6ff" />
       <Suspense fallback={null}>
-        <Earth style={style} />
-        <Atmosphere color={p.atmosphere} />
+        {style === 'night' && <NightEarth />}
+        {style === 'topo' && (
+          <SingleTextureEarth src="/textures/topo.png" tint="#c0ccd4" />
+        )}
+        {style === 'minimal' && (
+          <SingleTextureEarth src="/textures/minimal.jpg" tint="#d0d7de" />
+        )}
+        {style === 'day' && (
+          <SingleTextureEarth src="/textures/day.jpg" tint="#ffffff" />
+        )}
+        <Atmosphere color={lighting.atmosphere} />
       </Suspense>
     </Canvas>
   );

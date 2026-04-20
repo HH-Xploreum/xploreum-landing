@@ -39,8 +39,8 @@ export function GlobeO({
         className="absolute inset-0 rounded-full overflow-hidden"
         style={{
           boxShadow:
-            '0 0 0 1.5px rgba(255,255,255,0.92), 0 10px 40px -10px rgba(140,190,255,0.35), inset 0 0 25px rgba(0,0,0,0.55)',
-          background: '#05090f',
+            '0 0 0 1.5px rgba(255,255,255,0.92), 0 10px 40px -10px rgba(140,190,255,0.4)',
+          background: '#0a1420',
         }}
       >
         <GlobeCanvas style={style} />
@@ -50,7 +50,7 @@ export function GlobeO({
           className="absolute inset-0 rounded-full pointer-events-none"
           style={{
             background:
-              'radial-gradient(circle at 32% 28%, rgba(255,255,255,0.12), rgba(255,255,255,0) 45%), radial-gradient(circle at 70% 75%, rgba(0,0,0,0.45), rgba(0,0,0,0) 55%)',
+              'radial-gradient(circle at 30% 25%, rgba(255,255,255,0.10), rgba(255,255,255,0) 50%)',
           }}
         />
       </span>
