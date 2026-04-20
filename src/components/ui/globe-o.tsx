@@ -1,20 +1,27 @@
 'use client';
 
 import dynamic from 'next/dynamic';
+import type { GlobeStyle } from './globe';
 
 const GlobeCanvas = dynamic(
   () => import('./globe').then((m) => m.GlobeCanvas),
   { ssr: false, loading: () => null },
 );
 
-export function GlobeO() {
+export function GlobeO({
+  style = 'night',
+  size = '0.74em',
+}: {
+  style?: GlobeStyle;
+  size?: string;
+}) {
   return (
     <span
       aria-hidden
       className="relative inline-block align-baseline"
       style={{
-        width: '0.74em',
-        height: '0.74em',
+        width: size,
+        height: size,
         transform: 'translateY(0.04em)',
       }}
     >
@@ -36,7 +43,7 @@ export function GlobeO() {
           background: '#05090f',
         }}
       >
-        <GlobeCanvas />
+        <GlobeCanvas style={style} />
 
         <span
           aria-hidden
