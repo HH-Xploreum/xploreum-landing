@@ -203,7 +203,7 @@ export function HeroGlobe() {
     c.enableZoom = false;
     c.enableDamping = true;
     c.dampingFactor = 0.08;
-    g.pointOfView({ lat: 30, lng: -95, altitude: 1.5 }, 0);
+    g.pointOfView({ lat: 30, lng: -95, altitude: 1.35 }, 0);
 
     (async () => {
       const [THREE, composerMod, renderPassMod, bloomMod] = await Promise.all([
@@ -266,7 +266,17 @@ export function HeroGlobe() {
       composerRef.current = composer;
       bloomRef.current = bloom;
 
-      renderer.render = () => composer.render();
+      const rendererAny = renderer as unknown as {
+        render: (...args: unknown[]) => unknown;
+      };
+      const origRender = rendererAny.render.bind(rendererAny);
+      let rendering = false;
+      rendererAny.render = (...args: unknown[]) => {
+        if (rendering) return origRender(...args);
+        rendering = true;
+        composer.render();
+        rendering = false;
+      };
     })();
 
     return () => {
@@ -275,7 +285,7 @@ export function HeroGlobe() {
   }, [size.w === 0]);
 
   return (
-    <div className="relative mx-auto w-full max-w-[640px]">
+    <div className="relative mx-auto w-full max-w-[720px]">
       <div
         aria-hidden
         className="pointer-events-none absolute -inset-10 rounded-full bg-[radial-gradient(circle,rgba(255,236,192,0.10),transparent_65%)] blur-2xl"
