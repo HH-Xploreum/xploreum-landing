@@ -25,23 +25,21 @@ export function GlobeO({
         transform: 'translateY(0.02em)',
       }}
     >
-      {/* Soft diffused halo — tight, restrained, off-white */}
+      {/* Soft halo — pure white, tight, sits just outside the globe rim */}
       <span
         className="absolute rounded-full pointer-events-none"
         style={{
-          inset: '-0.07em',
+          inset: '-0.06em',
           background:
-            'radial-gradient(closest-side, rgba(245,245,248,0) 74%, rgba(245,245,248,0.14) 86%, rgba(240,240,245,0.06) 94%, rgba(240,240,245,0) 100%)',
+            'radial-gradient(closest-side, rgba(255,255,255,0) 83%, rgba(255,255,255,0.20) 90%, rgba(255,255,255,0) 100%)',
+          filter: 'blur(0.008em)',
         }}
       />
 
-      {/* Globe disc — gentle lift, no glow */}
+      {/* Globe disc */}
       <span
         className="absolute inset-0 rounded-full overflow-hidden"
-        style={{
-          boxShadow: '0 0 0.04em rgba(240,240,245,0.08)',
-          background: '#0a1420',
-        }}
+        style={{ background: '#0a1420' }}
       >
         <GlobeCanvas style={style} />
 
