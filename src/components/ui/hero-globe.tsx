@@ -102,13 +102,13 @@ export function HeroGlobe() {
         enableRotate: boolean;
       };
       c.autoRotate = true;
-      c.autoRotateSpeed = 0.3;
+      c.autoRotateSpeed = 0.22;
       c.enableZoom = false;
       c.enableDamping = true;
       c.dampingFactor = 0.08;
       c.enablePan = false;
       c.enableRotate = false;
-      g.pointOfView({ lat: 20, lng: -30, altitude: 1.8 }, 0);
+      g.pointOfView({ lat: 20, lng: -30, altitude: 1.4 }, 0);
 
       (async () => {
         const [THREE, composerMod, renderPassMod, bloomMod] = await Promise.all([
@@ -151,21 +151,21 @@ export function HeroGlobe() {
           if (mesh.type === 'Mesh' && mesh.material?.map && !mesh.material.emissiveMap) {
             mesh.material.emissiveMap = mesh.material.map;
             mesh.material.emissive?.set?.(0xffffff);
-            mesh.material.emissiveIntensity = 1.8;
+            mesh.material.emissiveIntensity = 2.4;
             mesh.material.needsUpdate = true;
           }
         });
 
         renderer.toneMapping = THREE.ACESFilmicToneMapping;
-        renderer.toneMappingExposure = 1.35;
+        renderer.toneMappingExposure = 1.55;
 
         const composer = new composerMod.EffectComposer(renderer);
         composer.addPass(new renderPassMod.RenderPass(scene, camera));
         const bloom = new bloomMod.UnrealBloomPass(
           new THREE.Vector2(size.w, size.h),
-          0.95,
-          0.6,
-          0.15,
+          1.1,
+          0.65,
+          0.08,
         );
         composer.addPass(bloom);
         composerRef.current = composer;
@@ -215,18 +215,18 @@ export function HeroGlobe() {
           height={size.h}
           backgroundColor="rgba(0,0,0,0)"
           showAtmosphere
-          atmosphereColor="#C8D8E6"
-          atmosphereAltitude={0.18}
+          atmosphereColor="#B5C8DD"
+          atmosphereAltitude={0.07}
           globeImageUrl="//unpkg.com/three-globe/example/img/earth-night.jpg"
           bumpImageUrl="//unpkg.com/three-globe/example/img/earth-topology.png"
           pointsData={CITY_LIGHTS}
           pointLat="lat"
           pointLng="lng"
           pointColor={(d: object) =>
-            (d as Point).intensity > 0.75 ? '#FFF4D0' : '#FFE8A8'
+            (d as Point).intensity > 0.75 ? '#FFF8E0' : '#FFECB0'
           }
-          pointAltitude={(d: object) => 0.002 + (d as Point).intensity * 0.004}
-          pointRadius={(d: object) => 0.08 * (0.7 + (d as Point).intensity * 0.6)}
+          pointAltitude={(d: object) => 0.003 + (d as Point).intensity * 0.005}
+          pointRadius={(d: object) => 0.12 * (0.7 + (d as Point).intensity * 0.7)}
           pointLabel={() => ''}
         />
       )}
