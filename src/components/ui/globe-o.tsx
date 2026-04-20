@@ -39,7 +39,7 @@ export function GlobeO({
         className="absolute inset-0 rounded-full overflow-hidden"
         style={{
           boxShadow:
-            '0 0 0 1.5px rgba(255,255,255,0.92), 0 10px 40px -10px rgba(140,190,255,0.4)',
+            '0 0 0 0.028em rgba(255,255,255,0.95), 0 0.08em 0.35em -0.08em rgba(140,190,255,0.4)',
           background: '#0a1420',
         }}
       >
