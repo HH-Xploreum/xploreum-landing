@@ -1,5 +1,6 @@
 import { Button } from '@/components/ui/button';
 import { HeroGlobe } from '@/components/ui/hero-globe';
+import { PhoneMock } from '@/components/ui/phone-mock';
 import { LINKS } from '@/lib/links';
 
 export function Hero() {
@@ -7,7 +8,7 @@ export function Hero() {
     <section className="relative min-h-screen flex flex-col pt-20 md:pt-28 pb-10 md:pb-14 bg-[#050810] text-bone overflow-hidden">
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_70%_45%,rgba(255,236,192,0.06),transparent_55%)]"
+        className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_70%_45%,rgba(255,236,192,0.05),transparent_55%)]"
       />
 
       <div className="relative max-w-7xl mx-auto w-full px-5 md:px-10 flex-1 flex flex-col">
@@ -15,17 +16,20 @@ export function Hero() {
           Meet X — Your AI Travel Agent
         </div>
 
-        <div className="grid md:grid-cols-[1fr_1.15fr] gap-10 md:gap-12 flex-1 items-center">
+        <div className="grid md:grid-cols-[1.15fr_1fr] gap-10 md:gap-12 flex-1 items-center">
           <div className="order-last md:order-first">
-            <div className="font-black uppercase leading-[0.85] tracking-[-0.04em] text-bone text-[clamp(4rem,13vw,12rem)]">
+            <div className="font-black uppercase leading-[0.9] tracking-[-0.04em] text-bone text-[clamp(4rem,13vw,12rem)]">
               <div className="rise rise-2">Ask</div>
               <div className="rise rise-3">Plan</div>
               <div className="rise rise-4">Pack</div>
-              <div
-                className="rise rise-5 text-transparent"
-                style={{ WebkitTextStroke: '0.03em var(--color-bone)' }}
-              >
-                Go
+              <div className="rise rise-5 flex items-center gap-[0.04em]">
+                <span>G</span>
+                <span
+                  className="relative inline-block aspect-square rounded-full overflow-hidden shrink-0"
+                  style={{ width: '0.82em', height: '0.82em' }}
+                >
+                  <HeroGlobe />
+                </span>
               </div>
             </div>
 
@@ -45,7 +49,7 @@ export function Hero() {
           </div>
 
           <div className="rise rise-3">
-            <HeroGlobe />
+            <PhoneMock />
           </div>
         </div>
       </div>
