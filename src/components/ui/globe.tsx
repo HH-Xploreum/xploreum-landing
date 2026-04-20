@@ -21,10 +21,10 @@ function NightEarth() {
       <meshStandardMaterial
         map={tex}
         emissiveMap={tex}
-        emissive="#fff1d0"
-        emissiveIntensity={3.2}
-        color="#1a1f28"
-        roughness={0.95}
+        emissive="#ffe8b8"
+        emissiveIntensity={2.4}
+        color="#3a4a60"
+        roughness={0.9}
         metalness={0}
       />
     </mesh>
@@ -69,7 +69,7 @@ export function GlobeCanvas({
   const isNight = style === 'night';
 
   const lighting = {
-    night: { ambient: 0.15, directional: 0.2, atmosphere: '#2a3d5a', atmOpacity: 0.08 },
+    night: { ambient: 0.45, directional: 0.55, atmosphere: '#3a5680', atmOpacity: 0.12 },
     topo: { ambient: 0.7, directional: 1.1, atmosphere: '#a0c0ff', atmOpacity: 0.12 },
     minimal: { ambient: 0.5, directional: 1.3, atmosphere: '#b0c8ff', atmOpacity: 0.12 },
     day: { ambient: 0.7, directional: 1.2, atmosphere: '#9fc0ff', atmOpacity: 0.12 },
@@ -114,11 +114,11 @@ export function GlobeCanvas({
       {isNight && (
         <EffectComposer>
           <Bloom
-            intensity={1.4}
-            luminanceThreshold={0.25}
-            luminanceSmoothing={0.6}
+            intensity={0.95}
+            luminanceThreshold={0.35}
+            luminanceSmoothing={0.55}
             mipmapBlur
-            radius={0.75}
+            radius={0.6}
           />
         </EffectComposer>
       )}

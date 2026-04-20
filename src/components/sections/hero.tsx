@@ -34,7 +34,7 @@ export function Hero() {
               <span className="rise rise-2 block">Ask</span>
               <span className="rise rise-3 block">Plan</span>
               <span className="rise rise-4 block">Pack</span>
-              <span className="rise rise-5 flex items-center gap-[0.04em]">
+              <span className="rise rise-5 flex items-baseline gap-[0.05em]">
                 <span
                   className="text-transparent"
                   style={{ WebkitTextStroke: '0.028em #ffffff' }}

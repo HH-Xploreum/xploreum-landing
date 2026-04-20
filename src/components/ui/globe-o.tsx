@@ -22,7 +22,7 @@ export function GlobeO({
       style={{
         width: size,
         height: size,
-        transform: 'translateY(0.04em)',
+        transform: 'translateY(0.02em)',
       }}
     >
       <span
