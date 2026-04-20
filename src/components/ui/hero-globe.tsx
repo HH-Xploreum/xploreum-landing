@@ -50,7 +50,6 @@ const HOTSPOTS: Point[] = [
 
 const ALL: Point[] = [...HOTSPOTS, ...XPERTS];
 
-// Deterministic jitter so brightness/size vary per dot without hydration mismatch.
 function hashVariation(lat: number, lng: number) {
   const h = Math.abs(Math.sin(lat * 12.9898 + lng * 78.233) * 43758.5453);
   return h - Math.floor(h);
@@ -84,36 +83,53 @@ export function HeroGlobe() {
       dampingFactor: number;
     };
     c.autoRotate = true;
-    c.autoRotateSpeed = 0.3;
+    c.autoRotateSpeed = 0.25;
     c.enableZoom = false;
     c.enableDamping = true;
     c.dampingFactor = 0.08;
 
-    g.pointOfView({ lat: 30, lng: -95, altitude: 1.45 }, 0);
+    g.pointOfView({ lat: 30, lng: -95, altitude: 1.55 }, 0);
 
     import('three').then((THREE) => {
       if (cancelled) return;
       const scene = g.scene();
+
       scene.children.forEach((child) => {
         const maybeLight = child as { isLight?: boolean; intensity?: number };
         if (maybeLight.isLight && typeof maybeLight.intensity === 'number') {
-          maybeLight.intensity *= 0.25;
+          maybeLight.intensity *= 0.2;
         }
       });
 
-      const sun = new THREE.DirectionalLight(0xffecc0, 1.6);
+      const sun = new THREE.DirectionalLight(0xfff0d0, 0.8);
       sun.position.set(-180, 80, 120);
       scene.add(sun);
 
-      const hemi = new THREE.HemisphereLight(0x8899aa, 0x0a1020, 0.25);
+      const hemi = new THREE.HemisphereLight(0x9fb4c8, 0x0a1020, 0.3);
       scene.add(hemi);
 
-      const ambient = new THREE.AmbientLight(0xffffff, 0.08);
-      scene.add(ambient);
+      scene.traverse((obj) => {
+        const mesh = obj as {
+          type?: string;
+          material?: {
+            map?: unknown;
+            emissiveMap?: unknown;
+            emissive?: { set?: (c: number) => void };
+            emissiveIntensity?: number;
+            needsUpdate?: boolean;
+          };
+        };
+        if (mesh.type === 'Mesh' && mesh.material?.map && !mesh.material.emissiveMap) {
+          mesh.material.emissiveMap = mesh.material.map;
+          mesh.material.emissive?.set?.(0xffffff);
+          mesh.material.emissiveIntensity = 1.1;
+          mesh.material.needsUpdate = true;
+        }
+      });
 
       const renderer = g.renderer();
       renderer.toneMapping = THREE.ACESFilmicToneMapping;
-      renderer.toneMappingExposure = 0.85;
+      renderer.toneMappingExposure = 1.0;
     });
 
     return () => {
@@ -123,6 +139,10 @@ export function HeroGlobe() {
 
   return (
     <div className="relative mx-auto w-full max-w-[640px]">
+      <div
+        aria-hidden
+        className="pointer-events-none absolute -inset-6 rounded-full bg-[radial-gradient(circle,rgba(255,236,192,0.08),transparent_70%)] blur-2xl"
+      />
       <div ref={containerRef} className="relative aspect-square">
         {size.w > 0 && (
           <Globe
@@ -131,8 +151,8 @@ export function HeroGlobe() {
             height={size.h}
             backgroundColor="rgba(0,0,0,0)"
             showAtmosphere
-            atmosphereColor="#93A5B8"
-            atmosphereAltitude={0.14}
+            atmosphereColor="#B5C8DD"
+            atmosphereAltitude={0.2}
             globeImageUrl="//unpkg.com/three-globe/example/img/earth-night.jpg"
             bumpImageUrl="//unpkg.com/three-globe/example/img/earth-topology.png"
             pointsData={ALL}
@@ -147,12 +167,12 @@ export function HeroGlobe() {
             pointAltitude={(d: object) => {
               const p = d as Point;
               const v = hashVariation(p.lat, p.lng);
-              return (p.role === 'xpert' ? 0.022 : 0.008) + v * 0.004;
+              return (p.role === 'xpert' ? 0.024 : 0.008) + v * 0.004;
             }}
             pointRadius={(d: object) => {
               const p = d as Point;
               const v = hashVariation(p.lat + 1, p.lng);
-              return (p.role === 'xpert' ? 0.45 : 0.26) * (0.8 + v * 0.5);
+              return (p.role === 'xpert' ? 0.48 : 0.24) * (0.8 + v * 0.5);
             }}
             pointLabel={(d: object) => {
               const p = d as Point;
@@ -167,35 +187,24 @@ export function HeroGlobe() {
                 </div>
               `;
             }}
-            ringsData={ALL}
+            ringsData={XPERTS}
             ringLat="lat"
             ringLng="lng"
-            ringAltitude={0.005}
-            ringColor={(d: object) => {
-              const role = (d as Point).role;
-              return (t: number) =>
-                role === 'xpert'
-                  ? `rgba(255,251,230,${0.85 * (1 - t)})`
-                  : `rgba(255,233,154,${0.55 * (1 - t)})`;
-            }}
-            ringMaxRadius={(d: object) => ((d as Point).role === 'xpert' ? 4.5 : 2.6)}
-            ringPropagationSpeed={(d: object) =>
-              (d as Point).role === 'xpert' ? 1.8 : 1.2
-            }
-            ringRepeatPeriod={(d: object) =>
-              (d as Point).role === 'xpert' ? 1500 : 2200
-            }
+            ringAltitude={0.006}
+            ringColor={() => (t: number) => `rgba(255,251,230,${0.85 * (1 - t)})`}
+            ringMaxRadius={4.5}
+            ringPropagationSpeed={1.8}
+            ringRepeatPeriod={1500}
           />
         )}
-
       </div>
 
-      <div className="mt-4 flex justify-between items-center font-mono text-[10px] tracking-[0.2em] uppercase text-forest/60">
+      <div className="mt-5 flex justify-between items-center font-mono text-[10px] tracking-[0.2em] uppercase text-bone/55">
         <span>— Xploreum Network</span>
         <span>Live now</span>
       </div>
-      <div className="mt-1 font-mono text-[10px] tracking-[0.2em] uppercase text-forest/40">
-        Lighting up where we&apos;re live · North America · +22 countries
+      <div className="mt-1 font-mono text-[10px] tracking-[0.2em] uppercase text-bone/35">
+        Live across North America · +22 countries
       </div>
     </div>
   );
