@@ -29,10 +29,9 @@ export function GlobeO({
       <span
         className="absolute rounded-full pointer-events-none"
         style={{
-          inset: '-0.06em',
+          inset: '-0.07em',
           background:
-            'radial-gradient(closest-side, rgba(255,255,255,0) 83%, rgba(255,255,255,0.20) 90%, rgba(255,255,255,0) 100%)',
-          filter: 'blur(0.008em)',
+            'radial-gradient(closest-side, rgba(255,255,255,0) 78%, rgba(255,255,255,0.55) 88%, rgba(255,255,255,0.18) 95%, rgba(255,255,255,0) 100%)',
         }}
       />
 
