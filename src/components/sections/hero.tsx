@@ -22,10 +22,10 @@ export function Hero() {
                 <span
                   className="relative inline-block aspect-square rounded-full overflow-hidden shrink-0"
                   style={{
-                    width: '1.05em',
-                    height: '1.05em',
+                    width: '0.72em',
+                    height: '0.72em',
                     boxShadow:
-                      '0 0 0 1px rgba(255,255,255,0.7), 0 0 24px 2px rgba(200,220,240,0.08)',
+                      '0 0 0 1px rgba(255,255,255,0.45), 0 0 14px 1px rgba(200,220,240,0.05)',
                   }}
                 >
                   <HeroGlobe />

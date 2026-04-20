@@ -108,7 +108,7 @@ export function HeroGlobe() {
       c.dampingFactor = 0.08;
       c.enablePan = false;
       c.enableRotate = false;
-      g.pointOfView({ lat: 20, lng: -30, altitude: 1.18 }, 0);
+      g.pointOfView({ lat: 25, lng: -80, altitude: 1.03 }, 0);
 
       (async () => {
         const [THREE, composerMod, renderPassMod, bloomMod] = await Promise.all([
@@ -130,11 +130,11 @@ export function HeroGlobe() {
           }
         });
 
-        const sun = new THREE.DirectionalLight(0xfff0d0, 0.5);
+        const sun = new THREE.DirectionalLight(0xfff0d0, 1.8);
         sun.position.set(-180, 60, 100);
         scene.add(sun);
 
-        const hemi = new THREE.HemisphereLight(0xaabed0, 0x050810, 0.3);
+        const hemi = new THREE.HemisphereLight(0xc8d8e6, 0x1a2030, 2.5);
         scene.add(hemi);
 
         scene.traverse((obj) => {
@@ -151,21 +151,21 @@ export function HeroGlobe() {
           if (mesh.type === 'Mesh' && mesh.material?.map && !mesh.material.emissiveMap) {
             mesh.material.emissiveMap = mesh.material.map;
             mesh.material.emissive?.set?.(0xffffff);
-            mesh.material.emissiveIntensity = 4.5;
+            mesh.material.emissiveIntensity = 3.0;
             mesh.material.needsUpdate = true;
           }
         });
 
         renderer.toneMapping = THREE.ACESFilmicToneMapping;
-        renderer.toneMappingExposure = 2.0;
+        renderer.toneMappingExposure = 1.4;
 
         const composer = new composerMod.EffectComposer(renderer);
         composer.addPass(new renderPassMod.RenderPass(scene, camera));
         const bloom = new bloomMod.UnrealBloomPass(
           new THREE.Vector2(size.w, size.h),
-          0.85,
-          0.5,
-          0.05,
+          0.55,
+          0.4,
+          0.3,
         );
         composer.addPass(bloom);
         composerRef.current = composer;
