@@ -5,13 +5,13 @@ import { LINKS } from '@/lib/links';
 export function Hero() {
   return (
     <section className="pt-32 md:pt-40 pb-20 md:pb-28">
-      <div className="max-w-7xl mx-auto px-5 md:px-8 grid lg:grid-cols-[1.1fr_1fr] gap-16 lg:gap-20 items-center">
+      <div className="max-w-7xl mx-auto px-5 md:px-8 grid md:grid-cols-[1.1fr_1fr] gap-12 md:gap-10 lg:gap-20 items-center">
         <div>
           <div className="rise rise-1 font-mono text-xs md:text-sm tracking-[0.2em] uppercase text-forest/70 mb-8">
             Meet X — Your AI Travel Agent
           </div>
 
-          <h1 className="rise rise-2 font-black tracking-[-0.035em] leading-[0.95] text-forest text-[clamp(2.5rem,6.5vw,6rem)]">
+          <h1 className="rise rise-2 font-black tracking-[-0.035em] leading-[0.95] text-forest text-[clamp(2.5rem,6vw,6rem)]">
             The trip that takes 16 hours to plan. Built in one conversation.
           </h1>
 
@@ -37,7 +37,7 @@ export function Hero() {
           </div>
         </div>
 
-        <div className="rise rise-3 order-first lg:order-last">
+        <div className="rise rise-3 order-first md:order-last">
           <PhoneMock />
         </div>
       </div>
