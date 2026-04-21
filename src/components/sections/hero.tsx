@@ -30,7 +30,7 @@ export function Hero() {
         className="absolute inset-0 w-full h-full object-cover pointer-events-none"
       >
         <source
-          src="https://auth.xploreum.io/storage/v1/object/public/landing-assets/video4.mp4"
+          src="https://auth.xploreum.io/storage/v1/object/public/landing-assets/video5.mp4"
           type="video/mp4"
         />
       </video>
