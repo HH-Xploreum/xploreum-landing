@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 type Word = { text: string; outline?: boolean };
 
 const WORDS: Word[] = [
+  { text: 'Chat' },
   { text: 'Plan' },
   { text: 'Pack' },
   { text: 'Go.', outline: true },

@@ -45,8 +45,7 @@ export function Hero() {
               data-caret-zone
               className="caret-zone font-black uppercase leading-[0.84] tracking-[-0.045em] text-forest text-[clamp(3rem,11vw,13rem)]"
             >
-              <span className="rise rise-2 block">Chat</span>
-              <span className="rise rise-3 block">
+              <span className="rise rise-2 block">
                 <TypewriterWords />
               </span>
             </h1>
