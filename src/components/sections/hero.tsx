@@ -1,94 +1,103 @@
-import { Button } from '@/components/ui/button';
 import { LINKS } from '@/lib/links';
+import { PhoneMock } from '@/components/ui/phone-mock';
+import { HeroCaretCursor } from '@/components/ui/hero-caret-cursor';
+import { MagneticPill } from '@/components/ui/magnetic-pill';
+import { TripsTicker } from '@/components/ui/trips-ticker';
 
-export function Hero() {
+function Crosshair({ className }: { className: string }) {
   return (
-    <section className="min-h-screen flex flex-col pt-20 md:pt-28 pb-10 md:pb-14">
-      <div className="max-w-7xl mx-auto w-full px-5 md:px-10 flex-1 flex flex-col">
-        <div className="rise rise-1 font-mono text-[10px] md:text-xs tracking-[0.25em] uppercase text-forest/70 mb-8 md:mb-12">
-          Meet X — Your AI Travel Agent
-        </div>
-
-        <div className="grid md:grid-cols-[1.15fr_1fr] gap-10 md:gap-12 flex-1 items-center">
-          <div className="order-last md:order-first">
-            <div className="font-black uppercase leading-[0.85] tracking-[-0.04em] text-forest text-[clamp(4rem,13vw,12rem)]">
-              <div className="rise rise-2">Ask</div>
-              <div className="rise rise-3">Plan</div>
-              <div className="rise rise-4">Pack</div>
-              <div
-                className="rise rise-5 text-transparent"
-                style={{ WebkitTextStroke: '0.03em var(--color-forest)' }}
-              >
-                Go
-              </div>
-            </div>
-
-            <div className="rise rise-6 mt-8 md:mt-10 flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6">
-              <Button
-                href={LINKS.chatWithX}
-                external
-                variant="primary"
-                className="text-base md:text-lg"
-              >
-                Chat with X
-              </Button>
-              <span className="text-sm text-forest/70">
-                Free. No sign-up. No expertise needed.
-              </span>
-            </div>
-          </div>
-
-          <div className="rise rise-3">
-            <HeroMedia />
-          </div>
-        </div>
-      </div>
-    </section>
+    <svg
+      aria-hidden
+      viewBox="0 0 14 14"
+      className={`crosshair ${className}`}
+    >
+      <path d="M7 0 V14 M0 7 H14" stroke="currentColor" strokeWidth="1" fill="none" />
+    </svg>
   );
 }
 
-function HeroMedia() {
+export function Hero() {
   return (
-    <div className="relative mx-auto w-full max-w-[420px] md:max-w-[480px]">
-      <div className="absolute -inset-10 bg-bone-soft/40 blur-3xl rounded-full pointer-events-none" />
+    <section className="relative isolate md:min-h-screen overflow-hidden bg-bone text-forest">
+      {/* Ambient layers — topo contours + soft radial wash + grain */}
+      <div aria-hidden className="topo-layer" />
+      <div
+        aria-hidden
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background:
+            'radial-gradient(1200px 700px at 15% 20%, rgba(30,58,42,0.06), transparent 60%), radial-gradient(900px 600px at 85% 80%, rgba(30,58,42,0.05), transparent 65%)',
+        }}
+      />
+      <div aria-hidden className="grain-layer" />
 
-      <div className="relative aspect-[4/5] rounded-3xl bg-bone-soft/60 overflow-hidden p-5 md:p-6 flex flex-col shadow-[0_30px_60px_-30px_rgba(15,36,23,0.3)]">
-        <div className="flex items-center gap-2 mb-4">
-          <div className="w-8 h-8 rounded-full bg-forest flex items-center justify-center text-bone font-bold text-sm">
-            X
+      {/* Corner registration marks */}
+      <Crosshair className="top-4 left-4 md:top-6 md:left-6" />
+      <Crosshair className="top-4 right-4 md:top-6 md:right-6" />
+      <Crosshair className="bottom-4 left-4 md:bottom-6 md:left-6" />
+      <Crosshair className="bottom-4 right-4 md:bottom-6 md:right-6" />
+
+      <div className="relative max-w-[1400px] mx-auto w-full px-5 md:px-10 pt-20 md:pt-32 pb-10 md:pb-20 md:min-h-screen md:flex md:flex-col">
+        <div className="grid grid-cols-[1.2fr_1fr] gap-4 sm:gap-8 md:gap-12 lg:gap-14 md:flex-1 md:items-center">
+          <div>
+            <h1
+              data-caret-zone
+              className="caret-zone font-black uppercase leading-[0.84] tracking-[-0.045em] text-forest text-[clamp(2.5rem,9vw,9rem)]"
+            >
+              <span className="rise rise-2 block">Chat Plan</span>
+              <span className="rise rise-3 block">
+                Pack <span className="text-outline">Go</span>
+              </span>
+            </h1>
+
+            <div className="rise rise-6 mt-9 md:mt-12 flex flex-col sm:flex-row items-start sm:items-center gap-5 sm:gap-6">
+              <MagneticPill
+                href={LINKS.chatWithX}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group inline-flex items-center gap-2 rounded-full bg-forest text-bone px-7 py-4 text-base md:text-lg font-semibold tracking-tight hover:bg-forest-deep shadow-[0_10px_40px_-10px_rgba(30,58,42,0.35)]"
+              >
+                <span>Chat with X</span>
+                <span
+                  aria-hidden
+                  className="inline-block transition-transform group-hover:translate-x-0.5"
+                >
+                  →
+                </span>
+              </MagneticPill>
+              <span className="text-sm text-forest/70 max-w-xs">
+                Free. No sign-up. No expertise needed.
+              </span>
+            </div>
+
+            <div className="rise rise-6 mt-6 md:mt-8">
+              <TripsTicker />
+            </div>
           </div>
-          <span className="font-bold text-forest text-sm">Ask X</span>
+
+          <div className="rise rise-4 w-full flex justify-center lg:justify-end">
+            <PhoneMock videoSrc="https://auth.xploreum.io/storage/v1/object/public/landing-assets/mobile-app.mov" />
+          </div>
         </div>
 
-        <div className="flex-1 flex flex-col justify-end space-y-3">
-          <div className="ml-auto max-w-[82%] rounded-2xl rounded-br-md bg-forest text-bone text-[13px] md:text-sm leading-relaxed px-4 py-2.5">
-            10 days in Patagonia, mid-November. I want trails, not hotels.
-          </div>
-          <div className="max-w-[88%] rounded-2xl rounded-bl-md bg-bone text-forest text-[13px] md:text-sm leading-relaxed px-4 py-2.5 shadow-sm">
-            Let&apos;s go. Starting in El Chaltén — Fitz Roy trek day 1, Laguna de
-            los Tres day 2. Pairing you with Mateo, a certified local guide.
-          </div>
-          <div className="max-w-[72%] rounded-2xl rounded-bl-md bg-bone text-forest text-[13px] md:text-sm leading-relaxed px-4 py-2.5 shadow-sm">
-            Weather window looks clean Nov 14–24. Shall I lock it?
-          </div>
-        </div>
-
-        <div className="mt-4 rounded-full bg-bone border border-line/60 px-4 py-2.5 text-[12px] text-moss flex items-center justify-between">
-          <span>Ask X anything…</span>
-          <span className="w-6 h-6 rounded-full bg-forest flex items-center justify-center text-bone text-xs">
-            ↑
+        <div className="mt-10 md:mt-16 flex items-end justify-between gap-6 font-mono text-[10px] tracking-[0.3em] uppercase text-forest/45">
+          <span className="hidden sm:inline-flex items-center gap-3 shrink-0">
+            <span className="inline-block w-8 h-px bg-forest/30" />
+            Scroll
           </span>
+          <div
+            aria-hidden
+            className="ruler flex-1 max-w-[540px] hidden md:grid text-forest"
+          >
+            {Array.from({ length: 40 }).map((_, i) => (
+              <span key={i} />
+            ))}
+          </div>
+          <span className="shrink-0">Xploreum · 2026</span>
         </div>
       </div>
 
-      <a
-        href={LINKS.chatWithX}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="block text-center mt-4 font-mono text-[10px] tracking-[0.2em] uppercase text-moss hover:text-forest transition"
-      >
-        — Try it live
-      </a>
-    </div>
+      <HeroCaretCursor />
+    </section>
   );
 }
