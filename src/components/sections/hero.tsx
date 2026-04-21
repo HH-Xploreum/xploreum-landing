@@ -59,7 +59,7 @@ export function Hero() {
           </div>
 
           <div className="rise rise-4 w-full flex justify-center lg:justify-end">
-            <PhoneMock videoSrc="/video2.mov" />
+            <PhoneMock videoSrc="https://auth.xploreum.io/storage/v1/object/public/landing-assets/mobile-app.mov" />
           </div>
         </div>
 
