@@ -84,22 +84,22 @@ body {
   will-change: transform;
 }
 
-/* custom hero cursor: blinking text caret that tracks the mouse */
+/* custom hero cursor: small "X" glyph that tracks the mouse inside the headline zone */
 .caret-cursor {
   position: fixed;
   top: 0;
   left: 0;
-  width: 2px;
-  height: clamp(44px, 7vw, 96px);
-  margin-left: -1px;
-  background: var(--color-forest);
+  width: 24px;
+  height: 24px;
+  color: var(--color-forest);
   pointer-events: none;
   z-index: 50;
   opacity: 0;
-  transition: opacity 0.2s ease;
-  animation: caret-blink 1s steps(1, end) infinite;
+  transition: opacity 0.18s ease;
+  will-change: transform;
 }
-.caret-cursor.is-active { opacity: 0.82; }
+.caret-cursor.is-active { opacity: 0.85; }
+.caret-cursor svg { display: block; }
 .caret-zone { cursor: none; }
 
 /* magnetic button — smooth return after pointer leaves */

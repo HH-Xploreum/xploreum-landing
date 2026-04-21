@@ -42,7 +42,17 @@ export function HeroCaretCursor() {
     <div
       aria-hidden
       className={`caret-cursor ${active ? 'is-active' : ''}`}
-      style={{ transform: `translate(${pos.x}px, ${pos.y - 24}px)` }}
-    />
+      style={{ transform: `translate(${pos.x - 12}px, ${pos.y - 12}px)` }}
+    >
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <path
+          d="M5 5 L19 19 M19 5 L5 19"
+          stroke="currentColor"
+          strokeWidth="2.4"
+          strokeLinecap="round"
+          fill="none"
+        />
+      </svg>
+    </div>
   );
 }
