@@ -59,7 +59,7 @@ export function Hero() {
           </div>
 
           <div className="rise rise-4 w-full flex justify-center lg:justify-end">
-            <PhoneMock />
+            <PhoneMock videoSrc="/video1.mp4" />
           </div>
         </div>
 
