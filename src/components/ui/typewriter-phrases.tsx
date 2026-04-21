@@ -3,15 +3,13 @@
 import { useEffect, useState } from 'react';
 
 const LINE1 = 'Chat Plan';
-const LINE2 = 'Pack Go';
+const LINE2 = 'Pack Go.';
 const OUTLINE_START = 'Pack '.length;
 
 const TYPE_MS = 85;
 const LINE_GAP_MS = 260;
-const HOLD_MS = 2200;
-const ERASE_MS = 32;
 
-type Phase = 'typing1' | 'pausing' | 'typing2' | 'holding' | 'erasing';
+type Phase = 'typing1' | 'pausing' | 'typing2' | 'done';
 
 export function TypewriterPhrases() {
   const [line1, setLine1] = useState('');
@@ -38,8 +36,8 @@ export function TypewriterPhrases() {
 
     if (phase === 'typing2') {
       if (line2 === LINE2) {
-        const t = setTimeout(() => setPhase('holding'), 0);
-        return () => clearTimeout(t);
+        setPhase('done');
+        return;
       }
       const t = setTimeout(
         () => setLine2(LINE2.slice(0, line2.length + 1)),
@@ -47,27 +45,10 @@ export function TypewriterPhrases() {
       );
       return () => clearTimeout(t);
     }
-
-    if (phase === 'holding') {
-      const t = setTimeout(() => setPhase('erasing'), HOLD_MS);
-      return () => clearTimeout(t);
-    }
-
-    // erasing: drop line2 first, then line1, then loop
-    if (line2.length > 0) {
-      const t = setTimeout(() => setLine2(line2.slice(0, -1)), ERASE_MS);
-      return () => clearTimeout(t);
-    }
-    if (line1.length > 0) {
-      const t = setTimeout(() => setLine1(line1.slice(0, -1)), ERASE_MS);
-      return () => clearTimeout(t);
-    }
-    setPhase('typing1');
   }, [phase, line1, line2]);
 
   const line1Active = phase === 'typing1';
-  const line2Active =
-    phase === 'typing2' || phase === 'holding' || phase === 'erasing';
+  const line2Active = phase === 'typing2';
 
   const line2Plain = line2.slice(0, Math.min(line2.length, OUTLINE_START));
   const line2Outlined = line2.slice(OUTLINE_START);
