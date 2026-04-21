@@ -2,7 +2,13 @@
 
 import { useEffect, useState } from 'react';
 
-const WORDS = ['Plan,', 'Pack,', 'Go.'];
+type Word = { text: string; outline?: boolean };
+
+const WORDS: Word[] = [
+  { text: 'Plan' },
+  { text: 'Pack' },
+  { text: 'Go.', outline: true },
+];
 
 const TYPE_MS = 90;
 const ERASE_MS = 45;
@@ -17,7 +23,7 @@ export function TypewriterWords() {
   const [phase, setPhase] = useState<Phase>('typing');
 
   useEffect(() => {
-    const word = WORDS[index];
+    const word = WORDS[index].text;
 
     if (phase === 'typing') {
       if (text === word) {
@@ -49,11 +55,13 @@ export function TypewriterWords() {
     return () => clearTimeout(t);
   }, [text, phase, index]);
 
+  const current = WORDS[index];
+
   return (
     <span
       className={`inline-flex items-baseline ${phase === 'holding' ? 'word-breathe' : ''}`}
     >
-      <span aria-hidden className="text-outline">
+      <span aria-hidden className={current.outline ? 'text-outline' : ''}>
         {text.split('').map((ch, i) => (
           <span
             key={`${index}-${i}`}
@@ -65,7 +73,7 @@ export function TypewriterWords() {
         ))}
       </span>
       <span aria-hidden className="caret" />
-      <span className="sr-only">{WORDS[index]}</span>
+      <span className="sr-only">{current.text}</span>
     </span>
   );
 }
