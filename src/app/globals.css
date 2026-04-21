@@ -41,6 +41,20 @@ body {
 }
 .phone-float { animation: phone-float 6s ease-in-out infinite; }
 
+/* typewriter caret — blinks in place next to the typed word */
+.caret {
+  display: inline-block;
+  width: 0.06em;
+  height: 0.82em;
+  margin-left: 0.04em;
+  background: currentColor;
+  animation: caret-blink 1s steps(1, end) infinite;
+}
+@keyframes caret-blink {
+  0%, 50% { opacity: 1; }
+  50.01%, 100% { opacity: 0; }
+}
+
 /* chat sequence — bubbles appear one by one in a loop */
 @keyframes bubble-reveal {
   0%, 100% { opacity: 0; transform: translateY(6px); }

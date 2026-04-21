@@ -1,6 +1,6 @@
 import { LINKS } from '@/lib/links';
-import { GlobeO } from '@/components/ui/globe-o';
 import { PhoneMock } from '@/components/ui/phone-mock';
+import { TypewriterWords } from '@/components/ui/typewriter-words';
 
 export function Hero() {
   return (
@@ -24,16 +24,8 @@ export function Hero() {
           <div>
             <h1 className="font-black uppercase leading-[0.84] tracking-[-0.045em] text-forest text-[clamp(3rem,11vw,13rem)]">
               <span className="rise rise-2 block">Chat</span>
-              <span className="rise rise-3 block">Plan</span>
-              <span className="rise rise-4 block">Pack</span>
-              <span className="rise rise-5 flex items-baseline gap-[0.05em]">
-                <span
-                  className="text-transparent"
-                  style={{ WebkitTextStroke: '0.028em var(--color-forest)' }}
-                >
-                  G
-                </span>
-                <GlobeO />
+              <span className="rise rise-3 block">
+                <TypewriterWords />
               </span>
             </h1>
 
