@@ -15,10 +15,10 @@ type Option = {
 
 const OPTIONS: Option[] = [
   {
-    key: 'neon',
-    label: 'Neon',
+    key: 'night',
+    label: 'Premium Night',
     blurb:
-      'Dark ocean, traced continents. Coastlines glow bright blue-white, land interiors shimmer with cool-toned city clusters. Data-viz feel — reads as an interface, not a photo. Current hero default.',
+      'Dark navy oceans, near-black continents, warm cream city-light clusters. Selective bloom so only the lights glow — coastlines and rim stay clean. Current hero default — the premium, cinematic, quiet direction.',
   },
   {
     key: 'live',
@@ -27,10 +27,10 @@ const OPTIONS: Option[] = [
       'Realistic day/night shader. Sunlit blue oceans and continents on one hemisphere, glowing city lights on the other, warm terminator glow between them. Sun sweeps as it rotates.',
   },
   {
-    key: 'night',
-    label: 'Night',
+    key: 'neon',
+    label: 'Neon',
     blurb:
-      'NASA Black Marble. Pitch-black base with warm cream-white city clusters and heavy bloom. Pure nighttime earth — the most cinematic and moody option.',
+      'Dark ocean, traced continents. Coastlines glow bright blue-white, land interiors shimmer with cool-toned city clusters. Data-viz feel — reads as an interface, not a photo.',
   },
   {
     key: 'day',

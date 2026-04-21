@@ -9,7 +9,7 @@ const GlobeCanvas = dynamic(
 );
 
 export function GlobeO({
-  style = 'neon',
+  style = 'night',
   size = '0.74em',
 }: {
   style?: GlobeStyle;
@@ -25,34 +25,24 @@ export function GlobeO({
         transform: 'translateY(0.02em)',
       }}
     >
+      {/* Very subtle off-white halo — planet first, glow secondary */}
       <span
-        className="absolute rounded-full"
+        className="absolute rounded-full pointer-events-none"
         style={{
-          inset: '-0.08em',
+          inset: '-0.04em',
           background:
-            'radial-gradient(closest-side, rgba(30,58,42,0.14), rgba(30,58,42,0) 70%)',
-          filter: 'blur(6px)',
+            'radial-gradient(closest-side, rgba(255,250,240,0) 82%, rgba(255,250,240,0.14) 92%, rgba(255,250,240,0) 100%)',
         }}
       />
 
       <span
         className="absolute inset-0 rounded-full overflow-hidden"
         style={{
-          boxShadow:
-            '0 0 0 0.028em var(--color-forest), 0 0.08em 0.35em -0.08em rgba(30,58,42,0.3)',
-          background: '#0a1420',
+          boxShadow: '0 0 0 0.028em var(--color-forest)',
+          background: '#0a1018',
         }}
       >
         <GlobeCanvas style={style} />
-
-        <span
-          aria-hidden
-          className="absolute inset-0 rounded-full pointer-events-none"
-          style={{
-            background:
-              'radial-gradient(circle at 30% 25%, rgba(255,255,255,0.10), rgba(255,255,255,0) 50%)',
-          }}
-        />
       </span>
     </span>
   );
