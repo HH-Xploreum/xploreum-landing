@@ -33,3 +33,21 @@ body {
 .rise-4 { animation-delay: 0.4s; }
 .rise-5 { animation-delay: 0.52s; }
 .rise-6 { animation-delay: 0.62s; }
+
+/* slow premium float — phone mockup idle motion */
+@keyframes phone-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+.phone-float { animation: phone-float 6s ease-in-out infinite; }
+
+/* chat sequence — bubbles appear one by one in a loop */
+@keyframes bubble-reveal {
+  0%, 100% { opacity: 0; transform: translateY(6px); }
+  8%, 70% { opacity: 1; transform: translateY(0); }
+  78% { opacity: 0; transform: translateY(-4px); }
+}
+.bubble-1 { animation: bubble-reveal 9s ease-in-out infinite; animation-delay: 0s; }
+.bubble-2 { animation: bubble-reveal 9s ease-in-out infinite; animation-delay: 1.2s; }
+.bubble-3 { animation: bubble-reveal 9s ease-in-out infinite; animation-delay: 2.4s; }
+.bubble-4 { animation: bubble-reveal 9s ease-in-out infinite; animation-delay: 3.6s; }
