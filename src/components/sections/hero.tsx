@@ -3,7 +3,6 @@ import { PhoneMock } from '@/components/ui/phone-mock';
 import { TypewriterWords } from '@/components/ui/typewriter-words';
 import { HeroCaretCursor } from '@/components/ui/hero-caret-cursor';
 import { MagneticPill } from '@/components/ui/magnetic-pill';
-import { CoordTicker } from '@/components/ui/coord-ticker';
 import { TripsTicker } from '@/components/ui/trips-ticker';
 
 function Crosshair({ className }: { className: string }) {
@@ -40,14 +39,6 @@ export function Hero() {
       <Crosshair className="bottom-4 right-4 md:bottom-6 md:right-6" />
 
       <div className="relative max-w-[1400px] mx-auto w-full px-5 md:px-10 pt-20 md:pt-32 pb-10 md:pb-20 md:min-h-screen md:flex md:flex-col">
-        <div className="rise rise-1 mb-6 md:mb-14 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
-          <span className="font-mono text-[10px] md:text-xs tracking-[0.3em] uppercase text-forest/65 inline-flex items-center gap-3">
-            <span className="inline-block w-6 h-px bg-forest/40" />
-            Meet X — Your AI Travel Agent
-          </span>
-          <CoordTicker />
-        </div>
-
         <div className="grid grid-cols-[1.2fr_1fr] gap-4 sm:gap-8 md:gap-12 lg:gap-14 md:flex-1 md:items-center">
           <div>
             <h1
