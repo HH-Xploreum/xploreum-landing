@@ -20,6 +20,27 @@ function Crosshair({ className }: { className: string }) {
 export function Hero() {
   return (
     <section className="relative isolate md:min-h-screen overflow-hidden bg-bone text-forest">
+      {/* Background video */}
+      <video
+        aria-hidden
+        autoPlay
+        muted
+        loop
+        playsInline
+        preload="auto"
+        className="absolute inset-0 w-full h-full object-cover pointer-events-none"
+      >
+        <source
+          src="https://auth.xploreum.io/storage/v1/object/public/landing-assets/video4.mp4"
+          type="video/mp4"
+        />
+      </video>
+      {/* Legibility wash — soft bone veil over video so forest text stays readable */}
+      <div
+        aria-hidden
+        className="absolute inset-0 pointer-events-none bg-bone/55"
+      />
+
       {/* Ambient layers — topo contours + soft radial wash + grain */}
       <div aria-hidden className="topo-layer" />
       <div
