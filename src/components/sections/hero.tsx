@@ -4,40 +4,32 @@ import { PhoneMock } from '@/components/ui/phone-mock';
 
 export function Hero() {
   return (
-    <section className="relative isolate min-h-screen overflow-hidden bg-[#05080b] text-bone">
+    <section className="relative isolate min-h-screen overflow-hidden bg-bone text-forest">
       <div
         aria-hidden
         className="absolute inset-0 pointer-events-none"
         style={{
           background:
-            'radial-gradient(1200px 700px at 15% 20%, rgba(30,58,42,0.55), transparent 60%), radial-gradient(900px 600px at 85% 80%, rgba(20,40,70,0.45), transparent 65%), linear-gradient(180deg, #070b10 0%, #05080b 60%, #03050a 100%)',
-        }}
-      />
-      <div
-        aria-hidden
-        className="absolute inset-0 pointer-events-none opacity-[0.05] mix-blend-overlay"
-        style={{
-          backgroundImage:
-            "url(\"data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.6 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>\")",
+            'radial-gradient(1200px 700px at 15% 20%, rgba(30,58,42,0.06), transparent 60%), radial-gradient(900px 600px at 85% 80%, rgba(30,58,42,0.05), transparent 65%)',
         }}
       />
 
       <div className="relative max-w-[1400px] mx-auto w-full px-5 md:px-10 pt-28 md:pt-32 pb-14 md:pb-20 min-h-screen flex flex-col">
-        <div className="rise rise-1 font-mono text-[10px] md:text-xs tracking-[0.3em] uppercase text-bone/55 mb-10 md:mb-14 flex items-center gap-3">
-          <span className="inline-block w-6 h-px bg-bone/40" />
+        <div className="rise rise-1 font-mono text-[10px] md:text-xs tracking-[0.3em] uppercase text-forest/65 mb-10 md:mb-14 flex items-center gap-3">
+          <span className="inline-block w-6 h-px bg-forest/40" />
           Meet X — Your AI Travel Agent
         </div>
 
         <div className="grid lg:grid-cols-[1.25fr_1fr] gap-10 lg:gap-14 flex-1 items-center">
           <div className="order-last lg:order-first">
-            <h1 className="font-black uppercase leading-[0.84] tracking-[-0.045em] text-bone text-[clamp(4.5rem,13.5vw,13rem)]">
+            <h1 className="font-black uppercase leading-[0.84] tracking-[-0.045em] text-forest text-[clamp(4.5rem,13.5vw,13rem)]">
               <span className="rise rise-2 block">Ask</span>
               <span className="rise rise-3 block">Plan</span>
               <span className="rise rise-4 block">Pack</span>
               <span className="rise rise-5 flex items-baseline gap-[0.05em]">
                 <span
                   className="text-transparent"
-                  style={{ WebkitTextStroke: '0.028em #ffffff' }}
+                  style={{ WebkitTextStroke: '0.028em var(--color-forest)' }}
                 >
                   G
                 </span>
@@ -50,7 +42,7 @@ export function Hero() {
                 href={LINKS.chatWithX}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group inline-flex items-center gap-2 rounded-full bg-bone text-forest-deep px-7 py-4 text-base md:text-lg font-semibold tracking-tight hover:bg-white transition shadow-[0_10px_40px_-10px_rgba(255,255,255,0.35)]"
+                className="group inline-flex items-center gap-2 rounded-full bg-forest text-bone px-7 py-4 text-base md:text-lg font-semibold tracking-tight hover:bg-forest-deep transition shadow-[0_10px_40px_-10px_rgba(30,58,42,0.35)]"
               >
                 <span>Chat with X</span>
                 <span
@@ -60,7 +52,7 @@ export function Hero() {
                   →
                 </span>
               </a>
-              <span className="text-sm text-bone/55 max-w-xs">
+              <span className="text-sm text-forest/70 max-w-xs">
                 Free. No sign-up. No expertise needed.
               </span>
             </div>
@@ -71,9 +63,9 @@ export function Hero() {
           </div>
         </div>
 
-        <div className="mt-12 md:mt-16 flex items-end justify-between font-mono text-[10px] tracking-[0.3em] uppercase text-bone/35">
+        <div className="mt-12 md:mt-16 flex items-end justify-between font-mono text-[10px] tracking-[0.3em] uppercase text-forest/45">
           <span className="hidden sm:inline-flex items-center gap-3">
-            <span className="inline-block w-8 h-px bg-bone/25" />
+            <span className="inline-block w-8 h-px bg-forest/30" />
             Scroll
           </span>
           <span>Xploreum · 2026</span>

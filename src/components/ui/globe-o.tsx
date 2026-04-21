@@ -30,7 +30,7 @@ export function GlobeO({
         style={{
           inset: '-0.08em',
           background:
-            'radial-gradient(closest-side, rgba(150,200,255,0.22), rgba(150,200,255,0) 70%)',
+            'radial-gradient(closest-side, rgba(30,58,42,0.14), rgba(30,58,42,0) 70%)',
           filter: 'blur(6px)',
         }}
       />
@@ -39,7 +39,7 @@ export function GlobeO({
         className="absolute inset-0 rounded-full overflow-hidden"
         style={{
           boxShadow:
-            '0 0 0 0.028em rgba(255,255,255,0.95), 0 0.08em 0.35em -0.08em rgba(140,190,255,0.4)',
+            '0 0 0 0.028em var(--color-forest), 0 0.08em 0.35em -0.08em rgba(30,58,42,0.3)',
           background: '#0a1420',
         }}
       >
