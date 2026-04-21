@@ -178,9 +178,9 @@ function PureNightEarth() {
       <meshStandardMaterial
         map={tex}
         emissiveMap={tex}
-        emissive="#ffd9a4"
-        emissiveIntensity={1.9}
-        color="#141a24"
+        emissive="#ffdc5c"
+        emissiveIntensity={2.2}
+        color="#1d326f"
         roughness={0.95}
         metalness={0}
       />
@@ -265,7 +265,7 @@ export function GlobeCanvas({
   const lightPreset = {
     neon: { ambient: 0, directional: 0, atmosphere: '#2a4a7a', atmOpacity: 0 },
     live: { ambient: 0, directional: 0, atmosphere: '#3a5680', atmOpacity: 0 },
-    night: { ambient: 0.3, directional: 0.32, atmosphere: '#2a3d5a', atmOpacity: 0 },
+    night: { ambient: 0.55, directional: 0.22, atmosphere: '#2a3d5a', atmOpacity: 0 },
     topo: { ambient: 0.7, directional: 1.1, atmosphere: '#a0c0ff', atmOpacity: 0.12 },
     minimal: { ambient: 0.5, directional: 1.3, atmosphere: '#b0c8ff', atmOpacity: 0.12 },
     day: { ambient: 0.7, directional: 1.2, atmosphere: '#9fc0ff', atmOpacity: 0.12 },
@@ -322,11 +322,11 @@ export function GlobeCanvas({
       {needsBloom && (
         <EffectComposer>
           <Bloom
-            intensity={style === 'night' ? 0.8 : style === 'neon' ? 1.15 : 0.75}
-            luminanceThreshold={style === 'night' ? 0.62 : style === 'neon' ? 0.35 : 0.55}
-            luminanceSmoothing={0.5}
+            intensity={style === 'night' ? 1.05 : style === 'neon' ? 1.15 : 0.75}
+            luminanceThreshold={style === 'night' ? 0.5 : style === 'neon' ? 0.35 : 0.55}
+            luminanceSmoothing={0.55}
             mipmapBlur
-            radius={style === 'night' ? 0.45 : style === 'neon' ? 0.7 : 0.55}
+            radius={style === 'night' ? 0.6 : style === 'neon' ? 0.7 : 0.55}
           />
         </EffectComposer>
       )}
