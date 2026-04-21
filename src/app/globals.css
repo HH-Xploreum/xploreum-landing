@@ -84,24 +84,6 @@ body {
   will-change: transform;
 }
 
-/* custom hero cursor: small "X" glyph that tracks the mouse inside the headline zone */
-.caret-cursor {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 24px;
-  height: 24px;
-  color: var(--color-forest);
-  pointer-events: none;
-  z-index: 50;
-  opacity: 0;
-  transition: opacity 0.18s ease;
-  will-change: transform;
-}
-.caret-cursor.is-active { opacity: 0.85; }
-.caret-cursor svg { display: block; }
-.caret-zone { cursor: none; }
-
 /* magnetic button — smooth return after pointer leaves */
 .magnetic {
   transition: transform 0.24s cubic-bezier(0.2, 0.8, 0.2, 1);
@@ -175,10 +157,9 @@ body {
 .bubble-4 { animation: bubble-reveal 9s ease-in-out infinite; animation-delay: 3.6s; }
 
 @media (prefers-reduced-motion: reduce) {
-  .rise, .phone-float, .caret, .char-in, .word-breathe, .caret-cursor,
+  .rise, .phone-float, .caret, .char-in, .word-breathe,
   .magnetic, .bubble-1, .bubble-2, .bubble-3, .bubble-4, .coord-fade {
     animation: none !important;
     transition: none !important;
   }
-  .caret-cursor { display: none; }
 }

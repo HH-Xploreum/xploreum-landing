@@ -1,7 +1,6 @@
 import { LINKS } from '@/lib/links';
 import { PhoneMock } from '@/components/ui/phone-mock';
 import { TypewriterPhrases } from '@/components/ui/typewriter-phrases';
-import { HeroCaretCursor } from '@/components/ui/hero-caret-cursor';
 import { MagneticPill } from '@/components/ui/magnetic-pill';
 import { TripsTicker } from '@/components/ui/trips-ticker';
 
@@ -63,8 +62,7 @@ export function Hero() {
         <div className="grid grid-cols-[1.2fr_1fr] gap-4 sm:gap-8 md:gap-12 lg:gap-14 md:flex-1 md:items-center">
           <div>
             <h1
-              data-caret-zone
-              className="caret-zone font-black uppercase leading-[0.88] tracking-[-0.045em] text-forest text-[clamp(2rem,7vw,7rem)]"
+              className="font-black uppercase leading-[0.88] tracking-[-0.045em] text-forest text-[clamp(2rem,7vw,7rem)]"
             >
               <span className="rise rise-2 block">
                 <TypewriterPhrases />
@@ -117,8 +115,6 @@ export function Hero() {
           <span className="shrink-0">Xploreum · 2026</span>
         </div>
       </div>
-
-      <HeroCaretCursor />
     </section>
   );
 }
