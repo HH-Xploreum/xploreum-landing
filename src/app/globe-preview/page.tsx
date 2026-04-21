@@ -11,67 +11,77 @@ type Option = {
   key: GlobeStyle;
   label: string;
   blurb: string;
-  size: number;
 };
 
 const OPTIONS: Option[] = [
   {
+    key: 'neon',
+    label: 'Neon',
+    blurb:
+      'Dark ocean, traced continents. Coastlines glow bright blue-white, land interiors shimmer with cool-toned city clusters. Data-viz feel — reads as an interface, not a photo. Current hero default.',
+  },
+  {
+    key: 'live',
+    label: 'Live',
+    blurb:
+      'Realistic day/night shader. Sunlit blue oceans and continents on one hemisphere, glowing city lights on the other, warm terminator glow between them. Sun sweeps as it rotates.',
+  },
+  {
     key: 'night',
-    label: 'A · Night Lights',
+    label: 'Night',
     blurb:
-      'NASA Black Marble. Warm city-light clusters on deep blue oceans. Current default — most atmospheric and cinematic.',
-    size: 715,
-  },
-  {
-    key: 'topo',
-    label: 'B · Topographic',
-    blurb:
-      'Greyscale relief. Mountains, ridges, coastlines readable. Editorial, map-like, least photographic.',
-    size: 378,
-  },
-  {
-    key: 'minimal',
-    label: 'C · Minimal',
-    blurb:
-      'Barely-there silhouettes. Reads as a sphere first, continents second. The most restrained / premium option.',
-    size: 95,
+      'NASA Black Marble. Pitch-black base with warm cream-white city clusters and heavy bloom. Pure nighttime earth — the most cinematic and moody option.',
   },
   {
     key: 'day',
-    label: 'D · Day Color',
+    label: 'Day',
     blurb:
-      'Standard blue marble. Brighter, more earth-like, less moody. A fallback if night feels too dark.',
-    size: 245,
+      'Classic Blue Marble. Bright blue oceans, green and brown continents, visible ice caps. Optimistic and earth-like. Less moody, more editorial nature.',
+  },
+  {
+    key: 'topo',
+    label: 'Topographic',
+    blurb:
+      'Greyscale relief. Mountains, ridges and coastlines visible. Map-like, editorial, less photographic. Feels like a piece of cartography.',
+  },
+  {
+    key: 'brand',
+    label: 'Brand Green',
+    blurb:
+      'Monochrome in Xploreum forest green. Earth rendered in a single brand-aligned tone. Most on-brand, reads as a sigil rather than a planet.',
+  },
+  {
+    key: 'minimal',
+    label: 'Minimal',
+    blurb:
+      'Barely-there silhouettes on a near-black sphere. Reads as a form first, earth second. The most restrained and premium option.',
+  },
+  {
+    key: 'wireframe',
+    label: 'Wireframe',
+    blurb:
+      'Geometric forest-green lines on white. No photography, pure structure. Most abstract and most graphic — diagram, not planet.',
   },
 ];
 
 export default function GlobePreview() {
   return (
-    <main className="min-h-screen bg-[#05080b] text-bone">
-      <div
-        aria-hidden
-        className="fixed inset-0 pointer-events-none"
-        style={{
-          background:
-            'radial-gradient(1200px 700px at 15% 20%, rgba(30,58,42,0.45), transparent 60%), radial-gradient(900px 600px at 85% 80%, rgba(20,40,70,0.35), transparent 65%)',
-        }}
-      />
-
-      <div className="relative max-w-[1400px] mx-auto px-5 md:px-10 py-16 md:py-20">
+    <main className="min-h-screen bg-bone text-forest">
+      <div className="max-w-[1400px] mx-auto px-5 md:px-10 py-16 md:py-20">
         <header className="mb-14 md:mb-20 max-w-3xl">
-          <div className="font-mono text-[10px] tracking-[0.3em] uppercase text-bone/50 mb-5">
+          <div className="font-mono text-[10px] tracking-[0.3em] uppercase text-forest/55 mb-5">
             Internal · Globe style picker
           </div>
-          <h1 className="font-black uppercase tracking-[-0.03em] leading-[0.95] text-[clamp(2.5rem,6vw,5rem)] text-bone">
+          <h1 className="font-black uppercase tracking-[-0.03em] leading-[0.95] text-[clamp(2.5rem,6vw,5rem)] text-forest">
             Pick a globe.
           </h1>
-          <p className="mt-5 text-bone/65 text-base md:text-lg leading-relaxed max-w-xl">
-            Four textures, same geometry, same rotation. Whichever you pick becomes
-            the O in GO on the hero. City-pin layer is a separate decision.
+          <p className="mt-5 text-forest/70 text-base md:text-lg leading-relaxed max-w-xl">
+            Seven styles, same geometry, same rotation and drag controls. Tell
+            me the label of the one you want and I&apos;ll wire it into the hero.
           </p>
         </header>
 
-        <section className="grid grid-cols-1 sm:grid-cols-2 gap-10 md:gap-14">
+        <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-y-16 gap-x-10 md:gap-x-14">
           {OPTIONS.map((opt) => (
             <article
               key={opt.key}
@@ -79,19 +89,19 @@ export default function GlobePreview() {
             >
               <div
                 className="relative"
-                style={{ width: 'min(360px, 80vw)', fontSize: 'min(360px, 80vw)' }}
+                style={{ width: 'min(280px, 70vw)', fontSize: 'min(280px, 70vw)' }}
               >
                 <GlobeO style={opt.key} size="1em" />
               </div>
 
-              <div className="mt-8 md:mt-10 max-w-xs">
-                <div className="font-mono text-[10px] tracking-[0.3em] uppercase text-bone/45 mb-2">
-                  {opt.label.split(' · ')[0]} · {opt.size} kB
+              <div className="mt-8 max-w-xs">
+                <div className="font-mono text-[10px] tracking-[0.3em] uppercase text-forest/45 mb-2">
+                  {opt.key}
                 </div>
-                <h2 className="font-black uppercase tracking-[-0.02em] text-2xl md:text-3xl text-bone">
-                  {opt.label.split(' · ')[1]}
+                <h2 className="font-black uppercase tracking-[-0.02em] text-2xl md:text-3xl text-forest">
+                  {opt.label}
                 </h2>
-                <p className="mt-3 text-sm text-bone/65 leading-relaxed">
+                <p className="mt-3 text-sm text-forest/70 leading-relaxed">
                   {opt.blurb}
                 </p>
               </div>
@@ -99,9 +109,11 @@ export default function GlobePreview() {
           ))}
         </section>
 
-        <footer className="mt-20 md:mt-28 border-t border-bone/10 pt-8 flex flex-col md:flex-row justify-between gap-4 font-mono text-[10px] tracking-[0.25em] uppercase text-bone/40">
-          <span>All textures bundled locally · no API key · no Mapbox</span>
-          <a href="/" className="hover:text-bone transition">← Back to hero</a>
+        <footer className="mt-20 md:mt-28 border-t border-forest/15 pt-8 flex flex-col md:flex-row justify-between gap-4 font-mono text-[10px] tracking-[0.25em] uppercase text-forest/50">
+          <span>All globes are live · drag to rotate · zoom locked</span>
+          <a href="/" className="hover:text-forest-deep transition">
+            ← Back to hero
+          </a>
         </footer>
       </div>
     </main>

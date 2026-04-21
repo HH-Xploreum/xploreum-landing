@@ -9,7 +9,7 @@ const GlobeCanvas = dynamic(
 );
 
 export function GlobeO({
-  style = 'night',
+  style = 'neon',
   size = '0.74em',
 }: {
   style?: GlobeStyle;
