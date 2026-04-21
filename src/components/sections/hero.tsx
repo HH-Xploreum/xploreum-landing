@@ -4,7 +4,7 @@ import { PhoneMock } from '@/components/ui/phone-mock';
 
 export function Hero() {
   return (
-    <section className="relative isolate min-h-screen overflow-hidden bg-bone text-forest">
+    <section className="relative isolate md:min-h-screen overflow-hidden bg-bone text-forest">
       <div
         aria-hidden
         className="absolute inset-0 pointer-events-none"
@@ -14,13 +14,13 @@ export function Hero() {
         }}
       />
 
-      <div className="relative max-w-[1400px] mx-auto w-full px-5 md:px-10 pt-28 md:pt-32 pb-14 md:pb-20 min-h-screen flex flex-col">
-        <div className="rise rise-1 font-mono text-[10px] md:text-xs tracking-[0.3em] uppercase text-forest/65 mb-10 md:mb-14 flex items-center gap-3">
+      <div className="relative max-w-[1400px] mx-auto w-full px-5 md:px-10 pt-20 md:pt-32 pb-10 md:pb-20 md:min-h-screen md:flex md:flex-col">
+        <div className="rise rise-1 font-mono text-[10px] md:text-xs tracking-[0.3em] uppercase text-forest/65 mb-6 md:mb-14 flex items-center gap-3">
           <span className="inline-block w-6 h-px bg-forest/40" />
           Meet X — Your AI Travel Agent
         </div>
 
-        <div className="grid grid-cols-[1.2fr_1fr] gap-4 sm:gap-8 md:gap-12 lg:gap-14 flex-1 items-center">
+        <div className="grid grid-cols-[1.2fr_1fr] gap-4 sm:gap-8 md:gap-12 lg:gap-14 md:flex-1 md:items-center">
           <div>
             <h1 className="font-black uppercase leading-[0.84] tracking-[-0.045em] text-forest text-[clamp(3rem,11vw,13rem)]">
               <span className="rise rise-2 block">Chat</span>
@@ -63,7 +63,7 @@ export function Hero() {
           </div>
         </div>
 
-        <div className="mt-12 md:mt-16 flex items-end justify-between font-mono text-[10px] tracking-[0.3em] uppercase text-forest/45">
+        <div className="mt-10 md:mt-16 flex items-end justify-between font-mono text-[10px] tracking-[0.3em] uppercase text-forest/45">
           <span className="hidden sm:inline-flex items-center gap-3">
             <span className="inline-block w-8 h-px bg-forest/30" />
             Scroll
