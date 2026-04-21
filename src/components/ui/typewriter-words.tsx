@@ -9,10 +9,12 @@ const ERASE_MS = 45;
 const HOLD_MS = 1800;
 const GAP_MS = 350;
 
+type Phase = 'typing' | 'holding' | 'erasing' | 'gap';
+
 export function TypewriterWords() {
   const [index, setIndex] = useState(0);
   const [text, setText] = useState('');
-  const [phase, setPhase] = useState<'typing' | 'holding' | 'erasing' | 'gap'>('typing');
+  const [phase, setPhase] = useState<Phase>('typing');
 
   useEffect(() => {
     const word = WORDS[index];
@@ -48,8 +50,20 @@ export function TypewriterWords() {
   }, [text, phase, index]);
 
   return (
-    <span className="inline-flex items-baseline">
-      <span>{text}</span>
+    <span
+      className={`inline-flex items-baseline ${phase === 'holding' ? 'word-breathe' : ''}`}
+    >
+      <span aria-hidden>
+        {text.split('').map((ch, i) => (
+          <span
+            key={`${index}-${i}`}
+            className="char-in"
+            style={{ whiteSpace: ch === ' ' ? 'pre' : undefined }}
+          >
+            {ch}
+          </span>
+        ))}
+      </span>
       <span aria-hidden className="caret" />
       <span className="sr-only">{WORDS[index]}</span>
     </span>
