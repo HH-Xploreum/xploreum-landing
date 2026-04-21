@@ -23,7 +23,7 @@ export function Hero() {
         <div className="grid lg:grid-cols-[1.25fr_1fr] gap-10 lg:gap-14 flex-1 items-center">
           <div className="order-last lg:order-first">
             <h1 className="font-black uppercase leading-[0.84] tracking-[-0.045em] text-forest text-[clamp(4.5rem,13.5vw,13rem)]">
-              <span className="rise rise-2 block">Ask</span>
+              <span className="rise rise-2 block">Chat</span>
               <span className="rise rise-3 block">Plan</span>
               <span className="rise rise-4 block">Pack</span>
               <span className="rise rise-5 flex items-baseline gap-[0.05em]">
