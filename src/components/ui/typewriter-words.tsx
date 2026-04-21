@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 
-const WORDS = ['Plan.', 'Pack.', 'Go.'];
+const WORDS = ['Plan,', 'Pack,', 'Go.'];
 
 const TYPE_MS = 90;
 const ERASE_MS = 45;
