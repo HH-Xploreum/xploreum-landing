@@ -41,6 +41,12 @@ body {
 }
 .phone-float { animation: phone-float 6s ease-in-out infinite; }
 
+/* hollow stroke-only display type — pairs with solid bold above */
+.text-outline {
+  color: transparent;
+  -webkit-text-stroke: 0.028em var(--color-forest);
+}
+
 /* typewriter caret — blinks in place next to the typed word */
 .caret {
   display: inline-block;

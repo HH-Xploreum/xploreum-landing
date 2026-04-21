@@ -53,7 +53,7 @@ export function TypewriterWords() {
     <span
       className={`inline-flex items-baseline ${phase === 'holding' ? 'word-breathe' : ''}`}
     >
-      <span aria-hidden>
+      <span aria-hidden className="text-outline">
         {text.split('').map((ch, i) => (
           <span
             key={`${index}-${i}`}
