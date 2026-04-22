@@ -52,24 +52,39 @@ export function Hero() {
       />
       <div aria-hidden className="grain-layer" />
 
-      {/* Corner registration marks */}
-      <Crosshair className="top-4 left-4 md:top-6 md:left-6" />
-      <Crosshair className="top-4 right-4 md:top-6 md:right-6" />
-      <Crosshair className="bottom-4 left-4 md:bottom-6 md:left-6" />
-      <Crosshair className="bottom-4 right-4 md:bottom-6 md:right-6" />
+      {/* Corner registration marks — desktop only, too noisy on phones */}
+      <Crosshair className="hidden md:block top-6 left-6" />
+      <Crosshair className="hidden md:block top-6 right-6" />
+      <Crosshair className="hidden md:block bottom-6 left-6" />
+      <Crosshair className="hidden md:block bottom-6 right-6" />
 
-      <div className="relative max-w-[1400px] mx-auto w-full px-5 md:px-10 pt-20 md:pt-32 pb-10 md:pb-20 md:min-h-screen md:flex md:flex-col">
-        <div className="grid grid-cols-[1.2fr_1fr] gap-4 sm:gap-8 md:gap-12 lg:gap-14 md:flex-1 md:items-center">
-          <div>
+      <div className="relative max-w-[1400px] mx-auto w-full px-5 md:px-10 pt-24 md:pt-32 pb-14 md:pb-20 md:min-h-screen md:flex md:flex-col">
+        <div className="grid md:grid-cols-[1.15fr_0.85fr] gap-10 md:gap-14 lg:gap-16 md:flex-1 md:items-center">
+          <div className="max-w-[640px]">
             <h1
-              className="font-black uppercase leading-[0.88] tracking-[-0.045em] text-forest text-[clamp(2rem,7vw,7rem)]"
+              className="font-black uppercase leading-[0.88] tracking-[-0.045em] text-forest text-[clamp(2.5rem,6.5vw,5.75rem)]"
             >
               <span className="rise rise-2 block">
                 <TypewriterPhrases />
               </span>
             </h1>
 
-            <div className="rise rise-6 mt-9 md:mt-12 flex flex-col sm:flex-row items-start sm:items-center gap-5 sm:gap-6">
+            <div className="rise rise-5 mt-6 md:mt-8 space-y-1">
+              <p className="font-semibold text-forest leading-tight text-[clamp(1.125rem,1.9vw,1.5rem)]">
+                The trip that takes 16 hours to plan.
+              </p>
+              <p className="font-semibold text-forest leading-tight text-[clamp(1.125rem,1.9vw,1.5rem)]">
+                Built in one conversation.
+              </p>
+            </div>
+
+            <p className="rise rise-6 mt-4 md:mt-5 text-forest/80 leading-relaxed text-[clamp(0.95rem,1vw,1.0625rem)] max-w-[52ch]">
+              Ask X what you&apos;re chasing — the trails, the food, the quiet.
+              It builds the whole trip: flights, lodging, gear, and the local
+              Xperts who make it happen.
+            </p>
+
+            <div className="rise rise-6 mt-7 md:mt-9 flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-5">
               <MagneticPill
                 href={LINKS.chatWithX}
                 target="_blank"
@@ -89,24 +104,24 @@ export function Hero() {
               </span>
             </div>
 
-            <div className="rise rise-6 mt-6 md:mt-8">
+            <div className="rise rise-6 mt-5 md:mt-7">
               <TripsTicker />
             </div>
           </div>
 
-          <div className="rise rise-4 w-full flex justify-center lg:justify-end">
+          <div className="rise rise-4 w-full flex justify-center md:justify-end">
             <PhoneMock videoSrc="https://auth.xploreum.io/storage/v1/object/public/landing-assets/mobile-app.mov" />
           </div>
         </div>
 
-        <div className="mt-10 md:mt-16 flex items-end justify-between gap-6 font-mono text-[10px] tracking-[0.3em] uppercase text-forest/45">
-          <span className="hidden sm:inline-flex items-center gap-3 shrink-0">
+        <div className="hidden md:flex mt-10 md:mt-16 items-end justify-between gap-6 font-mono text-[10px] tracking-[0.3em] uppercase text-forest/45">
+          <span className="inline-flex items-center gap-3 shrink-0">
             <span className="inline-block w-8 h-px bg-forest/30" />
             Scroll
           </span>
           <div
             aria-hidden
-            className="ruler flex-1 max-w-[540px] hidden md:grid text-forest"
+            className="ruler flex-1 max-w-[540px] grid text-forest"
           >
             {Array.from({ length: 40 }).map((_, i) => (
               <span key={i} />
