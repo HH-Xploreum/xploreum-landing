@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 
 const LINE1 = 'Chat Plan';
-const LINE2 = 'Pack Go.';
+const LINE2 = 'Pack Go!';
 const OUTLINE_START = 'Pack '.length;
 const OUTLINE_END = 'Pack Go'.length;
 
@@ -70,7 +70,7 @@ export function TypewriterPhrases() {
         {line2Tail && <span>{line2Tail}</span>}
         {line2Active && <span aria-hidden className="caret" />}
       </span>
-      <span className="sr-only">Chat. Plan. Pack. Go.</span>
+      <span className="sr-only">Chat. Plan. Pack. Go!</span>
     </>
   );
 }
