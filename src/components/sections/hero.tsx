@@ -69,20 +69,17 @@ export function Hero() {
               </span>
             </h1>
 
-            <div className="rise rise-5 mt-6 md:mt-8 space-y-1">
-              <p className="font-semibold text-forest leading-tight text-[clamp(1.125rem,1.9vw,1.5rem)]">
-                The trip that takes 16 hours to plan.
+            <div className="rise rise-5 mt-6 md:mt-8 space-y-1.5 text-forest leading-snug text-[clamp(1.125rem,1.9vw,1.5rem)]">
+              <p className="font-semibold">
+                You don&apos;t need a guidebook. You don&apos;t need a spreadsheet.
               </p>
-              <p className="font-semibold text-forest leading-tight text-[clamp(1.125rem,1.9vw,1.5rem)]">
-                Built in one conversation.
+              <p className="font-semibold">
+                You don&apos;t need six tabs open at midnight.
+              </p>
+              <p className="font-semibold">
+                You just need to start talking.
               </p>
             </div>
-
-            <p className="rise rise-6 mt-4 md:mt-5 text-forest/80 leading-relaxed text-[clamp(0.95rem,1vw,1.0625rem)] max-w-[52ch]">
-              Ask X what you&apos;re chasing — the trails, the food, the quiet.
-              It builds the whole trip: flights, lodging, gear, and the local
-              Xperts who make it happen.
-            </p>
 
             <div className="rise rise-6 mt-7 md:mt-9 flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-5">
               <MagneticPill
