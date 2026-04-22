@@ -1,11 +1,18 @@
 import type { Metadata } from 'next';
-import { Urbanist } from 'next/font/google';
+import { Urbanist, Dancing_Script } from 'next/font/google';
 import './globals.css';
 
 const urbanist = Urbanist({
   subsets: ['latin'],
   weight: ['400', '500', '600', '700', '800', '900'],
   variable: '--font-urbanist',
+  display: 'swap',
+});
+
+const dancingScript = Dancing_Script({
+  subsets: ['latin'],
+  weight: ['500', '600', '700'],
+  variable: '--font-dancing-script',
   display: 'swap',
 });
 
@@ -23,7 +30,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={urbanist.variable}>
+    <html lang="en" className={`${urbanist.variable} ${dancingScript.variable}`}>
       <body className="font-sans bg-bone text-forest antialiased">{children}</body>
     </html>
   );

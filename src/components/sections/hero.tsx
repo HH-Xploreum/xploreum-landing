@@ -62,21 +62,21 @@ export function Hero() {
         <div className="grid md:grid-cols-[1.15fr_0.85fr] gap-10 md:gap-14 lg:gap-16 md:flex-1 md:items-center">
           <div className="max-w-[640px]">
             <h1
-              className="font-black uppercase leading-[0.88] tracking-[-0.045em] text-forest text-[clamp(2.5rem,6.5vw,5.75rem)]"
+              className="font-black uppercase leading-[0.88] tracking-[-0.045em] text-forest text-[clamp(3rem,8.5vw,7.5rem)]"
             >
               <span className="rise rise-2 block">
                 <TypewriterPhrases />
               </span>
             </h1>
 
-            <div className="rise rise-5 mt-6 md:mt-8 space-y-1.5 text-forest leading-snug text-[clamp(1.125rem,1.9vw,1.5rem)]">
-              <p className="font-semibold">
+            <div className="rise rise-5 mt-14 md:mt-20 space-y-1.5 text-forest leading-snug">
+              <p className="font-semibold text-[clamp(1.125rem,1.9vw,1.5rem)]">
                 You don&apos;t need a guidebook. You don&apos;t need a spreadsheet.
               </p>
-              <p className="font-semibold">
+              <p className="font-semibold text-[clamp(1.125rem,1.9vw,1.5rem)]">
                 You don&apos;t need six tabs open at midnight.
               </p>
-              <p className="font-semibold">
+              <p className="font-handwriting font-semibold leading-tight text-[clamp(1.75rem,3.2vw,2.75rem)] mt-2">
                 You just need to start talking.
               </p>
             </div>
