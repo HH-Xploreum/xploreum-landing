@@ -62,7 +62,7 @@ export function Hero() {
         <div className="grid md:grid-cols-[1.15fr_0.85fr] gap-10 md:gap-14 lg:gap-16 md:flex-1 md:items-center">
           <div className="max-w-[640px]">
             <h1
-              className="font-black uppercase leading-[0.88] tracking-[-0.045em] text-forest text-[clamp(3rem,8.5vw,7.5rem)]"
+              className="font-black uppercase leading-[0.88] tracking-[-0.045em] text-forest text-[clamp(3.25rem,10vw,9.5rem)]"
             >
               <span className="rise rise-2 block">
                 <TypewriterPhrases />
