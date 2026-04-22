@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 
 const LINE1 = 'Chat Plan';
-const LINE2 = 'Pack Go.';
+const LINE2 = 'Pack Go';
 const OUTLINE_START = 'Pack '.length;
 const OUTLINE_END = 'Pack Go'.length;
 
