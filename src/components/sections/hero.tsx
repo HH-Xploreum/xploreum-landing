@@ -85,7 +85,7 @@ export function Hero() {
             <PhoneMock videoSrc="https://auth.xploreum.io/storage/v1/object/public/landing-assets/mobile-app.mov" />
           </div>
 
-          <div className="rise rise-6 md:col-start-1 md:row-start-2 md:self-start flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-5 mt-2 md:mt-0">
+          <div className="rise rise-6 md:col-start-1 md:row-start-2 md:self-start flex justify-center md:justify-start mt-2 md:mt-0">
             <MagneticPill
               href={LINKS.chatWithX}
               target="_blank"
