@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 
 const LINE1 = 'Chat Plan';
-const LINE2 = 'Pack Go!';
+const LINE2 = 'Pack Go.';
 const OUTLINE_START = 'Pack '.length;
 const OUTLINE_END = 'Pack Go'.length;
 
@@ -67,10 +67,14 @@ export function TypewriterPhrases() {
       <span className="block whitespace-nowrap">
         <span>{line2Pre}</span>
         {line2Outlined && <span className="text-outline">{line2Outlined}</span>}
-        {line2Tail && <span>{line2Tail}</span>}
+        {line2Tail && (
+          <span className="text-outline" style={{ fontSize: '0.55em' }}>
+            {line2Tail}
+          </span>
+        )}
         {line2Active && <span aria-hidden className="caret" />}
       </span>
-      <span className="sr-only">Chat. Plan. Pack. Go!</span>
+      <span className="sr-only">Chat. Plan. Pack. Go.</span>
     </>
   );
 }
