@@ -36,7 +36,7 @@ export function Hero() {
       {/* Legibility wash — soft bone veil over video so forest text stays readable */}
       <div
         aria-hidden
-        className="absolute inset-0 pointer-events-none bg-bone/65"
+        className="absolute inset-0 pointer-events-none bg-bone/70"
       />
 
       {/* Ambient layers — topo contours + soft radial wash + grain */}
