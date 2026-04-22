@@ -1,3 +1,6 @@
+'use client';
+
+import { useEffect, useRef } from 'react';
 import { LINKS } from '@/lib/links';
 
 type PhoneMockProps = {
@@ -6,6 +9,27 @@ type PhoneMockProps = {
 };
 
 export function PhoneMock({ videoSrc, posterSrc }: PhoneMockProps = {}) {
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    if (!videoSrc) return;
+
+    const start = () => {
+      const v = videoRef.current;
+      if (v && v.paused) v.play().catch(() => {});
+    };
+
+    const flag = (window as unknown as { __heroIntroDone?: boolean })
+      .__heroIntroDone;
+    if (flag) {
+      start();
+      return;
+    }
+
+    window.addEventListener('hero-intro-done', start);
+    return () => window.removeEventListener('hero-intro-done', start);
+  }, [videoSrc]);
+
   return (
     <div
       className="relative mx-auto w-full"
@@ -86,13 +110,13 @@ export function PhoneMock({ videoSrc, posterSrc }: PhoneMockProps = {}) {
           >
             {videoSrc ? (
               <video
+                ref={videoRef}
                 src={videoSrc}
                 poster={posterSrc}
-                autoPlay
                 muted
                 loop
                 playsInline
-                preload="metadata"
+                preload="auto"
                 className="absolute inset-0 w-full h-full object-cover"
               />
             ) : (

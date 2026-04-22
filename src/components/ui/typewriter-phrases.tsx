@@ -18,6 +18,14 @@ export function TypewriterPhrases() {
   const [phase, setPhase] = useState<Phase>('typing1');
 
   useEffect(() => {
+    if (phase === 'done') {
+      if (typeof window !== 'undefined') {
+        (window as unknown as { __heroIntroDone?: boolean }).__heroIntroDone = true;
+        window.dispatchEvent(new Event('hero-intro-done'));
+      }
+      return;
+    }
+
     if (phase === 'typing1') {
       if (line1 === LINE1) {
         const t = setTimeout(() => setPhase('pausing'), LINE_GAP_MS);
