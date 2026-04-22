@@ -85,7 +85,7 @@ export function Hero() {
                 href={LINKS.chatWithX}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group inline-flex items-center gap-2 rounded-full bg-forest text-bone px-7 py-4 text-base md:text-lg font-semibold tracking-tight hover:bg-forest-deep shadow-[0_10px_40px_-10px_rgba(30,58,42,0.35)]"
+                className="group inline-flex items-center gap-2 rounded-full bg-forest text-bone px-7 py-4 text-base md:text-lg font-semibold tracking-tight hover:bg-forest-deep"
               >
                 <span>Chat with X</span>
                 <span
