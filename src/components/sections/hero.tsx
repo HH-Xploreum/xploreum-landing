@@ -69,10 +69,10 @@ export function Hero() {
             </h1>
 
             <div className="rise rise-5 mt-14 md:mt-20 space-y-1.5 text-forest leading-snug">
-              <p className="font-semibold text-[clamp(1.125rem,1.9vw,1.5rem)]">
+              <p className="font-normal text-[clamp(1.125rem,1.9vw,1.5rem)]">
                 You don&apos;t need a guidebook. You don&apos;t need a spreadsheet.
               </p>
-              <p className="font-semibold text-[clamp(1.125rem,1.9vw,1.5rem)]">
+              <p className="font-normal text-[clamp(1.125rem,1.9vw,1.5rem)]">
                 You don&apos;t need six tabs open at midnight.
               </p>
               <p className="font-handwriting font-semibold leading-tight text-[clamp(1.75rem,3.2vw,2.75rem)] mt-2">
