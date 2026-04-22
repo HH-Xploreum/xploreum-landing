@@ -1,7 +1,6 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
-import { LINKS } from '@/lib/links';
 
 type PhoneMockProps = {
   videoSrc?: string;
@@ -149,16 +148,6 @@ export function PhoneMock({ videoSrc, posterSrc }: PhoneMockProps = {}) {
           </div>
         </div>
       </div>
-
-      {/* Caption */}
-      <a
-        href={LINKS.chatWithX}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="block text-center mt-6 md:mt-8 font-mono text-[9px] md:text-[10px] tracking-[0.25em] uppercase text-forest/55 hover:text-forest transition"
-      >
-        — Try it live
-      </a>
     </div>
   );
 }

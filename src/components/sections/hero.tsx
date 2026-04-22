@@ -58,17 +58,17 @@ export function Hero() {
       <Crosshair className="hidden md:block bottom-6 right-6" />
 
       <div className="relative max-w-[1400px] mx-auto w-full px-5 md:px-10 pt-24 md:pt-32 pb-14 md:pb-20 md:min-h-screen md:flex md:flex-col">
-        <div className="grid md:grid-cols-[1.15fr_0.85fr] gap-10 md:gap-14 lg:gap-16 md:flex-1 md:items-center">
-          <div className="max-w-[640px]">
+        <div className="grid md:grid-cols-[1.15fr_0.85fr] md:grid-rows-[auto_auto] gap-8 md:gap-x-14 lg:gap-x-16 md:gap-y-8 md:flex-1 md:items-center">
+          <div className="max-w-[640px] md:col-start-1 md:row-start-1 md:self-end">
             <h1
-              className="font-black uppercase leading-[0.88] tracking-[-0.045em] text-forest text-[clamp(3.25rem,10vw,9.5rem)]"
+              className="font-black uppercase leading-[0.88] tracking-[-0.045em] text-forest text-[clamp(4.25rem,10vw,9.5rem)]"
             >
               <span className="rise rise-2 block">
                 <TypewriterPhrases />
               </span>
             </h1>
 
-            <div className="rise rise-5 mt-14 md:mt-20 space-y-1.5 text-forest leading-snug">
+            <div className="rise rise-5 mt-10 md:mt-14 space-y-1.5 text-forest leading-snug">
               <p className="font-normal text-[clamp(1.125rem,1.9vw,1.5rem)]">
                 You don&apos;t need a guidebook. You don&apos;t need a spreadsheet.
               </p>
@@ -79,21 +79,21 @@ export function Hero() {
                 You just need to start talking.
               </p>
             </div>
-
-            <div className="rise rise-6 mt-7 md:mt-9 flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-5">
-              <MagneticPill
-                href={LINKS.chatWithX}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center rounded-full bg-forest text-bone px-7 py-4 text-base md:text-lg font-semibold tracking-tight hover:bg-forest-deep"
-              >
-                Chat with X
-              </MagneticPill>
-            </div>
           </div>
 
-          <div className="rise rise-4 w-full flex justify-center md:justify-end">
+          <div className="rise rise-4 w-full flex justify-center md:justify-end md:col-start-2 md:row-start-1 md:row-span-2 md:self-center">
             <PhoneMock videoSrc="https://auth.xploreum.io/storage/v1/object/public/landing-assets/mobile-app.mov" />
+          </div>
+
+          <div className="rise rise-6 md:col-start-1 md:row-start-2 md:self-start flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-5 mt-2 md:mt-0">
+            <MagneticPill
+              href={LINKS.chatWithX}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center rounded-full bg-forest text-bone px-7 py-4 text-base md:text-lg font-semibold tracking-tight hover:bg-forest-deep"
+            >
+              Chat with X
+            </MagneticPill>
           </div>
         </div>
 
