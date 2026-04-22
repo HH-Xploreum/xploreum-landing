@@ -2,7 +2,6 @@ import { LINKS } from '@/lib/links';
 import { PhoneMock } from '@/components/ui/phone-mock';
 import { TypewriterPhrases } from '@/components/ui/typewriter-phrases';
 import { MagneticPill } from '@/components/ui/magnetic-pill';
-import { TripsTicker } from '@/components/ui/trips-ticker';
 
 function Crosshair({ className }: { className: string }) {
   return (
@@ -96,13 +95,6 @@ export function Hero() {
                   →
                 </span>
               </MagneticPill>
-              <span className="text-sm text-forest/70 max-w-xs">
-                Free. No sign-up. No expertise needed.
-              </span>
-            </div>
-
-            <div className="rise rise-6 mt-5 md:mt-7">
-              <TripsTicker />
             </div>
           </div>
 
