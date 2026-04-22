@@ -85,15 +85,9 @@ export function Hero() {
                 href={LINKS.chatWithX}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group inline-flex items-center gap-2 rounded-full bg-forest text-bone px-7 py-4 text-base md:text-lg font-semibold tracking-tight hover:bg-forest-deep"
+                className="inline-flex items-center rounded-full bg-forest text-bone px-7 py-4 text-base md:text-lg font-semibold tracking-tight hover:bg-forest-deep"
               >
-                <span>Chat with X</span>
-                <span
-                  aria-hidden
-                  className="inline-block transition-transform group-hover:translate-x-0.5"
-                >
-                  →
-                </span>
+                Chat with X
               </MagneticPill>
             </div>
           </div>
