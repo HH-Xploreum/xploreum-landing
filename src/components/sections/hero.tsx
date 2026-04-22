@@ -68,7 +68,7 @@ export function Hero() {
               </span>
             </h1>
 
-            <div className="rise rise-5 mt-10 md:mt-14 space-y-1.5 text-forest leading-snug">
+            <div className="rise rise-5 mt-10 md:mt-24 space-y-1.5 text-forest leading-snug">
               <p className="font-normal text-[13px] md:text-[clamp(1.125rem,1.9vw,1.5rem)]">
                 You don&apos;t need a guidebook. You don&apos;t need a spreadsheet.
               </p>
