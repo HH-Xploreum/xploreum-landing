@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Urbanist, Dancing_Script } from 'next/font/google';
+import { Urbanist, Caveat } from 'next/font/google';
 import './globals.css';
 
 const urbanist = Urbanist({
@@ -9,10 +9,10 @@ const urbanist = Urbanist({
   display: 'swap',
 });
 
-const dancingScript = Dancing_Script({
+const caveat = Caveat({
   subsets: ['latin'],
-  weight: ['500', '600', '700'],
-  variable: '--font-dancing-script',
+  weight: ['400', '500', '600', '700'],
+  variable: '--font-caveat',
   display: 'swap',
 });
 
@@ -30,7 +30,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${urbanist.variable} ${dancingScript.variable}`}>
+    <html lang="en" className={`${urbanist.variable} ${caveat.variable}`}>
       <body className="font-sans bg-bone text-forest antialiased">{children}</body>
     </html>
   );

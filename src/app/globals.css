@@ -2,7 +2,7 @@
 
 @theme {
   --font-sans: var(--font-urbanist), ui-sans-serif, system-ui, sans-serif;
-  --font-handwriting: var(--font-dancing-script), "Segoe Script", cursive;
+  --font-handwriting: var(--font-caveat), "Segoe Script", cursive;
 
   --color-bone: #FFFFFF;
   --color-bone-soft: #E0D8C2;
