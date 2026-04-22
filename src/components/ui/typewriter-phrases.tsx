@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 const LINE1 = 'Chat Plan';
 const LINE2 = 'Pack Go.';
 const OUTLINE_START = 'Pack '.length;
+const OUTLINE_END = 'Pack Go'.length;
 
 const TYPE_MS = 85;
 const LINE_GAP_MS = 260;
@@ -50,8 +51,12 @@ export function TypewriterPhrases() {
   const line1Active = phase === 'typing1';
   const line2Active = phase === 'typing2';
 
-  const line2Plain = line2.slice(0, Math.min(line2.length, OUTLINE_START));
-  const line2Outlined = line2.slice(OUTLINE_START);
+  const line2Pre = line2.slice(0, Math.min(line2.length, OUTLINE_START));
+  const line2Outlined = line2.slice(
+    OUTLINE_START,
+    Math.min(line2.length, OUTLINE_END),
+  );
+  const line2Tail = line2.slice(OUTLINE_END);
 
   return (
     <>
@@ -60,8 +65,9 @@ export function TypewriterPhrases() {
         {line1Active && <span aria-hidden className="caret" />}
       </span>
       <span className="block whitespace-nowrap">
-        <span>{line2Plain}</span>
+        <span>{line2Pre}</span>
         {line2Outlined && <span className="text-outline">{line2Outlined}</span>}
+        {line2Tail && <span>{line2Tail}</span>}
         {line2Active && <span aria-hidden className="caret" />}
       </span>
       <span className="sr-only">Chat. Plan. Pack. Go.</span>
