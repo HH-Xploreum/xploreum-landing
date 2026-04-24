@@ -57,7 +57,7 @@ export function Hero() {
                 You don&apos;t need six tabs open at midnight.
               </p>
               <p className="font-serif italic font-medium leading-snug text-[13px] md:text-[clamp(1.125rem,1.9vw,1.5rem)] text-[#a05a16] mt-2">
-                You just need to start talking.
+                Just talk to Xavier — your AI agent companion.
               </p>
             </div>
           </div>
@@ -73,7 +73,7 @@ export function Hero() {
               rel="noopener noreferrer"
               className="inline-flex items-center rounded-full bg-forest text-bone px-7 py-3 md:py-4 text-base md:text-lg font-semibold tracking-tight hover:bg-forest-deep"
             >
-              Chat with X
+              Chat with Xavier
             </MagneticPill>
           </div>
         </div>

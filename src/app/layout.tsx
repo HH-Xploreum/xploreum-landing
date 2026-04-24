@@ -18,9 +18,9 @@ const cormorant = Cormorant({
 });
 
 export const metadata: Metadata = {
-  title: 'Xploreum — Your AI travel agent',
+  title: 'Xploreum — Meet Xavier, your AI agent companion',
   description:
-    'The trip that takes 16 hours to plan. Built in one conversation. Ask X what you\'re chasing and it builds the whole trip — flights, lodging, gear, and the local experts who make it happen.',
+    'The trip that takes 16 hours to plan. Built in one conversation. Ask Xavier — your AI agent companion — what you\'re chasing and he builds the whole trip: flights, lodging, gear, and the local Xperts who make it happen.',
   metadataBase: new URL('https://xploreum.io'),
   icons: {
     icon: [
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     ],
   },
   openGraph: {
-    title: 'Xploreum — Your AI travel agent',
+    title: 'Xploreum — Meet Xavier, your AI agent companion',
     description: 'The trip that takes 16 hours to plan. Built in one conversation.',
     type: 'website',
   },

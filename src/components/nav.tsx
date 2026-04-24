@@ -51,7 +51,7 @@ export function Nav() {
               rel="noopener noreferrer"
               className="group inline-flex items-center gap-2 rounded-full px-5 md:px-6 py-2.5 md:py-3 text-sm md:text-base font-semibold tracking-tight transition bg-forest text-bone hover:bg-forest-deep"
             >
-              <span>Chat with X</span>
+              <span>Chat with Xavier</span>
               <span
                 aria-hidden
                 className="inline-block transition-transform group-hover:translate-x-0.5"

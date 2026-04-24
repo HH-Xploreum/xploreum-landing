@@ -195,7 +195,7 @@ function AnimatedChat() {
             className="font-semibold text-bone tracking-tight"
             style={{ fontSize: '3.4cqw' }}
           >
-            Ask X
+            Ask Xavier
           </span>
         </div>
         <span
@@ -242,7 +242,7 @@ function AnimatedChat() {
           className="rounded-full bg-white/[0.05] border border-white/10 backdrop-blur-sm flex items-center justify-between text-bone/50"
           style={{ padding: '1.6cqw 3.5cqw', fontSize: '3cqw' }}
         >
-          <span>Ask X anything…</span>
+          <span>Ask Xavier anything…</span>
           <span
             className="rounded-full bg-bone flex items-center justify-center text-forest-deep font-bold"
             style={{ width: '5cqw', height: '5cqw', fontSize: '3cqw' }}
