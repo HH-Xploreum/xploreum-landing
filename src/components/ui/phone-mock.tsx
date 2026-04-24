@@ -47,7 +47,7 @@ export function PhoneMock({ videoSrc, posterSrc }: PhoneMockProps = {}) {
     <div
       className="relative mx-auto w-full"
       style={{
-        width: 'clamp(180px, 22vw, 300px)',
+        width: 'clamp(150px, 22vw, 300px)',
         containerType: 'inline-size',
       }}
     >
