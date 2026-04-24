@@ -57,7 +57,7 @@ export function Hero() {
                 You don&apos;t need six tabs open at midnight.
               </p>
               <p className="font-serif italic font-medium leading-tight md:leading-snug text-balance text-[13px] md:text-[clamp(1.125rem,1.9vw,1.5rem)] text-[#a05a16] mt-2">
-                Just talk to Xavier — your AI agent companion.
+                Just talk to Xavier, your AI agent companion.
               </p>
             </div>
           </div>

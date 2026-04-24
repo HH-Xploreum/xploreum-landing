@@ -27,7 +27,7 @@ export function About() {
               The fix
             </div>
             <p className="text-forest/80 leading-relaxed">
-              An AI that plans like a well-traveled friend — then hands you off to a
+              An AI that plans like a well-traveled friend, then hands you off to a
               real local expert who executes. One conversation, one coherent trip,
               one human you actually meet when you land.
             </p>

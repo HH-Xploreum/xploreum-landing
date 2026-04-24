@@ -217,7 +217,7 @@ function AnimatedChat() {
           className="bubble-2 rounded-2xl rounded-bl-md bg-white/[0.07] border border-white/[0.06] text-bone/90 backdrop-blur-sm"
           style={{ maxWidth: '86%', padding: '2cqw 3cqw', fontSize: '3.2cqw', lineHeight: 1.35 }}
         >
-          Let&apos;s go. El Chaltén — Fitz Roy day 1, Laguna de los Tres day 2.
+          Let&apos;s go. El Chaltén: Fitz Roy day 1, Laguna de los Tres day 2.
           Pairing you with Mateo, a certified local guide.
         </div>
         <div

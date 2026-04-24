@@ -24,7 +24,7 @@ export function Xperts() {
             </h2>
           </div>
           <p className="text-lg text-bone/80 leading-relaxed max-w-md">
-            Every Xpedition is led by a vetted local — certified, insured, and paid
+            Every Xpedition is led by a vetted local: certified, insured, and paid
             fairly because no middleman takes a cut. These are the people who make
             your trip real on the ground.
           </p>

@@ -1,21 +1,21 @@
 const STEPS = [
   {
     n: '01',
-    title: 'Tell X where you want to go.',
+    title: 'Tell Xavier where you want to go.',
     body:
-      'Or describe the feeling. "Something quiet, near water, in October." X listens in plain language and asks the right follow-ups.',
+      'Or describe the feeling. "Something quiet, near water, in October." Xavier listens in plain language and asks the right follow-ups.',
   },
   {
     n: '02',
     title: 'Watch the trip come together.',
     body:
-      'Flights, lodging, routes, permits, gear — all mapped live in front of you. Edit anything by just saying what you want to change.',
+      'Flights, lodging, routes, permits, gear: all mapped live in front of you. Edit anything by just saying what you want to change.',
   },
   {
     n: '03',
     title: 'Meet your Xpert.',
     body:
-      'We match you with a certified local guide for the ground part — the hike, the dive, the ride. Real humans, booked through us, fairly paid.',
+      'We match you with a certified local guide for the ground part: the hike, the dive, the ride. Real humans, booked through us, fairly paid.',
   },
   {
     n: '04',
