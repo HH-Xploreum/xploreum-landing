@@ -2,6 +2,7 @@
 
 @theme {
   --font-sans: var(--font-urbanist), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-fraunces), ui-serif, Georgia, serif;
 
   --color-bone: #FFFFFF;
   --color-bone-soft: #E0D8C2;
