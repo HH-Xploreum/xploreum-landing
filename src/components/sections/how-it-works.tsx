@@ -122,7 +122,7 @@ export function HowItWorks() {
         </ol>
 
         {/* Closing CTA resolves the section into the next chapter */}
-        <div className="mt-16 md:mt-24 pt-10 md:pt-12 border-t border-forest/15 flex flex-col md:flex-row md:items-center md:justify-between gap-6 md:gap-8">
+        <div className="mt-16 md:mt-24 pt-10 md:pt-12 border-t border-forest/15 flex flex-col items-start md:flex-row md:items-center md:justify-between gap-6 md:gap-8">
           <p className="font-serif italic text-[14px] md:text-[clamp(1.25rem,2vw,1.75rem)] leading-snug text-forest max-w-xl">
             That&rsquo;s the whole loop. Now meet the humans who run the ground game.
           </p>

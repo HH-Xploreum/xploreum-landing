@@ -27,17 +27,7 @@ export function Button({
     link: 'text-forest hover:text-forest-deep',
   };
 
-  const content = (
-    <>
-      <span>{children}</span>
-      <span
-        aria-hidden
-        className="inline-block transition-transform group-hover:translate-x-0.5"
-      >
-        →
-      </span>
-    </>
-  );
+  const content = <span>{children}</span>;
 
   const cls = `${base} ${styles[variant]} ${className}`;
 
