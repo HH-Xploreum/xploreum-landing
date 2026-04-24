@@ -6,9 +6,9 @@ const FRAME_SRC = '/macbook-frame.png';
 const FRAME_W = 3910;
 const FRAME_H = 2236;
 
-// Screen window inside the frame, measured to the pixel from macbook-frame.png.
+// Screen window inside the frame, measured to the pixel on macbook-frame.png.
 // The screenshot is overlaid into this rectangle so it sits cleanly within
-// the bezel — no halo, no cropping of the surrounding chrome.
+// the bezel — no halo, no overflow.
 const SCREEN = {
   left: 9.642,
   top: 0.492,
@@ -25,10 +25,11 @@ type LaptopMockProps = {
 };
 
 /**
- * Photorealistic laptop mock built around a CC0 MacBook Pro 16" PNG.
- * The frame draws the bezel, camera, hinge, base, "MacBook Pro" chin label
- * and ground shadow; the supplied screenshot is composited into the screen
- * window so the device feels assembled rather than illustrated.
+ * Photorealistic laptop mock built around the PommePlate CC0 MacBook Pro PNG.
+ * The frame image renders at its natural aspect ratio (width 100% / height auto)
+ * so it always defines the box. The screenshot is absolutely positioned over
+ * the measured screen window — percentages map exactly to the PNG, regardless
+ * of any parent constraints.
  */
 export function LaptopMock({
   src,
@@ -39,23 +40,21 @@ export function LaptopMock({
   return (
     <div
       className={`relative mx-auto w-full ${className}`}
-      style={{
-        maxWidth: 'clamp(320px, 56vw, 760px)',
-        aspectRatio: `${FRAME_W} / ${FRAME_H}`,
-      }}
+      style={{ maxWidth: 'clamp(320px, 56vw, 760px)' }}
     >
-      {/* Frame — drawn first so the screenshot composites on top of the
-          dark-gray powered-off screen baked into the PNG. */}
+      {/* Frame defines the box. Width 100%, height auto preserves the
+          intrinsic aspect ratio so % offsets always land correctly. */}
       <Image
         src={FRAME_SRC}
         alt=""
-        fill
+        width={FRAME_W}
+        height={FRAME_H}
         priority={priority}
         sizes="(min-width: 1024px) 60vw, 100vw"
-        className="pointer-events-none select-none"
+        className="block w-full h-auto pointer-events-none select-none"
       />
 
-      {/* Screenshot — positioned exactly inside the screen window. */}
+      {/* Screenshot — sits exactly inside the screen window. */}
       <div
         className="absolute overflow-hidden"
         style={{
