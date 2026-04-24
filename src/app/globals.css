@@ -91,20 +91,6 @@ body {
   will-change: transform;
 }
 
-/* ambient topographic contour lines — stacked repeating radial gradients */
-.topo-layer {
-  position: absolute;
-  inset: -10%;
-  pointer-events: none;
-  background-image:
-    repeating-radial-gradient(circle at 18% 22%, transparent 0, transparent 82px, rgba(30,58,42,0.045) 83px, transparent 84px),
-    repeating-radial-gradient(circle at 74% 68%, transparent 0, transparent 96px, rgba(30,58,42,0.038) 97px, transparent 98px),
-    repeating-radial-gradient(circle at 44% 86%, transparent 0, transparent 60px, rgba(30,58,42,0.03) 61px, transparent 62px),
-    repeating-radial-gradient(circle at 88% 16%, transparent 0, transparent 120px, rgba(30,58,42,0.028) 121px, transparent 122px);
-  mask-image: radial-gradient(ellipse 80% 70% at 50% 50%, black 40%, transparent 95%);
-  -webkit-mask-image: radial-gradient(ellipse 80% 70% at 50% 50%, black 40%, transparent 95%);
-}
-
 /* subtle film grain */
 .grain-layer {
   position: absolute;
@@ -114,30 +100,6 @@ body {
   mix-blend-mode: multiply;
   background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.92' numOctaves='2' seed='7' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.12  0 0 0 0 0.22  0 0 0 0 0.16  0 0 0 0.9 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
 }
-
-/* corner registration crosshairs */
-.crosshair {
-  position: absolute;
-  width: 14px;
-  height: 14px;
-  pointer-events: none;
-  color: var(--color-forest);
-  opacity: 0.32;
-}
-
-/* blueprint ruler tick marks */
-.ruler {
-  display: grid;
-  grid-auto-flow: column;
-  grid-auto-columns: 1fr;
-  height: 8px;
-  opacity: 0.3;
-}
-.ruler > span {
-  border-left: 1px solid var(--color-forest);
-  height: 4px;
-}
-.ruler > span:nth-child(5n+1) { height: 8px; }
 
 /* coord ticker entrance */
 @keyframes coord-fade {
