@@ -1,6 +1,3 @@
-'use client';
-
-import { useEffect, useRef, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { LaptopMock } from '@/components/ui/laptop-mock';
 import { LINKS } from '@/lib/links';
@@ -45,50 +42,6 @@ const STEPS = [
 ];
 
 export function HowItWorks() {
-  const [activeIndex, setActiveIndex] = useState(0);
-  const stepRefs = useRef<(HTMLLIElement | null)[]>([]);
-
-  useEffect(() => {
-    if (typeof IntersectionObserver === 'undefined') return;
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        // Pick the entry closest to the "trigger line" (40% from top of viewport).
-        // Filter to entries that are at least partially visible, then choose the
-        // one whose top is highest above the trigger line.
-        const visible = entries.filter((e) => e.isIntersecting);
-        if (visible.length === 0) return;
-
-        const triggerLine = window.innerHeight * 0.4;
-        let bestIndex = activeIndex;
-        let bestDistance = Infinity;
-
-        visible.forEach((entry) => {
-          const idx = Number(
-            (entry.target as HTMLElement).dataset.stepIndex ?? '0',
-          );
-          const distance = Math.abs(entry.boundingClientRect.top - triggerLine);
-          if (distance < bestDistance) {
-            bestDistance = distance;
-            bestIndex = idx;
-          }
-        });
-
-        setActiveIndex(bestIndex);
-      },
-      {
-        // Wide vertical band so we always have at least one step intersecting.
-        rootMargin: '-30% 0px -30% 0px',
-        threshold: [0, 0.25, 0.5, 0.75, 1],
-      },
-    );
-
-    stepRefs.current.forEach((el) => el && observer.observe(el));
-    return () => observer.disconnect();
-  }, [activeIndex]);
-
-  const screens = STEPS.map((s) => ({ src: s.image, alt: s.alt }));
-
   return (
     <section
       id="how-it-works"
@@ -112,46 +65,56 @@ export function HowItWorks() {
           </p>
         </div>
 
-        {/* Desktop: sticky laptop on the left, scrolling steps on the right */}
-        <div className="hidden lg:grid lg:grid-cols-[1.15fr_1fr] lg:gap-16 xl:gap-24 lg:items-start">
-          <div className="sticky top-24 self-start">
-            <LaptopMock screens={screens} activeIndex={activeIndex} />
-            <StepDots activeIndex={activeIndex} count={STEPS.length} />
-          </div>
-
-          <ol className="space-y-40">
-            {STEPS.map((step, i) => (
+        {/* Four editorial rows — laptop + text, alternating sides */}
+        <ol className="space-y-24 md:space-y-36">
+          {STEPS.map((step, i) => {
+            const laptopLeft = i % 2 === 0;
+            return (
               <li
                 key={step.n}
-                ref={(el) => {
-                  stepRefs.current[i] = el;
-                }}
-                data-step-index={i}
-                className="border-t border-forest/15 pt-10 min-h-[55vh] flex flex-col justify-center"
+                className="border-t border-forest/15 pt-12 md:pt-16"
               >
-                <StepHeader n={step.n} eyebrow={step.eyebrow} />
-                <StepTitle>{step.title}</StepTitle>
-                <StepBody>{step.body}</StepBody>
-              </li>
-            ))}
-          </ol>
-        </div>
+                <div className="grid md:grid-cols-12 gap-12 md:gap-16 items-center">
+                  {/* Laptop */}
+                  <div
+                    className={[
+                      'md:col-span-7',
+                      laptopLeft ? 'md:order-1' : 'md:order-2',
+                    ].join(' ')}
+                  >
+                    <LaptopMock
+                      src={step.image}
+                      alt={step.alt}
+                      priority={i === 0}
+                    />
+                  </div>
 
-        {/* Mobile / tablet: each step gets its own laptop above */}
-        <ol className="lg:hidden space-y-20 md:space-y-28">
-          {STEPS.map((step, i) => (
-            <li
-              key={step.n}
-              className="border-t border-forest/15 pt-10 md:pt-14"
-            >
-              <div className="mb-10 md:mb-12">
-                <LaptopMock screens={[screens[i]]} activeIndex={0} />
-              </div>
-              <StepHeader n={step.n} eyebrow={step.eyebrow} />
-              <StepTitle>{step.title}</StepTitle>
-              <StepBody>{step.body}</StepBody>
-            </li>
-          ))}
+                  {/* Text */}
+                  <div
+                    className={[
+                      'md:col-span-5',
+                      laptopLeft ? 'md:order-2' : 'md:order-1',
+                    ].join(' ')}
+                  >
+                    <div className="flex items-baseline gap-4 mb-6">
+                      <span className="font-mono text-sm tracking-[0.2em] text-forest/60">
+                        {step.n} / 04
+                      </span>
+                      <span className="font-mono text-[10px] md:text-xs tracking-[0.25em] uppercase text-forest/50">
+                        {step.eyebrow}
+                      </span>
+                    </div>
+                    <h3 className="font-black tracking-[-0.02em] leading-[1.05] text-forest text-3xl md:text-[2.5rem] mb-5">
+                      {step.title}
+                    </h3>
+                    <p className="text-base md:text-lg text-forest/75 leading-relaxed max-w-lg">
+                      {step.body}
+                    </p>
+                  </div>
+                </div>
+              </li>
+            );
+          })}
         </ol>
 
         {/* Closing CTA — resolves the section into the next chapter */}
@@ -165,61 +128,5 @@ export function HowItWorks() {
         </div>
       </div>
     </section>
-  );
-}
-
-function StepHeader({ n, eyebrow }: { n: string; eyebrow: string }) {
-  return (
-    <div className="flex items-baseline gap-4 mb-6">
-      <span className="font-mono text-sm tracking-[0.2em] text-forest/60">
-        {n} / 04
-      </span>
-      <span className="font-mono text-[10px] md:text-xs tracking-[0.25em] uppercase text-forest/50">
-        {eyebrow}
-      </span>
-    </div>
-  );
-}
-
-function StepTitle({ children }: { children: React.ReactNode }) {
-  return (
-    <h3 className="font-black tracking-[-0.02em] leading-[1.05] text-forest text-3xl md:text-[2.75rem] mb-5">
-      {children}
-    </h3>
-  );
-}
-
-function StepBody({ children }: { children: React.ReactNode }) {
-  return (
-    <p className="text-base md:text-lg text-forest/75 leading-relaxed max-w-lg">
-      {children}
-    </p>
-  );
-}
-
-function StepDots({
-  activeIndex,
-  count,
-}: {
-  activeIndex: number;
-  count: number;
-}) {
-  return (
-    <div className="mt-8 flex items-center justify-center gap-2">
-      {Array.from({ length: count }).map((_, i) => (
-        <span
-          key={i}
-          aria-hidden
-          className="block h-1 rounded-full transition-all duration-500"
-          style={{
-            width: i === activeIndex ? '28px' : '8px',
-            background:
-              i === activeIndex
-                ? 'var(--color-forest)'
-                : 'rgba(30,58,42,0.20)',
-          }}
-        />
-      ))}
-    </div>
   );
 }

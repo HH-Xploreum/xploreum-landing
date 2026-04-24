@@ -1,123 +1,101 @@
 'use client';
 
 import Image from 'next/image';
-import { useEffect, useState } from 'react';
 
 type LaptopMockProps = {
-  /** Ordered list of screen images. The first entry shows by default. */
-  screens: { src: string; alt: string }[];
-  /** Which screen is currently visible. Other screens crossfade out. */
-  activeIndex?: number;
-  /** Optional max-width override (default scales 380px → 720px with viewport). */
+  src: string;
+  alt: string;
+  /** Preload the screen image (use on the first laptop above the fold). */
+  priority?: boolean;
   className?: string;
 };
 
 /**
- * MacBook-style laptop. Renders all `screens` stacked inside the lid and
- * crossfades between them based on `activeIndex` so the device feels alive
- * as the surrounding section scrolls. Sized via container queries (cqw) so
- * every detail — bezel thickness, notch, hinge — scales together.
+ * Space-gray MacBook Pro mock rendered in pure CSS.
+ *   - Thin dark bezel around a 16:10 screen with a centered camera notch
+ *   - Etched "MacBook Pro" chin label
+ *   - Darker hinge strip separating lid from base
+ *   - Lighter aluminum base with rounded bottom corners
+ *   - Soft contact shadow on the ground
+ * Sized via container queries (cqw) so every detail scales with the frame.
  */
 export function LaptopMock({
-  screens,
-  activeIndex = 0,
+  src,
+  alt,
+  priority = false,
   className = '',
 }: LaptopMockProps) {
-  // Preload neighbours so crossfades feel instant.
-  const [mounted, setMounted] = useState(false);
-  useEffect(() => setMounted(true), []);
-
   return (
     <div
       className={`relative mx-auto w-full ${className}`}
       style={{
-        maxWidth: 'clamp(320px, 52vw, 760px)',
+        maxWidth: 'clamp(320px, 52vw, 720px)',
         containerType: 'inline-size',
       }}
     >
-      {/* Contact shadow — softbox under the device */}
+      {/* Ground shadow */}
       <div
         aria-hidden
         className="absolute left-1/2 -translate-x-1/2 pointer-events-none"
         style={{
-          bottom: '-2.5cqw',
-          width: '78%',
-          height: '6cqw',
+          bottom: '-3.5cqw',
+          width: '92%',
+          height: '5cqw',
           borderRadius: '50%',
           background:
-            'radial-gradient(closest-side, rgba(15,36,23,0.32), rgba(15,36,23,0) 70%)',
-          filter: 'blur(2.5cqw)',
+            'radial-gradient(closest-side, rgba(15,36,23,0.35), rgba(15,36,23,0) 72%)',
+          filter: 'blur(3cqw)',
         }}
       />
 
-      {/* Lid — aluminum frame */}
+      {/* LID — space gray frame around the display */}
       <div
         className="relative"
         style={{
-          aspectRatio: '16 / 9.4',
-          borderRadius: '1.6cqw',
-          padding: '0.9cqw',
+          aspectRatio: '1.54 / 1',
+          borderRadius: '1cqw 1cqw 0.2cqw 0.2cqw',
+          padding: '0.7cqw 0.7cqw 0.5cqw 0.7cqw',
           background:
-            'linear-gradient(160deg, #2a2d33 0%, #1a1d22 35%, #0f1115 100%)',
+            'linear-gradient(160deg, #3b3e44 0%, #2a2d33 30%, #1e2025 100%)',
           boxShadow: [
-            '0 2cqw 4cqw -1cqw rgba(15,36,23,0.32)',
-            '0 1cqw 2cqw -0.6cqw rgba(0,0,0,0.28)',
             'inset 0 0.12cqw 0 rgba(255,255,255,0.10)',
-            'inset 0 -0.12cqw 0 rgba(0,0,0,0.45)',
+            'inset 0 -0.12cqw 0 rgba(0,0,0,0.40)',
+            'inset 0.12cqw 0 0 rgba(255,255,255,0.04)',
+            'inset -0.12cqw 0 0 rgba(255,255,255,0.04)',
           ].join(', '),
         }}
       >
-        {/* Diagonal aluminum highlight */}
-        <div
-          aria-hidden
-          className="absolute inset-0 pointer-events-none"
-          style={{
-            borderRadius: '1.6cqw',
-            background:
-              'linear-gradient(135deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0) 22%, rgba(255,255,255,0) 75%, rgba(255,255,255,0.04) 100%)',
-          }}
-        />
-
         {/* Screen */}
         <div
-          className="relative w-full h-full overflow-hidden"
+          className="relative overflow-hidden"
           style={{
-            borderRadius: '0.9cqw',
-            background: '#06080a',
+            aspectRatio: '16 / 10',
+            borderRadius: '0.35cqw',
+            background: '#05070a',
           }}
         >
-          {/* Notch — tiny camera bar at the top center */}
+          {/* Camera notch */}
           <div
             aria-hidden
             className="absolute left-1/2 -translate-x-1/2 z-20"
             style={{
               top: 0,
-              width: '14cqw',
-              height: '0.9cqw',
-              borderBottomLeftRadius: '0.6cqw',
-              borderBottomRightRadius: '0.6cqw',
+              width: '13cqw',
+              height: '0.75cqw',
+              borderBottomLeftRadius: '0.45cqw',
+              borderBottomRightRadius: '0.45cqw',
               background: '#000',
             }}
           />
 
-          {/* Screen images — all stacked, fade controlled by activeIndex */}
-          {screens.map((s, i) => (
-            <div
-              key={s.src}
-              className="absolute inset-0 transition-opacity duration-700 ease-out"
-              style={{ opacity: i === activeIndex ? 1 : 0 }}
-              aria-hidden={i !== activeIndex}
-            >
-              <Image
-                src={s.src}
-                alt={s.alt}
-                fill
-                priority={i === 0 || (mounted && i === activeIndex)}
-                sizes="(min-width: 1024px) 50vw, 100vw"
-                className="object-cover"
-              />
-            </div>
-          ))}
+          <Image
+            src={src}
+            alt={alt}
+            fill
+            priority={priority}
+            sizes="(min-width: 1024px) 50vw, 100vw"
+            className="object-cover"
+          />
 
           {/* Subtle screen glare */}
           <div
@@ -125,37 +103,75 @@ export function LaptopMock({
             className="absolute inset-0 pointer-events-none"
             style={{
               background:
-                'linear-gradient(120deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0) 30%, rgba(255,255,255,0) 70%, rgba(255,255,255,0.03) 100%)',
+                'linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0) 28%, rgba(255,255,255,0) 72%, rgba(255,255,255,0.035) 100%)',
             }}
           />
         </div>
+
+        {/* Chin with etched "MacBook Pro" label */}
+        <div
+          className="flex items-center justify-center"
+          style={{
+            height: '2.2cqw',
+            paddingTop: '0.4cqw',
+          }}
+        >
+          <span
+            className="font-sans"
+            style={{
+              fontSize: '1.05cqw',
+              letterSpacing: '0.14em',
+              fontWeight: 500,
+              color: 'rgba(210,212,218,0.55)',
+              textShadow: '0 0.05cqw 0 rgba(0,0,0,0.6)',
+            }}
+          >
+            MacBook Pro
+          </span>
+        </div>
       </div>
 
-      {/* Hinge / lid base — thin silver sliver under the lid */}
+      {/* HINGE — thin dark band between lid and base */}
       <div
         aria-hidden
         className="relative mx-auto"
         style={{
-          marginTop: '0.4cqw',
-          width: '102%',
-          marginLeft: '-1%',
-          height: '0.9cqw',
-          borderRadius: '0 0 0.6cqw 0.6cqw',
+          width: '100%',
+          height: '0.55cqw',
           background:
-            'linear-gradient(180deg, #c2c5cb 0%, #8e9097 55%, #6a6c72 100%)',
-          boxShadow: 'inset 0 0.1cqw 0 rgba(255,255,255,0.4), 0 0.3cqw 0.6cqw rgba(15,36,23,0.18)',
+            'linear-gradient(180deg, #141619 0%, #0a0b0d 50%, #16181c 100%)',
+          boxShadow: 'inset 0 0.08cqw 0 rgba(255,255,255,0.04)',
+        }}
+      />
+
+      {/* BASE — lighter aluminum face with rounded bottom + hinge cutout */}
+      <div
+        aria-hidden
+        className="relative mx-auto"
+        style={{
+          width: '103%',
+          marginLeft: '-1.5%',
+          height: '2.6cqw',
+          borderRadius: '0 0 1.8cqw 1.8cqw',
+          background:
+            'linear-gradient(180deg, #565860 0%, #3e4046 45%, #2a2c31 100%)',
+          boxShadow: [
+            'inset 0 0.18cqw 0 rgba(255,255,255,0.22)',
+            'inset 0 -0.12cqw 0 rgba(0,0,0,0.4)',
+            '0 0.5cqw 0.9cqw rgba(15,36,23,0.2)',
+          ].join(', '),
         }}
       >
-        {/* Hinge cutout */}
+        {/* Hinge notch cutout (the slot that lets you open the lid) */}
         <div
           className="absolute left-1/2 -translate-x-1/2"
           style={{
             top: 0,
-            width: '18%',
-            height: '0.4cqw',
-            borderRadius: '0 0 0.6cqw 0.6cqw',
+            width: '22%',
+            height: '0.7cqw',
+            borderRadius: '0 0 0.8cqw 0.8cqw',
             background:
-              'linear-gradient(180deg, #2a2d33 0%, #1a1d22 100%)',
+              'linear-gradient(180deg, #0a0b0d 0%, #1a1c20 100%)',
           }}
         />
       </div>
