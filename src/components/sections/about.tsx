@@ -16,7 +16,7 @@ export function About() {
             <div className="font-semibold text-xs tracking-[0.2em] uppercase text-forest/60 mb-3">
               The problem
             </div>
-            <p className="text-forest/80 leading-relaxed">
+            <p className="text-[14px] md:text-base text-forest/80 leading-relaxed">
               Great adventure trips take 16+ hours to plan and still feel generic.
               Marketplaces hide the good guides. Aggregators churn out the same
               itineraries. The best trips stay inside private group chats.
@@ -26,7 +26,7 @@ export function About() {
             <div className="font-semibold text-xs tracking-[0.2em] uppercase text-forest/60 mb-3">
               The fix
             </div>
-            <p className="text-forest/80 leading-relaxed">
+            <p className="text-[14px] md:text-base text-forest/80 leading-relaxed">
               An AI that plans like a well-traveled friend, then hands you off to a
               real local expert who executes. One conversation, one coherent trip,
               one human you actually meet when you land.
@@ -36,7 +36,7 @@ export function About() {
             <div className="font-semibold text-xs tracking-[0.2em] uppercase text-forest/60 mb-3">
               The team
             </div>
-            <p className="text-forest/80 leading-relaxed">
+            <p className="text-[14px] md:text-base text-forest/80 leading-relaxed">
               Built by founders who&apos;ve shipped AI products and guided expeditions
               on three continents. Backquartered in San Francisco and Montréal.
               Always hiring curious people.

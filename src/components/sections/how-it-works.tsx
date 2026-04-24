@@ -59,12 +59,12 @@ export function HowItWorks() {
           <div className="font-semibold text-xs md:text-sm tracking-[0.2em] uppercase text-forest/70 mb-5">
             How it works
           </div>
-          <h2 className="font-black tracking-[-0.03em] leading-[0.98] text-forest text-[clamp(2.5rem,5.5vw,4.75rem)]">
+          <h2 className="font-black tracking-[-0.03em] leading-[0.98] text-forest text-[2rem] md:text-[clamp(3.5rem,5.5vw,4.75rem)]">
             Tell Xavier what you&rsquo;re after.
             <br className="hidden md:block" />{' '}
             <span className="text-forest/85">He builds the whole Xpedition.</span>
           </h2>
-          <p className="font-serif italic font-medium text-[clamp(1.125rem,1.6vw,1.5rem)] leading-snug text-[#a05a16] mt-6 md:mt-8">
+          <p className="font-serif italic font-medium text-[14px] md:text-[clamp(1.125rem,1.6vw,1.5rem)] leading-snug text-[#a05a16] mt-6 md:mt-8">
             Conversation to adventure. Four steps.
           </p>
         </div>
@@ -108,10 +108,10 @@ export function HowItWorks() {
                         {step.eyebrow}
                       </span>
                     </div>
-                    <h3 className="font-black tracking-[-0.02em] leading-[1.05] text-forest text-3xl md:text-[2.5rem] mb-4">
+                    <h3 className="font-black tracking-[-0.02em] leading-[1.05] text-forest text-[1.5rem] md:text-[2.5rem] mb-4">
                       {step.title}
                     </h3>
-                    <p className="text-base md:text-lg text-forest/75 leading-relaxed max-w-lg">
+                    <p className="text-[14px] md:text-lg text-forest/75 leading-relaxed max-w-lg">
                       {step.body}
                     </p>
                   </div>
@@ -123,7 +123,7 @@ export function HowItWorks() {
 
         {/* Closing CTA resolves the section into the next chapter */}
         <div className="mt-16 md:mt-24 pt-10 md:pt-12 border-t border-forest/15 flex flex-col md:flex-row md:items-center md:justify-between gap-6 md:gap-8">
-          <p className="font-serif italic text-[clamp(1.25rem,2vw,1.75rem)] leading-snug text-forest max-w-xl">
+          <p className="font-serif italic text-[14px] md:text-[clamp(1.25rem,2vw,1.75rem)] leading-snug text-forest max-w-xl">
             That&rsquo;s the whole loop. Now meet the humans who run the ground game.
           </p>
           <Button href={LINKS.chatWithX} variant="primary" external>
