@@ -12,18 +12,18 @@ export function Footer() {
               </div>
             </div>
             <p className="mt-4 text-bone/60 text-sm leading-relaxed max-w-xs">
-              Your AI travel agent. One conversation, one real trip, one human when
-              you land.
+              Xavier, your AI agent companion. One conversation, one real trip,
+              one human Xpert when you land.
             </p>
             <p className="mt-8 font-mono text-[10px] tracking-[0.2em] uppercase text-bone/40">
-              Launching on iOS & Android — 2026
+              Launching on iOS & Android, 2026
             </p>
           </div>
 
           <FooterCol
             title="Product"
             links={[
-              { label: 'Chat with X', href: LINKS.chatWithX, external: true },
+              { label: 'Chat with Xavier', href: LINKS.chatWithX, external: true },
               { label: 'How it works', href: LINKS.howItWorks },
               { label: 'For Xperts', href: LINKS.forGuide },
             ]}
