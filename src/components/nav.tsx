@@ -49,15 +49,9 @@ export function Nav() {
               href={LINKS.chatWithX}
               target="_blank"
               rel="noopener noreferrer"
-              className="group inline-flex items-center gap-2 rounded-full px-5 md:px-6 py-2.5 md:py-3 text-sm md:text-base font-semibold tracking-tight transition bg-forest text-bone hover:bg-forest-deep"
+              className="hidden md:inline-flex items-center rounded-full border border-forest px-5 py-2 text-base font-semibold tracking-tight text-forest transition hover:bg-forest hover:text-bone"
             >
-              <span>Chat with Xavier</span>
-              <span
-                aria-hidden
-                className="inline-block transition-transform group-hover:translate-x-0.5"
-              >
-                →
-              </span>
+              Chat with Xavier
             </a>
           </div>
         </div>
