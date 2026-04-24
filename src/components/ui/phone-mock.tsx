@@ -7,69 +7,17 @@ type PhoneMockProps = {
   posterSrc?: string;
 };
 
-export function PhoneMock({ videoSrc, posterSrc }: PhoneMockProps = {}) {
+export function PhoneMock({ videoSrc, posterSrc: _posterSrc }: PhoneMockProps = {}) {
   const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
     if (!videoSrc) return;
     const v = videoRef.current;
     if (!v) return;
-
-    // iOS Safari won't paint a paused video until it has actually played
-    // at least once, so we briefly play → pause at ~1s. That both skips
-    // any fade-in black frames at the very start of the clip and leaves
-    // a real frame on screen while we wait for the reading delay.
-    const PREVIEW_AT = 1;
-    const paintFirstFrame = () => {
-      v.play()
-        .then(() => {
-          v.pause();
-          try {
-            v.currentTime = PREVIEW_AT;
-          } catch {}
-        })
-        .catch(() => {
-          // Autoplay blocked — fall back to a seek; desktop browsers
-          // will still render the frame even without play().
-          try {
-            v.currentTime = PREVIEW_AT;
-          } catch {}
-        });
-    };
-    if (v.readyState >= 1) {
-      paintFirstFrame();
-    } else {
-      v.addEventListener('loadedmetadata', paintFirstFrame, { once: true });
-    }
-
-    const start = () => {
-      if (v.paused) v.play().catch(() => {});
-    };
-
-    // Reading window after the typewriter finishes — gives the
-    // visitor time to read the body copy + Xavier line before the
-    // phone-mock video starts pulling their eye.
-    const READING_DELAY_MS = 3000;
-
-    const flag = (window as unknown as { __heroIntroDone?: boolean })
-      .__heroIntroDone;
-    if (flag) {
-      // Already past the intro (revisit / hot reload) — no need to delay.
-      start();
-      return;
-    }
-
-    let timeoutId: ReturnType<typeof setTimeout> | undefined;
-    const handleIntroDone = () => {
-      timeoutId = setTimeout(start, READING_DELAY_MS);
-    };
-
-    window.addEventListener('hero-intro-done', handleIntroDone);
-    return () => {
-      window.removeEventListener('hero-intro-done', handleIntroDone);
-      v.removeEventListener('loadedmetadata', paintFirstFrame);
-      if (timeoutId) clearTimeout(timeoutId);
-    };
+    // Kick off playback as soon as the component mounts. The video has
+    // autoPlay/muted/playsInline on the element, but some mobile browsers
+    // still need an explicit play() call to actually start.
+    v.play().catch(() => {});
   }, [videoSrc]);
 
   return (
@@ -154,7 +102,7 @@ export function PhoneMock({ videoSrc, posterSrc }: PhoneMockProps = {}) {
               <video
                 ref={videoRef}
                 src={videoSrc}
-                poster={posterSrc}
+                autoPlay
                 muted
                 loop
                 playsInline
