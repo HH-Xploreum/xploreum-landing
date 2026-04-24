@@ -5,7 +5,7 @@ import { MagneticPill } from '@/components/ui/magnetic-pill';
 
 export function Hero() {
   return (
-    <section className="relative isolate md:min-h-screen overflow-hidden bg-bone text-forest">
+    <section className="relative isolate min-h-[100svh] md:min-h-screen overflow-hidden bg-bone text-forest">
       {/* Background video */}
       <video
         aria-hidden
@@ -38,8 +38,8 @@ export function Hero() {
       />
       <div aria-hidden className="grain-layer" />
 
-      <div className="relative max-w-[1400px] mx-auto w-full px-5 md:px-10 pt-24 md:pt-32 pb-14 md:pb-20 md:min-h-screen md:flex md:flex-col">
-        <div className="grid md:grid-cols-[1.15fr_0.85fr] md:grid-rows-[auto_auto] gap-8 md:gap-x-14 lg:gap-x-16 md:gap-y-8 md:flex-1 md:items-center">
+      <div className="relative max-w-[1400px] mx-auto w-full px-5 md:px-10 pt-16 md:pt-32 pb-6 md:pb-20 min-h-[100svh] md:min-h-screen flex flex-col">
+        <div className="grid md:grid-cols-[1.15fr_0.85fr] md:grid-rows-[auto_auto] gap-4 md:gap-x-14 lg:gap-x-16 md:gap-y-8 flex-1 md:items-center">
           <div className="max-w-[640px] md:col-start-1 md:row-start-1 md:self-end">
             <h1
               className="font-black uppercase leading-[0.88] tracking-[-0.045em] text-forest text-[2.5rem] md:text-[clamp(4.25rem,10vw,9.5rem)]"
@@ -49,7 +49,7 @@ export function Hero() {
               </span>
             </h1>
 
-            <div className="rise rise-5 mt-10 md:mt-24 space-y-1.5 text-forest leading-snug">
+            <div className="rise rise-5 mt-4 md:mt-24 space-y-1.5 text-forest leading-snug">
               <p className="font-normal text-[13px] md:text-[clamp(1.125rem,1.9vw,1.5rem)]">
                 You don&apos;t need a guidebook. You don&apos;t need a spreadsheet.
               </p>
