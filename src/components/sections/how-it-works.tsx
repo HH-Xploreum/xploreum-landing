@@ -56,7 +56,7 @@ export function HowItWorks() {
       <div className="relative max-w-7xl mx-auto px-5 md:px-8 pt-20 md:pt-28 pb-20 md:pb-28">
         {/* Header */}
         <div className="mb-14 md:mb-20 max-w-4xl">
-          <div className="font-mono text-xs md:text-sm tracking-[0.2em] uppercase text-forest/70 mb-5">
+          <div className="font-semibold text-xs md:text-sm tracking-[0.2em] uppercase text-forest/70 mb-5">
             How it works
           </div>
           <h2 className="font-black tracking-[-0.03em] leading-[0.98] text-forest text-[clamp(2.5rem,5.5vw,4.75rem)]">
@@ -101,10 +101,10 @@ export function HowItWorks() {
                     ].join(' ')}
                   >
                     <div className="flex items-baseline gap-4 mb-5">
-                      <span className="font-mono text-sm tracking-[0.2em] text-forest/60">
+                      <span className="font-semibold text-sm tracking-[0.2em] text-forest/60">
                         {step.n} / 04
                       </span>
-                      <span className="font-mono text-[10px] md:text-xs tracking-[0.25em] uppercase text-forest/50">
+                      <span className="font-semibold text-[10px] md:text-xs tracking-[0.25em] uppercase text-forest/50">
                         {step.eyebrow}
                       </span>
                     </div>

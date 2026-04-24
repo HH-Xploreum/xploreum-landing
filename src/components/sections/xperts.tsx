@@ -16,7 +16,7 @@ export function Xperts() {
       <div className="max-w-7xl mx-auto px-5 md:px-8 py-24 md:py-36">
         <div className="grid md:grid-cols-[1.2fr_1fr] gap-10 md:gap-16 items-end mb-16 md:mb-20">
           <div>
-            <div className="font-mono text-xs md:text-sm tracking-[0.2em] uppercase text-bone/60 mb-6">
+            <div className="font-semibold text-xs md:text-sm tracking-[0.2em] uppercase text-bone/60 mb-6">
               Meet the Xperts
             </div>
             <h2 className="font-black tracking-[-0.03em] leading-[0.98] text-[clamp(2.5rem,5.5vw,4.75rem)]">

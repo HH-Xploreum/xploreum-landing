@@ -2,7 +2,7 @@ export function About() {
   return (
     <section id="about" className="bg-bone border-t border-line">
       <div className="max-w-5xl mx-auto px-5 md:px-8 py-24 md:py-36">
-        <div className="font-mono text-xs md:text-sm tracking-[0.2em] uppercase text-forest/70 mb-10">
+        <div className="font-semibold text-xs md:text-sm tracking-[0.2em] uppercase text-forest/70 mb-10">
           About Xploreum
         </div>
 
@@ -13,7 +13,7 @@ export function About() {
 
         <div className="mt-20 grid md:grid-cols-3 gap-10 md:gap-14">
           <div>
-            <div className="font-mono text-xs tracking-[0.2em] uppercase text-forest/60 mb-3">
+            <div className="font-semibold text-xs tracking-[0.2em] uppercase text-forest/60 mb-3">
               The problem
             </div>
             <p className="text-forest/80 leading-relaxed">
@@ -23,7 +23,7 @@ export function About() {
             </p>
           </div>
           <div>
-            <div className="font-mono text-xs tracking-[0.2em] uppercase text-forest/60 mb-3">
+            <div className="font-semibold text-xs tracking-[0.2em] uppercase text-forest/60 mb-3">
               The fix
             </div>
             <p className="text-forest/80 leading-relaxed">
@@ -33,7 +33,7 @@ export function About() {
             </p>
           </div>
           <div>
-            <div className="font-mono text-xs tracking-[0.2em] uppercase text-forest/60 mb-3">
+            <div className="font-semibold text-xs tracking-[0.2em] uppercase text-forest/60 mb-3">
               The team
             </div>
             <p className="text-forest/80 leading-relaxed">

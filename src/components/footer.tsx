@@ -15,7 +15,7 @@ export function Footer() {
               Xavier, your AI agent companion. One conversation, one real trip,
               one human Xpert when you land.
             </p>
-            <p className="mt-8 font-mono text-[10px] tracking-[0.2em] uppercase text-bone/40">
+            <p className="mt-8 font-semibold text-[10px] tracking-[0.2em] uppercase text-bone/40">
               Launching on iOS & Android, 2026
             </p>
           </div>
@@ -45,7 +45,7 @@ export function Footer() {
           />
         </div>
 
-        <div className="mt-20 pt-8 border-t border-bone/10 flex flex-col md:flex-row justify-between gap-4 text-xs text-bone/50 font-mono tracking-wide">
+        <div className="mt-20 pt-8 border-t border-bone/10 flex flex-col md:flex-row justify-between gap-4 text-xs text-bone/50 tracking-wide">
           <span>© {new Date().getFullYear()} Xploreum, Inc.</span>
           <span>San Francisco · Montréal</span>
         </div>
@@ -63,7 +63,7 @@ function FooterCol({
 }) {
   return (
     <div>
-      <div className="font-mono text-[10px] tracking-[0.25em] uppercase text-bone/40 mb-5">
+      <div className="font-semibold text-[10px] tracking-[0.25em] uppercase text-bone/40 mb-5">
         {title}
       </div>
       <ul className="space-y-3">
