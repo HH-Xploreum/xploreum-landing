@@ -15,13 +15,26 @@ export function PhoneMock({ videoSrc, posterSrc }: PhoneMockProps = {}) {
     const v = videoRef.current;
     if (!v) return;
 
-    // Nudge the video off time 0 so the browser decodes and paints the
-    // first frame while we wait. Without this the screen is black until
-    // play() fires after the reading delay.
+    // iOS Safari won't paint a paused video until it has actually played
+    // at least once, so we briefly play → pause at ~1s. That both skips
+    // any fade-in black frames at the very start of the clip and leaves
+    // a real frame on screen while we wait for the reading delay.
+    const PREVIEW_AT = 1;
     const paintFirstFrame = () => {
-      try {
-        if (v.currentTime < 0.01) v.currentTime = 0.01;
-      } catch {}
+      v.play()
+        .then(() => {
+          v.pause();
+          try {
+            v.currentTime = PREVIEW_AT;
+          } catch {}
+        })
+        .catch(() => {
+          // Autoplay blocked — fall back to a seek; desktop browsers
+          // will still render the frame even without play().
+          try {
+            v.currentTime = PREVIEW_AT;
+          } catch {}
+        });
     };
     if (v.readyState >= 1) {
       paintFirstFrame();
