@@ -63,10 +63,7 @@ export function Hero() {
           </div>
 
           <div className="rise rise-4 w-full flex justify-center md:justify-end md:col-start-2 md:row-start-1 md:row-span-2 md:self-center">
-            <PhoneMock
-              videoSrc="https://auth.xploreum.io/storage/v1/object/public/landing-assets/mobile-app.mov"
-              posterSrc="/poster%20image.png"
-            />
+            <PhoneMock videoSrc="https://auth.xploreum.io/storage/v1/object/public/landing-assets/mobile-app.mov" />
           </div>
 
           <div className="rise rise-6 md:col-start-1 md:row-start-2 md:self-start flex justify-center md:justify-start mt-0">

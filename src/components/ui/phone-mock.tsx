@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 
 type PhoneMockProps = {
   videoSrc?: string;
@@ -9,30 +9,41 @@ type PhoneMockProps = {
 
 export function PhoneMock({ videoSrc, posterSrc }: PhoneMockProps = {}) {
   const videoRef = useRef<HTMLVideoElement>(null);
-  // Poster stays visible (as an <img> overlay on top of the video) until
-  // the reading delay expires and the video actually starts playing.
-  // We control the swap ourselves because the browser's native `poster`
-  // attribute drops to black on iOS Safari once the video loads.
-  const [showPoster, setShowPoster] = useState(true);
 
   useEffect(() => {
     if (!videoSrc) return;
     const v = videoRef.current;
     if (!v) return;
 
+    // iOS Safari won't paint a paused video until it has actually played
+    // at least once, so we briefly play → pause at ~1s. That both skips
+    // any fade-in black frames at the very start of the clip and leaves
+    // a real frame on screen while we wait for the reading delay.
+    const PREVIEW_AT = 1;
+    const paintFirstFrame = () => {
+      v.play()
+        .then(() => {
+          v.pause();
+          try {
+            v.currentTime = PREVIEW_AT;
+          } catch {}
+        })
+        .catch(() => {
+          // Autoplay blocked — fall back to a seek; desktop browsers
+          // will still render the frame even without play().
+          try {
+            v.currentTime = PREVIEW_AT;
+          } catch {}
+        });
+    };
+    if (v.readyState >= 1) {
+      paintFirstFrame();
+    } else {
+      v.addEventListener('loadedmetadata', paintFirstFrame, { once: true });
+    }
+
     const start = () => {
-      const hidePoster = () => setShowPoster(false);
-      if (v.paused) {
-        v.play()
-          .then(hidePoster)
-          .catch(() => {
-            // Autoplay blocked — hide the poster anyway so the video
-            // can at least be tapped, and leave it to user interaction.
-            hidePoster();
-          });
-      } else {
-        hidePoster();
-      }
+      if (v.paused) v.play().catch(() => {});
     };
 
     // Reading window after the typewriter finishes — gives the
@@ -56,6 +67,7 @@ export function PhoneMock({ videoSrc, posterSrc }: PhoneMockProps = {}) {
     window.addEventListener('hero-intro-done', handleIntroDone);
     return () => {
       window.removeEventListener('hero-intro-done', handleIntroDone);
+      v.removeEventListener('loadedmetadata', paintFirstFrame);
       if (timeoutId) clearTimeout(timeoutId);
     };
   }, [videoSrc]);
@@ -139,26 +151,16 @@ export function PhoneMock({ videoSrc, posterSrc }: PhoneMockProps = {}) {
             }}
           >
             {videoSrc ? (
-              <>
-                <video
-                  ref={videoRef}
-                  src={videoSrc}
-                  muted
-                  loop
-                  playsInline
-                  preload="auto"
-                  className="absolute inset-0 w-full h-full object-cover"
-                />
-                {posterSrc && showPoster && (
-                  /* eslint-disable-next-line @next/next/no-img-element */
-                  <img
-                    src={posterSrc}
-                    alt=""
-                    aria-hidden
-                    className="absolute inset-0 w-full h-full object-cover z-10 transition-opacity duration-500"
-                  />
-                )}
-              </>
+              <video
+                ref={videoRef}
+                src={videoSrc}
+                poster={posterSrc}
+                muted
+                loop
+                playsInline
+                preload="auto"
+                className="absolute inset-0 w-full h-full object-cover"
+              />
             ) : (
               <AnimatedChat />
             )}
