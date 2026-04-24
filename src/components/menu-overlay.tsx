@@ -51,7 +51,7 @@ export function MenuOverlay({ open, onClose }: { open: boolean; onClose: () => v
         <Section title="Product" items={PRODUCT} onNavigate={onClose} />
         <Section title="Mobile" items={MOBILE} onNavigate={onClose} />
 
-        <div className="mt-16 md:mt-24 pt-8 border-t border-line flex flex-wrap items-center gap-x-10 gap-y-4 font-mono text-xs tracking-[0.2em] uppercase text-forest/60">
+        <div className="mt-16 md:mt-24 pt-8 border-t border-line flex flex-wrap items-center gap-x-10 gap-y-4 font-semibold text-xs tracking-[0.2em] uppercase text-forest/60">
           <a
             href={LINKS.contact}
             onClick={onClose}
@@ -85,7 +85,7 @@ function Section({
 }) {
   return (
     <div className="mt-14 md:mt-20">
-      <div className="font-mono text-xs tracking-[0.25em] uppercase text-forest/50 mb-5 md:mb-7">
+      <div className="font-semibold text-xs tracking-[0.25em] uppercase text-forest/50 mb-5 md:mb-7">
         {title}
       </div>
       <div className="border-t border-line/60">

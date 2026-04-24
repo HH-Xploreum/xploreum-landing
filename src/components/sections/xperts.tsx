@@ -16,14 +16,14 @@ export function Xperts() {
       <div className="max-w-7xl mx-auto px-5 md:px-8 py-24 md:py-36">
         <div className="grid md:grid-cols-[1.2fr_1fr] gap-10 md:gap-16 items-end mb-16 md:mb-20">
           <div>
-            <div className="font-mono text-xs md:text-sm tracking-[0.2em] uppercase text-bone/60 mb-6">
+            <div className="font-semibold text-xs md:text-sm tracking-[0.2em] uppercase text-bone/60 mb-6">
               Meet the Xperts
             </div>
-            <h2 className="font-black tracking-[-0.03em] leading-[0.98] text-[clamp(2.5rem,5.5vw,4.75rem)]">
+            <h2 className="font-black tracking-[-0.03em] leading-[0.98] text-[2rem] md:text-[clamp(3.5rem,5.5vw,4.75rem)]">
               AI plans it. Humans run it.
             </h2>
           </div>
-          <p className="text-lg text-bone/80 leading-relaxed max-w-md">
+          <p className="text-[14px] md:text-lg text-bone/80 leading-relaxed max-w-md">
             Every Xpedition is led by a vetted local: certified, insured, and paid
             fairly because no middleman takes a cut. These are the people who make
             your trip real on the ground.
@@ -44,9 +44,9 @@ export function Xperts() {
                   {x.years}Y
                 </span>
               </div>
-              <div className="font-bold text-xl tracking-tight">{x.name}</div>
-              <div className="text-sm text-bone/60 mt-1">{x.region}</div>
-              <div className="text-sm text-bone/80 mt-4 pt-4 border-t border-bone/10">
+              <div className="font-bold text-lg md:text-xl tracking-tight">{x.name}</div>
+              <div className="text-[13px] md:text-sm text-bone/60 mt-1">{x.region}</div>
+              <div className="text-[13px] md:text-sm text-bone/80 mt-4 pt-4 border-t border-bone/10">
                 {x.specialty}
               </div>
             </div>
@@ -61,7 +61,7 @@ export function Xperts() {
           >
             Become an Xpert
           </Button>
-          <span className="text-sm text-bone/60">
+          <span className="text-[13px] md:text-sm text-bone/60">
             Guiding in a region we don&apos;t cover yet? We want to hear from you.
           </span>
         </div>

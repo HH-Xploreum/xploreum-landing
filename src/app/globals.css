@@ -35,20 +35,20 @@ body {
 .rise-5 { animation-delay: 0.52s; }
 .rise-6 { animation-delay: 0.62s; }
 
-/* slow premium float — phone mockup idle motion */
+/* slow premium float: phone mockup idle motion */
 @keyframes phone-float {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-4px); }
 }
 .phone-float { animation: phone-float 6s ease-in-out infinite; }
 
-/* hollow stroke-only display type — pairs with solid bold above */
+/* hollow stroke-only display type, pairs with the solid bold above */
 .text-outline {
   color: transparent;
   -webkit-text-stroke: 0.028em var(--color-forest);
 }
 
-/* typewriter caret — blinks in place next to the typed word */
+/* typewriter caret: blinks in place next to the typed word */
 .caret {
   display: inline-block;
   width: 0.06em;
@@ -85,7 +85,7 @@ body {
   will-change: transform;
 }
 
-/* magnetic button — smooth return after pointer leaves */
+/* magnetic button: smooth return after pointer leaves */
 .magnetic {
   transition: transform 0.24s cubic-bezier(0.2, 0.8, 0.2, 1);
   will-change: transform;
@@ -108,7 +108,7 @@ body {
 }
 .coord-fade { animation: coord-fade 0.55s cubic-bezier(0.2, 0.7, 0.2, 1) both; }
 
-/* chat sequence — bubbles appear one by one in a loop */
+/* chat sequence: bubbles appear one by one in a loop */
 @keyframes bubble-reveal {
   0%, 100% { opacity: 0; transform: translateY(6px); }
   8%, 70% { opacity: 1; transform: translateY(0); }
@@ -129,7 +129,7 @@ body {
 
 /* Hide iOS Safari's autoplay-blocked play button overlay on the phone-mock
    video. iOS shows a giant play glyph when Low Power Mode (or strict
-   autoplay settings) blocks muted autoplay — we trigger playback on the
+   autoplay settings) blocks muted autoplay. We trigger playback on the
    first user interaction instead, so the overlay only gets in the way. */
 .phone-mock-video::-webkit-media-controls,
 .phone-mock-video::-webkit-media-controls-panel,

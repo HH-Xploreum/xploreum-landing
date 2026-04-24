@@ -7,7 +7,7 @@ export const LINKS = {
   howItWorks: '#how-it-works',
   about: '#about',
   mobile: '#mobile',
-  // social placeholders — swap when ready
+  // social placeholders, swap when ready
   instagram: 'https://instagram.com/xploreum',
   linkedin: 'https://linkedin.com/company/xploreum',
 } as const;
