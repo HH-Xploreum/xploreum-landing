@@ -126,3 +126,18 @@ body {
     transition: none !important;
   }
 }
+
+/* Hide iOS Safari's autoplay-blocked play button overlay on the phone-mock
+   video. iOS shows a giant play glyph when Low Power Mode (or strict
+   autoplay settings) blocks muted autoplay — we trigger playback on the
+   first user interaction instead, so the overlay only gets in the way. */
+.phone-mock-video::-webkit-media-controls,
+.phone-mock-video::-webkit-media-controls-panel,
+.phone-mock-video::-webkit-media-controls-start-playback-button,
+.phone-mock-video::-webkit-media-controls-overlay-play-button,
+.phone-mock-video::-webkit-media-controls-play-button {
+  display: none !important;
+  -webkit-appearance: none;
+  appearance: none;
+  opacity: 0 !important;
+}

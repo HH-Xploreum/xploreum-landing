@@ -14,10 +14,62 @@ export function PhoneMock({ videoSrc, posterSrc: _posterSrc }: PhoneMockProps = 
     if (!videoSrc) return;
     const v = videoRef.current;
     if (!v) return;
-    // Kick off playback as soon as the component mounts. The video has
-    // autoPlay/muted/playsInline on the element, but some mobile browsers
-    // still need an explicit play() call to actually start.
-    v.play().catch(() => {});
+
+    // Reading window after the typewriter finishes — gives the
+    // visitor time to read the body copy + Xavier line before the
+    // phone-mock video starts pulling their eye.
+    const READING_DELAY_MS = 3000;
+
+    let firstInteractionHandler: (() => void) | null = null;
+
+    const tryPlay = () => {
+      v.play().catch(() => {
+        // iOS Low Power Mode (and some strict autoplay settings) refuse
+        // muted autoplay. Fall back to playing on the very first user
+        // interaction anywhere on the page — scroll, tap, anything.
+        if (firstInteractionHandler) return;
+        firstInteractionHandler = () => {
+          v.play().catch(() => {});
+          removeInteractionListeners();
+        };
+        window.addEventListener('touchstart', firstInteractionHandler, { passive: true, once: true });
+        window.addEventListener('click', firstInteractionHandler, { once: true });
+        window.addEventListener('scroll', firstInteractionHandler, { passive: true, once: true });
+        window.addEventListener('keydown', firstInteractionHandler, { once: true });
+      });
+    };
+
+    const removeInteractionListeners = () => {
+      if (!firstInteractionHandler) return;
+      window.removeEventListener('touchstart', firstInteractionHandler);
+      window.removeEventListener('click', firstInteractionHandler);
+      window.removeEventListener('scroll', firstInteractionHandler);
+      window.removeEventListener('keydown', firstInteractionHandler);
+      firstInteractionHandler = null;
+    };
+
+    const flag = (window as unknown as { __heroIntroDone?: boolean })
+      .__heroIntroDone;
+    let timeoutId: ReturnType<typeof setTimeout> | undefined;
+
+    if (flag) {
+      tryPlay();
+    } else {
+      const handleIntroDone = () => {
+        timeoutId = setTimeout(tryPlay, READING_DELAY_MS);
+      };
+      window.addEventListener('hero-intro-done', handleIntroDone);
+      return () => {
+        window.removeEventListener('hero-intro-done', handleIntroDone);
+        if (timeoutId) clearTimeout(timeoutId);
+        removeInteractionListeners();
+      };
+    }
+
+    return () => {
+      if (timeoutId) clearTimeout(timeoutId);
+      removeInteractionListeners();
+    };
   }, [videoSrc]);
 
   return (
@@ -102,12 +154,11 @@ export function PhoneMock({ videoSrc, posterSrc: _posterSrc }: PhoneMockProps = 
               <video
                 ref={videoRef}
                 src={videoSrc}
-                autoPlay
                 muted
                 loop
                 playsInline
                 preload="auto"
-                className="absolute inset-0 w-full h-full object-cover"
+                className="phone-mock-video absolute inset-0 w-full h-full object-cover"
               />
             ) : (
               <AnimatedChat />
