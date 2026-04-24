@@ -64,7 +64,7 @@ export function HowItWorks() {
           <h2 className="font-black tracking-[-0.03em] leading-[0.98] text-forest text-[clamp(2.5rem,5.5vw,4.75rem)]">
             Tell Xavier what you&rsquo;re after.
             <br className="hidden md:block" />{' '}
-            <span className="text-forest/85">She builds the whole Xpedition.</span>
+            <span className="text-forest/85">He builds the whole Xpedition.</span>
           </h2>
           <p className="font-serif italic font-medium text-[clamp(1.125rem,1.6vw,1.5rem)] leading-snug text-[#a05a16] mt-8 md:mt-10">
             Conversation to adventure. Four steps.
