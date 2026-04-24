@@ -18,15 +18,29 @@ export function PhoneMock({ videoSrc, posterSrc }: PhoneMockProps = {}) {
       if (v && v.paused) v.play().catch(() => {});
     };
 
+    // Reading window after the typewriter finishes — gives the
+    // visitor time to read the body copy + Xavier line before the
+    // phone-mock video starts pulling their eye.
+    const READING_DELAY_MS = 3000;
+
     const flag = (window as unknown as { __heroIntroDone?: boolean })
       .__heroIntroDone;
     if (flag) {
+      // Already past the intro (revisit / hot reload) — no need to delay.
       start();
       return;
     }
 
-    window.addEventListener('hero-intro-done', start);
-    return () => window.removeEventListener('hero-intro-done', start);
+    let timeoutId: ReturnType<typeof setTimeout> | undefined;
+    const handleIntroDone = () => {
+      timeoutId = setTimeout(start, READING_DELAY_MS);
+    };
+
+    window.addEventListener('hero-intro-done', handleIntroDone);
+    return () => {
+      window.removeEventListener('hero-intro-done', handleIntroDone);
+      if (timeoutId) clearTimeout(timeoutId);
+    };
   }, [videoSrc]);
 
   return (
