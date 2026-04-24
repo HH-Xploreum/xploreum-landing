@@ -23,8 +23,8 @@ export const metadata: Metadata = {
   metadataBase: new URL('https://xploreum.io'),
   icons: {
     icon: [
-      { url: '/favicon-light.svg', type: 'image/svg+xml', media: '(prefers-color-scheme: light)' },
-      { url: '/favicon-dark.svg', type: 'image/svg+xml', media: '(prefers-color-scheme: dark)' },
+      { url: '/Favicon%20green.png', type: 'image/png', media: '(prefers-color-scheme: light)' },
+      { url: '/Favicon%20white.png', type: 'image/png', media: '(prefers-color-scheme: dark)' },
     ],
   },
   openGraph: {
