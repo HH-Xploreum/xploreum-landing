@@ -38,7 +38,7 @@ export function Hero() {
       />
       <div aria-hidden className="grain-layer" />
 
-      <div className="relative max-w-[1400px] mx-auto w-full px-5 md:px-10 pt-16 md:pt-32 pb-6 md:pb-20 min-h-[100svh] md:min-h-screen flex flex-col">
+      <div className="relative max-w-[1400px] mx-auto w-full px-5 md:px-10 pt-20 md:pt-32 pb-6 md:pb-20 min-h-[100svh] md:min-h-screen flex flex-col">
         <div className="grid md:grid-cols-[1.15fr_0.85fr] md:grid-rows-[auto_auto] gap-4 md:gap-x-14 lg:gap-x-16 md:gap-y-8 flex-1 md:items-center">
           <div className="max-w-[640px] md:col-start-1 md:row-start-1 md:self-end">
             <h1
@@ -66,12 +66,12 @@ export function Hero() {
             <PhoneMock videoSrc="https://auth.xploreum.io/storage/v1/object/public/landing-assets/mobile-app.mov" />
           </div>
 
-          <div className="rise rise-6 md:col-start-1 md:row-start-2 md:self-start flex justify-center md:justify-start mt-2 md:mt-0">
+          <div className="rise rise-6 md:col-start-1 md:row-start-2 md:self-start flex justify-center md:justify-start mt-0">
             <MagneticPill
               href={LINKS.chatWithX}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center rounded-full bg-forest text-bone px-7 py-4 text-base md:text-lg font-semibold tracking-tight hover:bg-forest-deep"
+              className="inline-flex items-center rounded-full bg-forest text-bone px-7 py-3 md:py-4 text-base md:text-lg font-semibold tracking-tight hover:bg-forest-deep"
             >
               Chat with X
             </MagneticPill>
