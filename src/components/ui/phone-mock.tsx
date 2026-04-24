@@ -12,10 +12,25 @@ export function PhoneMock({ videoSrc, posterSrc }: PhoneMockProps = {}) {
 
   useEffect(() => {
     if (!videoSrc) return;
+    const v = videoRef.current;
+    if (!v) return;
+
+    // Nudge the video off time 0 so the browser decodes and paints the
+    // first frame while we wait. Without this the screen is black until
+    // play() fires after the reading delay.
+    const paintFirstFrame = () => {
+      try {
+        if (v.currentTime < 0.01) v.currentTime = 0.01;
+      } catch {}
+    };
+    if (v.readyState >= 1) {
+      paintFirstFrame();
+    } else {
+      v.addEventListener('loadedmetadata', paintFirstFrame, { once: true });
+    }
 
     const start = () => {
-      const v = videoRef.current;
-      if (v && v.paused) v.play().catch(() => {});
+      if (v.paused) v.play().catch(() => {});
     };
 
     // Reading window after the typewriter finishes — gives the
@@ -39,6 +54,7 @@ export function PhoneMock({ videoSrc, posterSrc }: PhoneMockProps = {}) {
     window.addEventListener('hero-intro-done', handleIntroDone);
     return () => {
       window.removeEventListener('hero-intro-done', handleIntroDone);
+      v.removeEventListener('loadedmetadata', paintFirstFrame);
       if (timeoutId) clearTimeout(timeoutId);
     };
   }, [videoSrc]);
