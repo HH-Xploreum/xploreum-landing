@@ -1,5 +1,7 @@
+'use client';
+
 import Image from 'next/image';
-import type { ReactNode } from 'react';
+import { useEffect, useState, type ReactNode } from 'react';
 import { Button } from '@/components/ui/button';
 import { LINKS } from '@/lib/links';
 
@@ -10,11 +12,11 @@ type Xpert = {
   specialty: string;
   name: string;
   location: string;
-  image: string | null;
+  images: string[];
   icon: ReactNode;
 };
 
-// Line icons sized to inherit currentColor; kept minimal so the card reads
+// Line icons sized to inherit currentColor. Kept minimal so the card reads
 // as an editorial placeholder until real photography is in the CDN.
 const Icon = {
   lodge: (
@@ -71,52 +73,147 @@ const XPERTS: Xpert[] = [
   {
     kind: 'Stay',
     specialty: 'Wilderness lodge',
-    name: 'Nordik Lake Lodge',
-    location: 'Mauricie, Québec',
-    image: null,
+    name: 'Glacier Bay Lodge',
+    location: 'Southeast Alaska',
+    images: [],
     icon: Icon.lodge,
   },
   {
     kind: 'Activity',
     specialty: 'Horseback excursions',
-    name: 'Estancia Cruz del Sur',
-    location: 'Kananaskis, Alberta',
-    image: null,
+    name: 'Bitterroot Outfitters',
+    location: 'Bitterroot Valley, Montana',
+    images: [],
     icon: Icon.horse,
   },
   {
     kind: 'Activity',
     specialty: 'Backcountry ski certification',
-    name: 'Powder Collective',
-    location: 'Revelstoke, British Columbia',
-    image: null,
+    name: 'Chic-Chocs Guides',
+    location: 'Gaspésie, Québec',
+    images: [],
     icon: Icon.ski,
   },
   {
     kind: 'Rental',
     specialty: 'Snowmobile rental',
-    name: 'Boréal Motorsports',
-    location: 'Saguenay, Québec',
-    image: null,
+    name: 'Yellowstone Motorsports',
+    location: 'West Yellowstone, Montana',
+    images: [],
     icon: Icon.snowmobile,
   },
   {
     kind: 'Food',
     specialty: 'Indigenous restaurant',
-    name: 'Sagamité',
-    location: 'Wendake, Québec',
-    image: null,
+    name: 'Kai',
+    location: 'Phoenix, Arizona',
+    images: [],
     icon: Icon.food,
   },
   {
     kind: 'Transport',
     specialty: 'Float plane air taxi',
-    name: 'Borealis Air',
-    location: 'Yellowknife, NWT',
-    image: null,
+    name: 'Kenmore Air',
+    location: 'Seattle, Washington',
+    images: [],
     icon: Icon.plane,
   },
 ];
+
+const ROTATION_MS = 4000;
+
+function XpertCard({ xpert, priority }: { xpert: Xpert; priority: boolean }) {
+  const [index, setIndex] = useState(0);
+  const [paused, setPaused] = useState(false);
+  const imageCount = xpert.images.length;
+
+  useEffect(() => {
+    if (imageCount < 2 || paused) return;
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduceMotion) return;
+
+    const id = window.setInterval(() => {
+      setIndex((i) => (i + 1) % imageCount);
+    }, ROTATION_MS);
+    return () => window.clearInterval(id);
+  }, [imageCount, paused]);
+
+  return (
+    <li
+      className="group relative flex flex-col overflow-hidden rounded-2xl border border-bone/15 bg-forest-deep/40 transition hover:border-bone/30 hover:bg-forest-deep/70"
+      onMouseEnter={() => setPaused(true)}
+      onMouseLeave={() => setPaused(false)}
+      onFocus={() => setPaused(true)}
+      onBlur={() => setPaused(false)}
+    >
+      {/* Square picture slot */}
+      <div className="relative aspect-square w-full overflow-hidden bg-forest-deep">
+        {imageCount > 0 ? (
+          xpert.images.map((src, i) => (
+            <Image
+              key={src}
+              src={src}
+              alt={`${xpert.name}, ${xpert.specialty} in ${xpert.location}`}
+              fill
+              sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+              priority={priority && i === 0}
+              className={`object-cover transition-opacity duration-[900ms] ease-in-out ${
+                i === index ? 'opacity-100' : 'opacity-0'
+              }`}
+            />
+          ))
+        ) : (
+          <div
+            aria-hidden
+            className="absolute inset-0 flex items-center justify-center"
+            style={{
+              background:
+                'radial-gradient(120% 80% at 30% 20%, rgba(107,133,112,0.22), transparent 60%), radial-gradient(120% 80% at 80% 90%, rgba(160,90,22,0.18), transparent 65%), linear-gradient(180deg, #0F2417 0%, #1E3A2A 100%)',
+            }}
+          >
+            <div className="h-20 w-20 md:h-24 md:w-24 text-bone/45 transition duration-500 group-hover:text-bone/70 group-hover:scale-105">
+              {xpert.icon}
+            </div>
+          </div>
+        )}
+
+        {/* Kind chip, top-left overlay */}
+        <div className="absolute left-4 top-4 z-10">
+          <span className="inline-flex items-center rounded-full bg-bone/90 px-3 py-1 text-[10px] md:text-[11px] font-semibold tracking-[0.18em] uppercase text-forest backdrop-blur">
+            {xpert.kind}
+          </span>
+        </div>
+
+        {/* Rotation indicators, only when there's more than one image */}
+        {imageCount > 1 && (
+          <div className="absolute bottom-3 left-1/2 z-10 flex -translate-x-1/2 gap-1.5">
+            {xpert.images.map((src, i) => (
+              <span
+                key={src}
+                className={`h-1 rounded-full transition-all duration-500 ${
+                  i === index ? 'w-6 bg-bone/90' : 'w-1.5 bg-bone/40'
+                }`}
+              />
+            ))}
+          </div>
+        )}
+      </div>
+
+      {/* Meta */}
+      <div className="flex flex-col gap-1 p-5 md:p-6">
+        <div className="font-serif italic text-[13px] md:text-[14px] text-[#E0B080]">
+          {xpert.specialty}
+        </div>
+        <div className="font-bold tracking-tight text-lg md:text-xl text-bone">
+          {xpert.name}
+        </div>
+        <div className="text-[13px] md:text-sm text-bone/60">
+          {xpert.location}
+        </div>
+      </div>
+    </li>
+  );
+}
 
 export function Xperts() {
   return (
@@ -138,64 +235,16 @@ export function Xperts() {
           </div>
           <p className="text-[14px] md:text-lg text-bone/80 leading-relaxed max-w-md">
             Every excursion, activity, stay, or rental is run by a vetted local
-            Xpert — certified, insured, and paid fairly because no middleman takes
-            a cut. These are the people who make your trip real on the ground.
+            Xpert. Certified, insured, and paid fairly because no middleman
+            takes a cut. These are the people who make your trip real on the
+            ground.
           </p>
         </div>
 
         {/* Cards */}
         <ul className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5">
-          {XPERTS.map((x) => (
-            <li
-              key={x.specialty}
-              className="group relative flex flex-col overflow-hidden rounded-2xl border border-bone/15 bg-forest-deep/40 transition hover:border-bone/30 hover:bg-forest-deep/70"
-            >
-              {/* Picture slot — 4:5 editorial portrait */}
-              <div className="relative aspect-[4/5] w-full overflow-hidden bg-forest-deep">
-                {x.image ? (
-                  <Image
-                    src={x.image}
-                    alt={`${x.name}, ${x.specialty} in ${x.location}`}
-                    fill
-                    sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-                    className="object-cover transition duration-700 group-hover:scale-[1.03]"
-                  />
-                ) : (
-                  <div
-                    aria-hidden
-                    className="absolute inset-0 flex items-center justify-center"
-                    style={{
-                      background:
-                        'radial-gradient(120% 80% at 30% 20%, rgba(107,133,112,0.22), transparent 60%), radial-gradient(120% 80% at 80% 90%, rgba(160,90,22,0.18), transparent 65%), linear-gradient(180deg, #0F2417 0%, #1E3A2A 100%)',
-                    }}
-                  >
-                    <div className="h-20 w-20 md:h-24 md:w-24 text-bone/45 transition duration-500 group-hover:text-bone/70 group-hover:scale-105">
-                      {x.icon}
-                    </div>
-                  </div>
-                )}
-
-                {/* Kind chip — top-left overlay */}
-                <div className="absolute left-4 top-4">
-                  <span className="inline-flex items-center rounded-full bg-bone/90 px-3 py-1 text-[10px] md:text-[11px] font-semibold tracking-[0.18em] uppercase text-forest backdrop-blur">
-                    {x.kind}
-                  </span>
-                </div>
-              </div>
-
-              {/* Meta */}
-              <div className="flex flex-col gap-1 p-5 md:p-6">
-                <div className="font-serif italic text-[13px] md:text-[14px] text-[#E0B080]">
-                  {x.specialty}
-                </div>
-                <div className="font-bold tracking-tight text-lg md:text-xl text-bone">
-                  {x.name}
-                </div>
-                <div className="text-[13px] md:text-sm text-bone/60">
-                  {x.location}
-                </div>
-              </div>
-            </li>
+          {XPERTS.map((x, i) => (
+            <XpertCard key={x.specialty} xpert={x} priority={i < 3} />
           ))}
         </ul>
 
