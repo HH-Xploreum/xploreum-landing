@@ -9,7 +9,7 @@ const STEPS = [
     title: 'Start with the vibe, not the logistics.',
     body:
       '“Three days around Québec, just me and nature.” Xavier listens in plain language and asks the right follow-ups — dates, starting point, skill level, budget — until he knows enough to build something real.',
-    image: '/laptop-image1.png',
+    image: '/laptop-image1-revision.png',
     alt: 'Xavier chat: visitor describes a 3-day Québec adventure and Xavier asks where they’re starting from.',
   },
   {
@@ -18,7 +18,7 @@ const STEPS = [
     title: 'Review it before a single mile is planned.',
     body:
       'Xavier hands you a one-glance summary — destination, dates, activity, skill level, budget, vehicle. Change anything by tapping a chip or typing a sentence. When it’s right, say build it.',
-    image: '/laptop-image2.png',
+    image: '/laptop-image2-revision.png',
     alt: 'Trip summary card titled “3 Days Solo in Mauricie Wilderness” with a Looks perfect, build it button.',
   },
   {
@@ -27,7 +27,7 @@ const STEPS = [
     title: 'Watch the Xpedition come together.',
     body:
       'In under a minute, Xavier stitches the full arc — driving legs, trailheads, dispersed campsites, resupply stops, meals. The route draws itself across the map as he works.',
-    image: '/laptop-image3.png',
+    image: '/laptop-image3-revision.png',
     alt: 'Loading state with a compass animation and the message “Preparing your Xpedition…”',
   },
   {
@@ -36,7 +36,7 @@ const STEPS = [
     title: 'Get out there with a local in your pocket.',
     body:
       'Every stop comes with notes from the Xpert who knows it best — which dépanneur has the right sandwich, when the trail thins out. Offline maps, bookings, live conditions, all in one place. The plan bends if the weather turns.',
-    image: '/laptop-image4.png',
+    image: '/laptop-image4-revision.png',
     alt: 'Full Mauricie itinerary: live map with route pins, day-by-day stops, and an Expert Guide panel for a local dépanneur.',
   },
 ];
