@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 type PhoneMockProps = {
   videoSrc?: string;
@@ -9,6 +9,11 @@ type PhoneMockProps = {
 
 export function PhoneMock({ videoSrc, posterSrc }: PhoneMockProps = {}) {
   const videoRef = useRef<HTMLVideoElement>(null);
+  // Poster stays visible (as an <img> overlay on top of the video) until
+  // the reading delay expires and the video actually starts playing.
+  // We control the swap ourselves because the browser's native `poster`
+  // attribute drops to black on iOS Safari once the video loads.
+  const [showPoster, setShowPoster] = useState(true);
 
   useEffect(() => {
     if (!videoSrc) return;
@@ -16,7 +21,18 @@ export function PhoneMock({ videoSrc, posterSrc }: PhoneMockProps = {}) {
     if (!v) return;
 
     const start = () => {
-      if (v.paused) v.play().catch(() => {});
+      const hidePoster = () => setShowPoster(false);
+      if (v.paused) {
+        v.play()
+          .then(hidePoster)
+          .catch(() => {
+            // Autoplay blocked — hide the poster anyway so the video
+            // can at least be tapped, and leave it to user interaction.
+            hidePoster();
+          });
+      } else {
+        hidePoster();
+      }
     };
 
     // Reading window after the typewriter finishes — gives the
@@ -123,16 +139,26 @@ export function PhoneMock({ videoSrc, posterSrc }: PhoneMockProps = {}) {
             }}
           >
             {videoSrc ? (
-              <video
-                ref={videoRef}
-                src={videoSrc}
-                poster={posterSrc}
-                muted
-                loop
-                playsInline
-                preload="auto"
-                className="absolute inset-0 w-full h-full object-cover"
-              />
+              <>
+                <video
+                  ref={videoRef}
+                  src={videoSrc}
+                  muted
+                  loop
+                  playsInline
+                  preload="auto"
+                  className="absolute inset-0 w-full h-full object-cover"
+                />
+                {posterSrc && showPoster && (
+                  /* eslint-disable-next-line @next/next/no-img-element */
+                  <img
+                    src={posterSrc}
+                    alt=""
+                    aria-hidden
+                    className="absolute inset-0 w-full h-full object-cover z-10 transition-opacity duration-500"
+                  />
+                )}
+              </>
             ) : (
               <AnimatedChat />
             )}
