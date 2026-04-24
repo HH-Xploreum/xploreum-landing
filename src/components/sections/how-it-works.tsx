@@ -53,10 +53,10 @@ export function HowItWorks() {
     >
       <div aria-hidden className="grain-layer opacity-[0.04]" />
 
-      <div className="relative max-w-7xl mx-auto px-5 md:px-8 pt-24 md:pt-36 pb-32 md:pb-48">
+      <div className="relative max-w-7xl mx-auto px-5 md:px-8 pt-20 md:pt-28 pb-20 md:pb-28">
         {/* Header */}
-        <div className="mb-20 md:mb-28 max-w-4xl">
-          <div className="font-mono text-xs md:text-sm tracking-[0.2em] uppercase text-forest/70 mb-6">
+        <div className="mb-14 md:mb-20 max-w-4xl">
+          <div className="font-mono text-xs md:text-sm tracking-[0.2em] uppercase text-forest/70 mb-5">
             How it works
           </div>
           <h2 className="font-black tracking-[-0.03em] leading-[0.98] text-forest text-[clamp(2.5rem,5.5vw,4.75rem)]">
@@ -64,21 +64,21 @@ export function HowItWorks() {
             <br className="hidden md:block" />{' '}
             <span className="text-forest/85">He builds the whole Xpedition.</span>
           </h2>
-          <p className="font-serif italic font-medium text-[clamp(1.125rem,1.6vw,1.5rem)] leading-snug text-[#a05a16] mt-8 md:mt-10">
+          <p className="font-serif italic font-medium text-[clamp(1.125rem,1.6vw,1.5rem)] leading-snug text-[#a05a16] mt-6 md:mt-8">
             Conversation to adventure. Four steps.
           </p>
         </div>
 
         {/* Four editorial rows — laptop + text, alternating sides */}
-        <ol className="space-y-24 md:space-y-36">
+        <ol className="space-y-14 md:space-y-20">
           {STEPS.map((step, i) => {
             const laptopLeft = i % 2 === 0;
             return (
               <li
                 key={step.n}
-                className="border-t border-forest/15 pt-12 md:pt-16"
+                className="border-t border-forest/15 pt-8 md:pt-12"
               >
-                <div className="grid md:grid-cols-12 gap-12 md:gap-16 items-center">
+                <div className="grid md:grid-cols-12 gap-8 md:gap-12 items-center">
                   {/* Laptop */}
                   <div
                     className={[
@@ -100,7 +100,7 @@ export function HowItWorks() {
                       laptopLeft ? 'md:order-2' : 'md:order-1',
                     ].join(' ')}
                   >
-                    <div className="flex items-baseline gap-4 mb-6">
+                    <div className="flex items-baseline gap-4 mb-5">
                       <span className="font-mono text-sm tracking-[0.2em] text-forest/60">
                         {step.n} / 04
                       </span>
@@ -108,7 +108,7 @@ export function HowItWorks() {
                         {step.eyebrow}
                       </span>
                     </div>
-                    <h3 className="font-black tracking-[-0.02em] leading-[1.05] text-forest text-3xl md:text-[2.5rem] mb-5">
+                    <h3 className="font-black tracking-[-0.02em] leading-[1.05] text-forest text-3xl md:text-[2.5rem] mb-4">
                       {step.title}
                     </h3>
                     <p className="text-base md:text-lg text-forest/75 leading-relaxed max-w-lg">
@@ -122,7 +122,7 @@ export function HowItWorks() {
         </ol>
 
         {/* Closing CTA — resolves the section into the next chapter */}
-        <div className="mt-24 md:mt-32 pt-12 md:pt-16 border-t border-forest/15 flex flex-col md:flex-row md:items-center md:justify-between gap-8">
+        <div className="mt-16 md:mt-24 pt-10 md:pt-12 border-t border-forest/15 flex flex-col md:flex-row md:items-center md:justify-between gap-6 md:gap-8">
           <p className="font-serif italic text-[clamp(1.25rem,2vw,1.75rem)] leading-snug text-forest max-w-xl">
             That&rsquo;s the whole loop. Now meet the humans who run the ground game.
           </p>
