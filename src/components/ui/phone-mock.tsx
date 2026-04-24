@@ -15,9 +15,9 @@ export function PhoneMock({ videoSrc, posterSrc: _posterSrc }: PhoneMockProps = 
     const v = videoRef.current;
     if (!v) return;
 
-    // Reading window after the typewriter finishes — gives the
-    // visitor time to read the body copy + Xavier line before the
-    // phone-mock video starts pulling their eye.
+    // Reading window after the typewriter finishes. Gives the visitor
+    // time to read the body copy and Xavier line before the phone-mock
+    // video starts pulling their eye.
     const READING_DELAY_MS = 3000;
 
     let firstInteractionHandler: (() => void) | null = null;
@@ -26,7 +26,7 @@ export function PhoneMock({ videoSrc, posterSrc: _posterSrc }: PhoneMockProps = 
       v.play().catch(() => {
         // iOS Low Power Mode (and some strict autoplay settings) refuse
         // muted autoplay. Fall back to playing on the very first user
-        // interaction anywhere on the page — scroll, tap, anything.
+        // interaction anywhere on the page: scroll, tap, anything.
         if (firstInteractionHandler) return;
         firstInteractionHandler = () => {
           v.play().catch(() => {});
@@ -80,7 +80,7 @@ export function PhoneMock({ videoSrc, posterSrc: _posterSrc }: PhoneMockProps = 
         containerType: 'inline-size',
       }}
     >
-      {/* Contact shadow — studio softbox feel */}
+      {/* Contact shadow: studio softbox feel */}
       <div
         aria-hidden
         className="absolute left-1/2 -translate-x-1/2 pointer-events-none"
@@ -96,7 +96,7 @@ export function PhoneMock({ videoSrc, posterSrc: _posterSrc }: PhoneMockProps = 
       />
 
       <div className="phone-float">
-        {/* Phone body — titanium frame */}
+        {/* Phone body: titanium frame */}
         <div
           className="relative aspect-[9/19.5]"
           style={{
@@ -123,11 +123,11 @@ export function PhoneMock({ videoSrc, posterSrc: _posterSrc }: PhoneMockProps = 
             }}
           />
 
-          {/* Side hardware — left: volume + action */}
+          {/* Side hardware, left edge: volume and action */}
           <SideNub side="left" top="22%" length="9cqw" />
           <SideNub side="left" top="29%" length="14cqw" />
           <SideNub side="left" top="38%" length="14cqw" />
-          {/* Side hardware — right: power */}
+          {/* Side hardware, right edge: power */}
           <SideNub side="right" top="28%" length="19cqw" />
 
           {/* Black screen bezel */}

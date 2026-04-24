@@ -21,7 +21,7 @@ export function Hero() {
           type="video/mp4"
         />
       </video>
-      {/* Legibility wash — soft bone veil over video so forest text stays readable */}
+      {/* Legibility wash: soft bone veil over video so forest text stays readable */}
       <div
         aria-hidden
         className="absolute inset-0 pointer-events-none bg-bone/70"

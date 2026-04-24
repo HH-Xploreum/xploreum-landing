@@ -3,7 +3,7 @@ import Image from 'next/image';
 type LaptopMockProps = {
   src: string;
   alt: string;
-  /** Preload the image — use on the first laptop above the fold. */
+  /** Preload the image. Use on the first laptop above the fold. */
   priority?: boolean;
   className?: string;
 };
@@ -13,7 +13,7 @@ type LaptopMockProps = {
  * Images live in the Supabase `landing-assets` bucket and are exported with
  * a transparent background so they drop into any surface cleanly.
  *
- * The wrapper has no fixed aspect ratio — the image's intrinsic dimensions
+ * The wrapper has no fixed aspect ratio. The image's intrinsic dimensions
  * drive the layout (width 100%, height auto).
  */
 export function LaptopMock({
