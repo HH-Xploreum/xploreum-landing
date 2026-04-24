@@ -98,10 +98,6 @@ export function Hero() {
         </div>
 
         <div className="hidden md:flex mt-10 md:mt-16 items-end justify-between gap-6 font-mono text-[10px] tracking-[0.3em] uppercase text-forest/45">
-          <span className="inline-flex items-center gap-3 shrink-0">
-            <span className="inline-block w-8 h-px bg-forest/30" />
-            Scroll
-          </span>
           <div
             aria-hidden
             className="ruler flex-1 max-w-[540px] grid text-forest"
@@ -110,7 +106,6 @@ export function Hero() {
               <span key={i} />
             ))}
           </div>
-          <span className="shrink-0">Xploreum · 2026</span>
         </div>
       </div>
     </section>
