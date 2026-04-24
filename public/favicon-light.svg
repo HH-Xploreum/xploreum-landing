@@ -1,11 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
-  <style>
-    svg { color: #1E3A2A; }
-    @media (prefers-color-scheme: dark) {
-      svg { color: #FFFFFF; }
-    }
-    .mark { fill: currentColor; stroke: none; }
-  </style>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" stroke="#1E3A2A" stroke-linecap="round" stroke-linejoin="round">
+  <style>.mark { fill: #1E3A2A; stroke: none; }</style>
 
   <rect x="4" y="4" width="56" height="56" rx="10" ry="10" stroke-width="3"/>
 
