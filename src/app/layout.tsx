@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Urbanist, Fraunces } from 'next/font/google';
+import { Urbanist, Cormorant } from 'next/font/google';
 import './globals.css';
 
 const urbanist = Urbanist({
@@ -9,11 +9,11 @@ const urbanist = Urbanist({
   display: 'swap',
 });
 
-const fraunces = Fraunces({
+const cormorant = Cormorant({
   subsets: ['latin'],
   weight: ['400', '500', '600'],
   style: ['italic'],
-  variable: '--font-fraunces',
+  variable: '--font-cormorant',
   display: 'swap',
 });
 
@@ -37,7 +37,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${urbanist.variable} ${fraunces.variable}`}>
+    <html lang="en" className={`${urbanist.variable} ${cormorant.variable}`}>
       <body className="font-sans bg-bone text-forest antialiased">{children}</body>
     </html>
   );
