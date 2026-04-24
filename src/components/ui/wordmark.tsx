@@ -15,7 +15,7 @@ export function Wordmark({
         width={1001}
         height={342}
         priority
-        className={`h-12 w-auto transition-[filter] duration-300 ${
+        className={`h-10 md:h-12 w-auto transition-[filter] duration-300 ${
           tone === 'light' ? 'brightness-0 invert' : ''
         }`}
       />
