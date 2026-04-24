@@ -69,13 +69,16 @@ const Icon = {
   ),
 };
 
+const CDN = 'https://auth.xploreum.io/storage/v1/object/public/landing-assets';
+const img = (n: number) => `${CDN}/${n}.png`;
+
 const XPERTS: Xpert[] = [
   {
     kind: 'Stay',
     specialty: 'Wilderness lodge',
     name: 'Glacier Bay Lodge',
     location: 'Southeast Alaska',
-    images: [],
+    images: [img(1), img(2), img(10)],
     icon: Icon.lodge,
   },
   {
@@ -83,7 +86,7 @@ const XPERTS: Xpert[] = [
     specialty: 'Horseback excursions',
     name: 'Bitterroot Outfitters',
     location: 'Bitterroot Valley, Montana',
-    images: [],
+    images: [img(7), img(9), img(3)],
     icon: Icon.horse,
   },
   {
@@ -91,7 +94,7 @@ const XPERTS: Xpert[] = [
     specialty: 'Backcountry ski certification',
     name: 'Chic-Chocs Guides',
     location: 'Gaspésie, Québec',
-    images: [],
+    images: [img(11), img(13), img(4)],
     icon: Icon.ski,
   },
   {
@@ -99,7 +102,7 @@ const XPERTS: Xpert[] = [
     specialty: 'Snowmobile rental',
     name: 'Yellowstone Motorsports',
     location: 'West Yellowstone, Montana',
-    images: [],
+    images: [img(14), img(15), img(16)],
     icon: Icon.snowmobile,
   },
   {
@@ -107,7 +110,7 @@ const XPERTS: Xpert[] = [
     specialty: 'Indigenous restaurant',
     name: 'Kai',
     location: 'Phoenix, Arizona',
-    images: [],
+    images: [img(17), img(18), img(19)],
     icon: Icon.food,
   },
   {
@@ -115,7 +118,7 @@ const XPERTS: Xpert[] = [
     specialty: 'Float plane air taxi',
     name: 'Kenmore Air',
     location: 'Seattle, Washington',
-    images: [],
+    images: [img(20), img(21), img(6)],
     icon: Icon.plane,
   },
 ];
