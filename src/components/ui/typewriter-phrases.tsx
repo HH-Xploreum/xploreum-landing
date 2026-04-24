@@ -68,11 +68,11 @@ export function TypewriterPhrases() {
 
   return (
     <>
-      <span className="block whitespace-nowrap">
+      <span className="block whitespace-nowrap min-h-[1lh]">
         <span>{line1}</span>
         {line1Active && <span aria-hidden className="caret" />}
       </span>
-      <span className="block whitespace-nowrap">
+      <span className="block whitespace-nowrap min-h-[1lh]">
         <span>{line2Pre}</span>
         {line2Outlined && <span className="text-outline">{line2Outlined}</span>}
         {line2Tail && (
