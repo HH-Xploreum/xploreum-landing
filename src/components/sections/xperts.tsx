@@ -44,7 +44,7 @@ const XPERTS: Xpert[] = [
     vibe: 'Backcountry, alpine, certified. The real route, done safely.',
     images: [
       img('mountain-guide-helping-hand'),
-      img('mountain-guide-ski-jump'),
+      img('mountain-guide-ski'),
       img('mountain-guide-rock-climbing'),
     ],
   },
