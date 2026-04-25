@@ -162,16 +162,31 @@ function XpertCard({
             {xpert.vibe}
           </div>
 
-          {/* Image step indicators — quietly signal the rotation */}
+          {/* Image step indicators — clickable to jump frames */}
           {imageCount > 1 && (
-            <div className="mt-4 flex gap-1.5" aria-hidden>
+            <div
+              className="mt-4 flex gap-1.5"
+              role="tablist"
+              aria-label={`${xpert.archetype} images`}
+            >
               {xpert.images.map((_, i) => (
-                <span
+                <button
                   key={i}
-                  className={`h-[2px] rounded-full transition-all duration-500 ${
-                    i === index ? 'w-6 bg-bone' : 'w-3 bg-bone/35'
-                  }`}
-                />
+                  type="button"
+                  role="tab"
+                  aria-selected={i === index}
+                  aria-label={`Show image ${i + 1} of ${imageCount}`}
+                  onClick={() => setIndex(i)}
+                  className={`group/dot h-3 flex items-center cursor-pointer rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-bone/70 focus-visible:ring-offset-2 focus-visible:ring-offset-forest-deep/60`}
+                >
+                  <span
+                    className={`block h-[2px] rounded-full transition-all duration-500 ${
+                      i === index
+                        ? 'w-6 bg-bone'
+                        : 'w-3 bg-bone/35 group-hover/dot:bg-bone/70'
+                    }`}
+                  />
+                </button>
               ))}
             </div>
           )}
