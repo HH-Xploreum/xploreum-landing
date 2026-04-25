@@ -15,7 +15,7 @@ type Xpert = {
 };
 
 const CDN = 'https://auth.xploreum.io/storage/v1/object/public/landing-assets';
-const img = (name: string) => `${CDN}/${name}.jpg`;
+const img = (filename: string) => `${CDN}/${filename}`;
 
 const XPERTS: Xpert[] = [
   {
@@ -23,9 +23,8 @@ const XPERTS: Xpert[] = [
     archetype: 'Lodge keeper',
     vibe: 'Off-grid cabins and lodges only the locals know about.',
     images: [
-      img('lodge-keeper-alpine-lake'),
-      img('lodge-keeper-ice-hotel'),
-      img('lodge-keeper-hillside-cabin'),
+      img('lodge-keeper-alpine-lake.jpg.png'),
+      img('lodge-keeper-hillside-cabin.jpg.png'),
     ],
   },
   {
@@ -33,9 +32,9 @@ const XPERTS: Xpert[] = [
     archetype: 'Trail guide',
     vibe: 'First overnight or fiftieth summit, on foot or in the saddle.',
     images: [
-      img('trail-guide-ridge-hike'),
-      img('trail-guide-river-rafting'),
-      img('trail-guide-whale-watching'),
+      img('trail-guide-ridge-hike.jpg.png'),
+      img('trail-guide-river-rafting.jpg.png'),
+      img('trail-guide-whale-watching.jpg.png'),
     ],
   },
   {
@@ -43,9 +42,9 @@ const XPERTS: Xpert[] = [
     archetype: 'Mountain guide',
     vibe: 'Backcountry, alpine, certified. The real route, done safely.',
     images: [
-      img('mountain-guide-helping-hand'),
-      img('mountain-guide-ski-jump'),
-      img('mountain-guide-rock-climbing'),
+      img('mountain-guide-helping-hand.jpg'),
+      img('mountain-guide-ski-jump.jpg.png'),
+      img('mountain-guide-rock-climbing.jpg.png'),
     ],
   },
   {
@@ -53,9 +52,9 @@ const XPERTS: Xpert[] = [
     archetype: 'Gear outfitter',
     vibe: 'Snowmobile, packraft, fat-bike. The kit, ready when you arrive.',
     images: [
-      img('gear-outfitter-backpack-kit'),
-      img('gear-outfitter-camp-kit'),
-      img('gear-outfitter-hike-kit'),
+      img('gear-outfitter-backpack-kit.jpg.png'),
+      img('gear-outfitter-camp-kit.jpg.png'),
+      img('gear-outfitter-hike-kit.jpg.png'),
     ],
   },
   {
@@ -63,9 +62,9 @@ const XPERTS: Xpert[] = [
     archetype: 'Local cook',
     vibe: 'The meal that tells you where you are.',
     images: [
-      img('local-cook-braised-stew'),
-      img('local-cook-plated-fish'),
-      img('local-cook-spread'),
+      img('local-cook-braised-stew.jpg.png'),
+      img('local-cook-plated-fish.jpg.png'),
+      img('local-cook-spread.jpg.png'),
     ],
   },
   {
@@ -73,9 +72,9 @@ const XPERTS: Xpert[] = [
     archetype: 'Bush pilot',
     vibe: 'Float plane, helicopter, dirt strip. The last leg in.',
     images: [
-      img('bush-pilot-biplane'),
-      img('bush-pilot-campervan'),
-      img('bush-pilot-overland-trailer'),
+      img('bush-pilot-biplane.jpg'),
+      img('bush-pilot-campervan.jpg.png'),
+      img('bush-pilot-overland-trailer.jpg.png'),
     ],
   },
 ];
