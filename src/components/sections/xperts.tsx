@@ -114,7 +114,7 @@ function XpertCard({
       onFocus={() => setPaused(true)}
       onBlur={() => setPaused(false)}
     >
-      <div className="relative aspect-[4/5] w-full overflow-hidden bg-forest-deep">
+      <div className="relative aspect-[4/3] w-full overflow-hidden bg-forest-deep">
         {xpert.images.map((src, i) => {
           const active = i === index;
           return (
@@ -154,11 +154,11 @@ function XpertCard({
         </div>
 
         {/* Overlay copy — magazine-style, lives on the image */}
-        <div className="absolute inset-x-0 bottom-0 z-10 p-5 md:p-7">
-          <div className="font-black tracking-[-0.01em] text-[1.5rem] md:text-[1.75rem] leading-[1.05] text-bone drop-shadow-[0_2px_12px_rgba(0,0,0,0.45)]">
+        <div className="absolute inset-x-0 bottom-0 z-10 p-4 md:p-5">
+          <div className="font-black tracking-[-0.01em] text-[1.25rem] md:text-[1.5rem] leading-[1.05] text-bone drop-shadow-[0_2px_12px_rgba(0,0,0,0.45)]">
             {xpert.archetype}
           </div>
-          <div className="font-serif italic font-medium text-[13.5px] md:text-[15px] text-[#E8C9A4] leading-snug mt-2 max-w-[90%] drop-shadow-[0_1px_8px_rgba(0,0,0,0.55)]">
+          <div className="font-serif italic font-medium text-[12.5px] md:text-[13.5px] text-[#E8C9A4] leading-snug mt-1.5 max-w-[90%] drop-shadow-[0_1px_8px_rgba(0,0,0,0.55)]">
             {xpert.vibe}
           </div>
 
@@ -201,14 +201,14 @@ export function Xperts() {
     <section id="xperts" className="relative bg-forest text-bone overflow-hidden">
       <div aria-hidden className="grain-layer opacity-[0.05]" />
 
-      <div className="relative max-w-7xl mx-auto px-5 md:px-8 py-24 md:py-36">
+      <div className="relative max-w-7xl mx-auto px-5 md:px-8 py-16 md:py-20">
         {/* Header */}
-        <div className="grid md:grid-cols-[1.2fr_1fr] gap-10 md:gap-16 items-end mb-16 md:mb-20">
+        <div className="grid md:grid-cols-[1.2fr_1fr] gap-8 md:gap-14 items-end mb-10 md:mb-12">
           <div>
             <div className="font-semibold text-xs md:text-sm tracking-[0.2em] uppercase text-bone/60 mb-6">
               Meet the Xperts
             </div>
-            <h2 className="font-black tracking-[-0.03em] leading-[0.98] text-[2rem] md:text-[clamp(3.5rem,5.5vw,4.75rem)]">
+            <h2 className="font-black tracking-[-0.03em] leading-[0.98] text-[1.75rem] md:text-[clamp(2.75rem,4.5vw,4rem)]">
               Planned by AI.
               <br className="hidden md:block" />{' '}
               <span className="text-bone/80">Powered by locals.</span>
@@ -239,7 +239,7 @@ export function Xperts() {
         </ul>
 
         {/* Closing CTA */}
-        <div className="mt-16 md:mt-24 pt-10 md:pt-12 border-t border-bone/15 flex flex-col items-center text-center md:flex-row md:items-center md:justify-between md:text-left gap-6 md:gap-8">
+        <div className="mt-10 md:mt-14 pt-8 md:pt-10 border-t border-bone/15 flex flex-col items-center text-center md:flex-row md:items-center md:justify-between md:text-left gap-6 md:gap-8">
           <p className="font-serif italic text-[14px] md:text-[clamp(1.25rem,2vw,1.75rem)] leading-snug text-bone max-w-xl">
             Run a lodge, guide trips, or rent gear?
             <br className="hidden md:block" />{' '}
