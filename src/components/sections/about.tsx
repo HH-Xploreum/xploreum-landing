@@ -3,12 +3,12 @@ import { LINKS } from '@/lib/links';
 export function About() {
   return (
     <section id="about" className="bg-bone border-t border-line">
-      <div className="max-w-5xl mx-auto px-5 md:px-8 py-24 md:py-36">
+      <div className="max-w-7xl mx-auto px-5 md:px-8 py-24 md:py-36">
         <div className="font-semibold text-xs md:text-sm tracking-[0.2em] uppercase text-forest/70 mb-10">
           About Xploreum
         </div>
 
-        <p className="font-black tracking-[-0.025em] leading-[1.08] text-forest text-[clamp(1.75rem,3.6vw,3rem)] max-w-4xl [text-indent:0.04em]">
+        <p className="font-black tracking-[-0.025em] leading-[1.08] text-forest text-[clamp(1.75rem,3.6vw,3rem)] max-w-4xl">
           We&apos;re building the travel agent we wish existed. One that knows
           your preferences and the terrain, respects your time, and sends you
           to people who actually live there.
