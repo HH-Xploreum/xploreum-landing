@@ -5,7 +5,7 @@ import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { LINKS } from '@/lib/links';
 
-type XpertKind = 'Stay' | 'Activity' | 'Rental' | 'Food' | 'Transport';
+type XpertKind = 'Stay' | 'Activity' | 'Sports' | 'Rental' | 'Food' | 'Transport';
 
 type Xpert = {
   kind: XpertKind;
@@ -30,7 +30,7 @@ const XPERTS: Xpert[] = [
   },
   {
     kind: 'Activity',
-    archetype: 'Trail guide',
+    archetype: 'Nature crafter',
     vibe: 'First overnight or fiftieth summit, on foot or in the saddle.',
     images: [
       img('trail-guide-ice-fishing'),
@@ -39,7 +39,7 @@ const XPERTS: Xpert[] = [
     ],
   },
   {
-    kind: 'Activity',
+    kind: 'Sports',
     archetype: 'Mountain guide',
     vibe: 'Backcountry, alpine, certified. The real route, done safely.',
     images: [
