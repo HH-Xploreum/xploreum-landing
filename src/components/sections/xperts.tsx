@@ -33,9 +33,9 @@ const XPERTS: Xpert[] = [
     archetype: 'Trail guide',
     vibe: 'First overnight or fiftieth summit, on foot or in the saddle.',
     images: [
-      img('trail-guide-ridge-hike'),
+      img('trail-guide-ice-fishing'),
       img('trail-guide-river-rafting'),
-      img('trail-guide-whale-watching'),
+      img('trail-guide-horseback'),
     ],
   },
   {
