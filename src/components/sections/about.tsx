@@ -8,7 +8,7 @@ export function About() {
           About Xploreum
         </div>
 
-        <p className="font-black tracking-[-0.025em] leading-[1.08] text-forest text-[clamp(1.75rem,3.6vw,3rem)]">
+        <p className="font-black tracking-[-0.025em] leading-[1.08] text-forest text-[clamp(1.75rem,3.6vw,3rem)] max-w-5xl text-balance">
           We&apos;re building the travel agent we wish existed. One that knows
           your preferences and the terrain, respects your time, and sends you
           to people who actually live there.
