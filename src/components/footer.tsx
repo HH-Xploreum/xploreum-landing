@@ -8,8 +8,7 @@ export function Footer() {
   return (
     <footer
       id="mobile"
-      className="relative isolate overflow-hidden text-forest"
-      style={{ backgroundColor: '#f5a623' }}
+      className="relative isolate overflow-hidden bg-forest-deep text-forest"
     >
       <div className="relative max-w-7xl mx-auto px-4 md:px-6 py-16 md:py-24">
         {/* Footer card */}
