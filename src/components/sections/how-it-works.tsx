@@ -8,7 +8,7 @@ const STEPS = [
     eyebrow: 'The conversation',
     title: 'Start with the vibe, not the logistics.',
     body:
-      '“Three days around Québec, just me and nature.” Xavier listens in plain language and asks the right follow-ups. Dates, starting point, skill level, budget. He keeps going until he knows enough to build something real.',
+      '“Three days around Québec, and I’m not exactly outdoorsy.” Xavier listens in plain language and asks the right follow-ups. Dates, starting point, skill level, budget. He keeps going until he knows enough to build something real.',
     image:
       'https://auth.xploreum.io/storage/v1/object/public/landing-assets/how-it-works-01-conversation.png.png',
     alt: 'Xavier chat: visitor describes a 3-day Québec adventure and Xavier asks where they’re starting from.',

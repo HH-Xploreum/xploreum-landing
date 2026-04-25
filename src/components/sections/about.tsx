@@ -17,9 +17,10 @@ export function About() {
               The problem
             </div>
             <p className="text-[14px] md:text-base text-forest/80 leading-relaxed">
-              Great adventure trips take 16+ hours to plan and still feel generic.
-              Marketplaces hide the good guides. Aggregators churn out the same
-              itineraries. The best trips stay inside private group chats.
+              Most people never start. Adventure trips look like they&apos;re for
+              someone else &mdash; the planning, the gear, the jargon.
+              Aggregators churn out the same itineraries. The best trips stay
+              locked inside private group chats.
             </p>
           </div>
           <div>
