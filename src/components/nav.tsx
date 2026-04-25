@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { Wordmark } from '@/components/ui/wordmark';
 import { MenuOverlay } from '@/components/menu-overlay';
 import { LINKS } from '@/lib/links';
+import { trackCta } from '@/lib/track';
 
 export function Nav() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -41,6 +42,7 @@ export function Nav() {
           <div className="flex items-center gap-3 md:gap-6">
             <a
               href={LINKS.forGuide}
+              onClick={() => trackCta({ cta: 'for_guide', location: 'nav' })}
               className="hidden sm:inline-flex text-sm font-semibold tracking-tight text-forest hover:text-forest-deep transition-colors"
             >
               For Guide
@@ -49,6 +51,7 @@ export function Nav() {
               href={LINKS.chatWithX}
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() => trackCta({ cta: 'chat_with_xavier', location: 'nav' })}
               className="hidden md:inline-flex items-center rounded-full border border-forest px-5 py-2 text-base font-semibold tracking-tight text-forest transition hover:bg-forest hover:text-bone"
             >
               Chat with Xavier

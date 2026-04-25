@@ -1,11 +1,13 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
+import { trackCta } from '@/lib/track';
 
 type Props = React.AnchorHTMLAttributes<HTMLAnchorElement> & {
   children: React.ReactNode;
   range?: number;
   strength?: number;
+  track?: { cta: string; location: string };
 };
 
 export function MagneticPill({
@@ -13,6 +15,8 @@ export function MagneticPill({
   className = '',
   range = 170,
   strength = 14,
+  track,
+  onClick,
   ...props
 }: Props) {
   const ref = useRef<HTMLAnchorElement>(null);
@@ -60,7 +64,15 @@ export function MagneticPill({
   }, [range, strength]);
 
   return (
-    <a ref={ref} className={`magnetic ${className}`} {...props}>
+    <a
+      ref={ref}
+      className={`magnetic ${className}`}
+      onClick={(e) => {
+        if (track) trackCta(track);
+        onClick?.(e);
+      }}
+      {...props}
+    >
       {children}
     </a>
   );

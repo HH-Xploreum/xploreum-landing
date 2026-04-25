@@ -1,4 +1,5 @@
 import { LINKS } from '@/lib/links';
+import { TrackedLink } from '@/components/ui/tracked-link';
 
 export function Footer() {
   return (
@@ -23,24 +24,24 @@ export function Footer() {
           <FooterCol
             title="Product"
             links={[
-              { label: 'Chat with Xavier', href: LINKS.chatWithX, external: true },
-              { label: 'How it works', href: LINKS.howItWorks },
-              { label: 'For Xperts', href: LINKS.forGuide },
+              { label: 'Chat with Xavier', href: LINKS.chatWithX, external: true, cta: 'chat_with_xavier' },
+              { label: 'How it works', href: LINKS.howItWorks, cta: 'how_it_works' },
+              { label: 'For Xperts', href: LINKS.forGuide, cta: 'for_guide' },
             ]}
           />
           <FooterCol
             title="Company"
             links={[
-              { label: 'About', href: LINKS.about },
-              { label: 'Contact', href: LINKS.contact },
-              { label: 'Sign in', href: LINKS.signIn, external: true },
+              { label: 'About', href: LINKS.about, cta: 'about' },
+              { label: 'Contact', href: LINKS.contact, cta: 'contact' },
+              { label: 'Sign in', href: LINKS.signIn, external: true, cta: 'sign_in' },
             ]}
           />
           <FooterCol
             title="Social"
             links={[
-              { label: 'Instagram', href: LINKS.instagram, external: true },
-              { label: 'LinkedIn', href: LINKS.linkedin, external: true },
+              { label: 'Instagram', href: LINKS.instagram, external: true, cta: 'instagram' },
+              { label: 'LinkedIn', href: LINKS.linkedin, external: true, cta: 'linkedin' },
             ]}
           />
         </div>
@@ -59,7 +60,7 @@ function FooterCol({
   links,
 }: {
   title: string;
-  links: { label: string; href: string; external?: boolean }[];
+  links: { label: string; href: string; cta: string; external?: boolean }[];
 }) {
   return (
     <div>
@@ -69,14 +70,16 @@ function FooterCol({
       <ul className="space-y-3">
         {links.map((l) => (
           <li key={l.label}>
-            <a
+            <TrackedLink
               href={l.href}
+              cta={l.cta}
+              location="footer"
               target={l.external ? '_blank' : undefined}
               rel={l.external ? 'noopener noreferrer' : undefined}
               className="text-bone/85 hover:text-bone text-sm transition"
             >
               {l.label}
-            </a>
+            </TrackedLink>
           </li>
         ))}
       </ul>

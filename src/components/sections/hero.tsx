@@ -71,6 +71,7 @@ export function Hero() {
               href={LINKS.chatWithX}
               target="_blank"
               rel="noopener noreferrer"
+              track={{ cta: 'chat_with_xavier', location: 'hero' }}
               className="inline-flex items-center rounded-full bg-forest text-bone px-7 py-3 md:py-4 text-base md:text-lg font-semibold tracking-tight hover:bg-forest-deep"
             >
               Chat with Xavier

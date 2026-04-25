@@ -3,21 +3,23 @@
 import { useEffect } from 'react';
 import Link from 'next/link';
 import { LINKS } from '@/lib/links';
+import { trackCta } from '@/lib/track';
 
 type MenuItem = {
   label: string;
   caption: string;
   href: string;
+  cta: string;
   external?: boolean;
 };
 
 const PRODUCT: MenuItem[] = [
-  { label: 'How it works', caption: 'From chat to trip to guide, step by step', href: LINKS.howItWorks },
-  { label: 'About Xploreum', caption: 'The team, the mission, the story', href: LINKS.about },
+  { label: 'How it works', caption: 'From chat to trip to guide, step by step', href: LINKS.howItWorks, cta: 'how_it_works' },
+  { label: 'About Xploreum', caption: 'The team, the mission, the story', href: LINKS.about, cta: 'about' },
 ];
 
 const MOBILE: MenuItem[] = [
-  { label: 'Get the iOS & Android app', caption: 'Launching soon', href: LINKS.mobile },
+  { label: 'Get the iOS & Android app', caption: 'Launching soon', href: LINKS.mobile, cta: 'mobile_app' },
 ];
 
 export function MenuOverlay({ open, onClose }: { open: boolean; onClose: () => void }) {
@@ -54,7 +56,10 @@ export function MenuOverlay({ open, onClose }: { open: boolean; onClose: () => v
         <div className="mt-16 md:mt-24 pt-8 border-t border-line flex flex-wrap items-center gap-x-10 gap-y-4 font-semibold text-xs tracking-[0.2em] uppercase text-forest/60">
           <a
             href={LINKS.contact}
-            onClick={onClose}
+            onClick={() => {
+              trackCta({ cta: 'contact', location: 'menu' });
+              onClose();
+            }}
             className="inline-flex items-center gap-2 hover:text-forest transition"
           >
             Contact <span aria-hidden>→</span>
@@ -63,7 +68,10 @@ export function MenuOverlay({ open, onClose }: { open: boolean; onClose: () => v
             href={LINKS.signIn}
             target="_blank"
             rel="noopener noreferrer"
-            onClick={onClose}
+            onClick={() => {
+              trackCta({ cta: 'sign_in', location: 'menu' });
+              onClose();
+            }}
             className="inline-flex items-center gap-2 hover:text-forest transition"
           >
             Sign in <span aria-hidden>→</span>
@@ -93,7 +101,10 @@ function Section({
           <Link
             key={item.label}
             href={item.href}
-            onClick={onNavigate}
+            onClick={() => {
+              trackCta({ cta: item.cta, location: 'menu' });
+              onNavigate();
+            }}
             className="group flex items-start justify-between gap-6 py-6 md:py-8 border-b border-line/60"
           >
             <div>
