@@ -108,45 +108,73 @@ function XpertCard({
 
   return (
     <li
-      className="group relative flex flex-col overflow-hidden rounded-2xl border border-bone/15 bg-forest-deep/40 transition hover:border-bone/30"
+      className="group relative flex overflow-hidden rounded-2xl border border-bone/15 bg-forest-deep/40 transition hover:border-bone/30"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
       onFocus={() => setPaused(true)}
       onBlur={() => setPaused(false)}
     >
-      <div className="relative aspect-square w-full overflow-hidden bg-forest-deep">
-        {xpert.images.map((src, i) => (
-          <Image
-            key={src}
-            src={src}
-            alt={i === 0 ? `${xpert.archetype} — ${xpert.vibe}` : ''}
-            fill
-            sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-            priority={priority && i === 0}
-            className={`object-cover transition-opacity duration-[900ms] ease-in-out ${
-              i === index ? 'opacity-100' : 'opacity-0'
-            }`}
-          />
-        ))}
+      <div className="relative aspect-[4/5] w-full overflow-hidden bg-forest-deep">
+        {xpert.images.map((src, i) => {
+          const active = i === index;
+          return (
+            <div
+              key={src}
+              className={`absolute inset-0 transition-opacity duration-[1100ms] ease-in-out ${
+                active ? 'opacity-100' : 'opacity-0'
+              }`}
+            >
+              <Image
+                src={src}
+                alt={i === 0 ? `${xpert.archetype} — ${xpert.vibe}` : ''}
+                fill
+                sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                priority={priority && i === 0}
+                className={`object-cover ${active ? 'ken-burns' : ''}`}
+              />
+            </div>
+          );
+        })}
 
+        {/* Editorial veil — keeps copy legible across any photograph */}
         <div
           aria-hidden
-          className="absolute inset-0 bg-gradient-to-b from-forest-deep/40 via-transparent to-forest-deep/30"
+          className="absolute inset-0 bg-gradient-to-t from-forest-deep/95 via-forest-deep/45 to-forest-deep/0"
+        />
+        <div
+          aria-hidden
+          className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/55 via-black/20 to-transparent"
         />
 
-        <div className="absolute left-4 top-4 z-10">
-          <span className="inline-flex items-center rounded-full bg-bone/90 px-3 py-1 text-[10px] md:text-[11px] font-semibold tracking-[0.18em] uppercase text-forest backdrop-blur">
+        {/* Category pill */}
+        <div className="absolute left-4 top-4 z-10 md:left-5 md:top-5">
+          <span className="inline-flex items-center rounded-full bg-bone/95 px-3 py-1 text-[10px] md:text-[11px] font-semibold tracking-[0.18em] uppercase text-forest backdrop-blur">
             {xpert.kind}
           </span>
         </div>
-      </div>
 
-      <div className="flex flex-col gap-2 p-5 md:p-6">
-        <div className="font-bold tracking-tight text-lg md:text-xl text-bone">
-          {xpert.archetype}
-        </div>
-        <div className="font-serif italic text-[13px] md:text-[14px] text-[#E0B080] leading-snug">
-          {xpert.vibe}
+        {/* Overlay copy — magazine-style, lives on the image */}
+        <div className="absolute inset-x-0 bottom-0 z-10 p-5 md:p-7">
+          <div className="font-black tracking-[-0.01em] text-[1.5rem] md:text-[1.75rem] leading-[1.05] text-bone drop-shadow-[0_2px_12px_rgba(0,0,0,0.45)]">
+            {xpert.archetype}
+          </div>
+          <div className="font-serif italic font-medium text-[13.5px] md:text-[15px] text-[#E8C9A4] leading-snug mt-2 max-w-[90%] drop-shadow-[0_1px_8px_rgba(0,0,0,0.55)]">
+            {xpert.vibe}
+          </div>
+
+          {/* Image step indicators — quietly signal the rotation */}
+          {imageCount > 1 && (
+            <div className="mt-4 flex gap-1.5" aria-hidden>
+              {xpert.images.map((_, i) => (
+                <span
+                  key={i}
+                  className={`h-[2px] rounded-full transition-all duration-500 ${
+                    i === index ? 'w-6 bg-bone' : 'w-3 bg-bone/35'
+                  }`}
+                />
+              ))}
+            </div>
+          )}
         </div>
       </div>
     </li>
