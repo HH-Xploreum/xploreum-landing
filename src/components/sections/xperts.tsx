@@ -238,9 +238,9 @@ export function Xperts() {
           </div>
           <p className="text-[14px] md:text-lg text-bone/80 leading-relaxed max-w-md">
             Every excursion, activity, stay, or rental is run by a vetted local
-            Xpert. Certified, insured, paid fairly &mdash; and matched to your
-            skill, whether it&rsquo;s your first overnight or your fiftieth
-            summit. These are the people who make your trip real on the ground.
+            Xpert. Certified, insured, paid fairly, and matched to your skill,
+            whether it&rsquo;s your first overnight or your fiftieth summit.
+            These are the people who make your trip real on the ground.
           </p>
         </div>
 
