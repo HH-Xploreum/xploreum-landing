@@ -12,11 +12,21 @@ export function Footer() {
   return (
     <footer
       id="mobile"
-      className="relative overflow-hidden bg-bone-soft text-forest"
+      className="relative isolate overflow-hidden text-forest"
     >
-      <div className="relative max-w-7xl mx-auto px-4 md:px-6 pt-16 md:pt-20 pb-0">
+      {/* Full-bleed watermark image — sits behind everything */}
+      <Image
+        src={FOOTER_WATERMARK}
+        alt=""
+        fill
+        priority={false}
+        sizes="100vw"
+        className="absolute inset-0 -z-10 object-cover object-center select-none pointer-events-none"
+      />
+
+      <div className="relative max-w-7xl mx-auto px-4 md:px-6 py-16 md:py-24">
         {/* Footer card */}
-        <div className="relative z-10 rounded-[28px] md:rounded-[32px] bg-bone border border-line/60 shadow-[0_30px_80px_-40px_rgba(15,36,23,0.18)]">
+        <div className="relative z-10 rounded-[28px] md:rounded-[32px] bg-bone border border-line/60 shadow-[0_30px_80px_-40px_rgba(15,36,23,0.35)]">
           <div className="px-6 md:px-12 pt-10 md:pt-14 pb-8 md:pb-10">
             <div className="grid lg:grid-cols-[1.4fr_1fr_1fr_1fr] gap-10 md:gap-12">
               {/* Brand column */}
@@ -135,21 +145,6 @@ export function Footer() {
           </div>
         </div>
 
-        {/* Watermark image — anchors the page end */}
-        <div
-          aria-hidden
-          className="pointer-events-none select-none relative -mt-8 md:-mt-12"
-        >
-          <div className="relative w-full aspect-[16/5] md:aspect-[16/4]">
-            <Image
-              src={FOOTER_WATERMARK}
-              alt=""
-              fill
-              sizes="100vw"
-              className="object-contain object-bottom opacity-90"
-            />
-          </div>
-        </div>
       </div>
     </footer>
   );
