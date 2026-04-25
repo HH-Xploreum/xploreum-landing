@@ -7,11 +7,11 @@ export const LINKS = {
   howItWorks: '#how-it-works',
   about: '#about',
   mobile: '#mobile',
-  // social placeholders, swap when ready
+  // social
   x: 'https://x.com/xploreum',
   threads: 'https://threads.net/@xploreum',
   instagram: 'https://instagram.com/xploreum',
-  facebook: 'https://facebook.com/xploreum',
-  linkedin: 'https://linkedin.com/company/xploreum',
-  bluesky: 'https://bsky.app/profile/xploreum.io',
+  facebook: 'https://www.facebook.com/people/Xploreum/61572506130787/',
+  linkedin: 'https://www.linkedin.com/company/106347949/',
+  bluesky: 'https://bsky.app/profile/xploreum.bsky.social',
 } as const;
