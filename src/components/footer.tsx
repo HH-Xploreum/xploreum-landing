@@ -1,10 +1,6 @@
-import Image from 'next/image';
 import { LINKS } from '@/lib/links';
 import { TrackedLink } from '@/components/ui/tracked-link';
 import { Wordmark } from '@/components/ui/wordmark';
-
-const FOOTER_WATERMARK =
-  'https://auth.xploreum.io/storage/v1/object/public/landing-assets/footer-watermark.jpg';
 
 export function Footer() {
   const year = new Date().getFullYear();
@@ -13,17 +9,8 @@ export function Footer() {
     <footer
       id="mobile"
       className="relative isolate overflow-hidden text-forest"
+      style={{ backgroundColor: '#f5a623' }}
     >
-      {/* Full-bleed watermark image — sits behind everything */}
-      <Image
-        src={FOOTER_WATERMARK}
-        alt=""
-        fill
-        priority={false}
-        sizes="100vw"
-        className="absolute inset-0 -z-10 object-cover object-center select-none pointer-events-none"
-      />
-
       <div className="relative max-w-7xl mx-auto px-4 md:px-6 py-16 md:py-24">
         {/* Footer card */}
         <div className="relative z-10 rounded-[28px] md:rounded-[32px] bg-bone border border-line/60 shadow-[0_30px_80px_-40px_rgba(15,36,23,0.35)]">
