@@ -53,9 +53,9 @@ const XPERTS: Xpert[] = [
     archetype: 'Gear outfitter',
     vibe: 'Snowmobile, packraft, fat-bike. The kit, ready when you arrive.',
     images: [
+      img('gear-outfitter-snowmobile'),
       img('gear-outfitter-backpack-kit'),
-      img('gear-outfitter-camp-kit'),
-      img('gear-outfitter-hike-kit'),
+      img('gear-outfitter-rib-boat'),
     ],
   },
   {
