@@ -48,6 +48,12 @@ body {
   -webkit-text-stroke: 0.028em var(--color-forest);
 }
 
+/* whisper-soft outline used for end-of-page watermark wordmark */
+.text-outline-soft {
+  color: transparent;
+  -webkit-text-stroke: 0.018em rgba(15, 36, 23, 0.10);
+}
+
 /* typewriter caret: blinks in place next to the typed word */
 .caret {
   display: inline-block;
