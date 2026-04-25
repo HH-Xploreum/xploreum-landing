@@ -2,7 +2,7 @@
 export const LINKS = {
   chatWithX: 'https://app.xploreum.io/chat',
   forGuide: '#xperts',
-  signIn: 'https://app.xploreum.io/login',
+  signIn: 'https://app.xploreum.io/auth',
   contact: 'mailto:hello@xploreum.io',
   howItWorks: '#how-it-works',
   about: '#about',
