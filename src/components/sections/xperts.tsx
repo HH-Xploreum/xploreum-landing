@@ -1,7 +1,4 @@
-'use client';
-
-import Image from 'next/image';
-import { useEffect, useState, type ReactNode } from 'react';
+import type { ReactNode } from 'react';
 import { Button } from '@/components/ui/button';
 import { LINKS } from '@/lib/links';
 
@@ -9,15 +6,11 @@ type XpertKind = 'Stay' | 'Activity' | 'Rental' | 'Food' | 'Transport';
 
 type Xpert = {
   kind: XpertKind;
-  specialty: string;
-  name: string;
-  location: string;
-  images: string[];
+  archetype: string;
+  vibe: string;
   icon: ReactNode;
 };
 
-// Line icons sized to inherit currentColor. Kept minimal so the card reads
-// as an editorial placeholder until real photography is in the CDN.
 const Icon = {
   lodge: (
     <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="1.25" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
@@ -69,149 +62,78 @@ const Icon = {
   ),
 };
 
-const CDN = 'https://auth.xploreum.io/storage/v1/object/public/landing-assets';
-const img = (n: number) => `${CDN}/${n}.png`;
-
 const XPERTS: Xpert[] = [
   {
     kind: 'Stay',
-    specialty: 'Wilderness lodge',
-    name: 'Glacier Bay Lodge',
-    location: 'Southeast Alaska',
-    images: [img(1), img(2), img(10)],
+    archetype: 'Lodge keeper',
+    vibe: 'Off-grid cabins and lodges only the locals know about.',
     icon: Icon.lodge,
   },
   {
     kind: 'Activity',
-    specialty: 'Horseback excursions',
-    name: 'Bitterroot Outfitters',
-    location: 'Bitterroot Valley, Montana',
-    images: [img(7), img(9), img(3)],
+    archetype: 'Trail guide',
+    vibe: 'First overnight or fiftieth summit, on foot or in the saddle.',
     icon: Icon.horse,
   },
   {
     kind: 'Activity',
-    specialty: 'Backcountry ski certification',
-    name: 'Chic-Chocs Guides',
-    location: 'Gaspésie, Québec',
-    images: [img(11), img(13), img(4)],
+    archetype: 'Mountain guide',
+    vibe: 'Backcountry, alpine, certified. The real route, done safely.',
     icon: Icon.ski,
   },
   {
     kind: 'Rental',
-    specialty: 'Snowmobile rental',
-    name: 'Yellowstone Motorsports',
-    location: 'West Yellowstone, Montana',
-    images: [img(14), img(15), img(16)],
+    archetype: 'Gear outfitter',
+    vibe: 'Snowmobile, packraft, fat-bike. The kit, ready when you arrive.',
     icon: Icon.snowmobile,
   },
   {
     kind: 'Food',
-    specialty: 'Indigenous restaurant',
-    name: 'Kai',
-    location: 'Phoenix, Arizona',
-    images: [img(17), img(18), img(19)],
+    archetype: 'Local cook',
+    vibe: 'The meal that tells you where you are.',
     icon: Icon.food,
   },
   {
     kind: 'Transport',
-    specialty: 'Float plane air taxi',
-    name: 'Kenmore Air',
-    location: 'Seattle, Washington',
-    images: [img(20), img(21), img(6)],
+    archetype: 'Bush pilot',
+    vibe: 'Float plane, helicopter, dirt strip. The last leg in.',
     icon: Icon.plane,
   },
 ];
 
-const ROTATION_MS = 4000;
-
-function XpertCard({ xpert, priority }: { xpert: Xpert; priority: boolean }) {
-  const [index, setIndex] = useState(0);
-  const [paused, setPaused] = useState(false);
-  const imageCount = xpert.images.length;
-
-  useEffect(() => {
-    if (imageCount < 2 || paused) return;
-    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (reduceMotion) return;
-
-    const id = window.setInterval(() => {
-      setIndex((i) => (i + 1) % imageCount);
-    }, ROTATION_MS);
-    return () => window.clearInterval(id);
-  }, [imageCount, paused]);
-
+function XpertCard({ xpert }: { xpert: Xpert }) {
   return (
-    <li
-      className="group relative flex flex-col overflow-hidden rounded-2xl border border-bone/15 bg-forest-deep/40 transition hover:border-bone/30 hover:bg-forest-deep/70"
-      onMouseEnter={() => setPaused(true)}
-      onMouseLeave={() => setPaused(false)}
-      onFocus={() => setPaused(true)}
-      onBlur={() => setPaused(false)}
-    >
-      {/* Square picture slot */}
-      <div className="relative aspect-square w-full overflow-hidden bg-forest-deep">
-        {imageCount > 0 ? (
-          xpert.images.map((src, i) => (
-            <Image
-              key={src}
-              src={src}
-              alt={`${xpert.name}, ${xpert.specialty} in ${xpert.location}`}
-              fill
-              sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-              priority={priority && i === 0}
-              className={`object-cover transition-opacity duration-[900ms] ease-in-out ${
-                i === index ? 'opacity-100' : 'opacity-0'
-              }`}
-            />
-          ))
-        ) : (
-          <div
-            aria-hidden
-            className="absolute inset-0 flex items-center justify-center"
-            style={{
-              background:
-                'radial-gradient(120% 80% at 30% 20%, rgba(107,133,112,0.22), transparent 60%), radial-gradient(120% 80% at 80% 90%, rgba(160,90,22,0.18), transparent 65%), linear-gradient(180deg, #0F2417 0%, #1E3A2A 100%)',
-            }}
-          >
-            <div className="h-20 w-20 md:h-24 md:w-24 text-bone/45 transition duration-500 group-hover:text-bone/70 group-hover:scale-105">
-              {xpert.icon}
-            </div>
+    <li className="group relative flex flex-col overflow-hidden rounded-2xl border border-bone/15 bg-forest-deep/40 transition hover:border-bone/30 hover:bg-forest-deep/70">
+      {/* Icon panel */}
+      <div className="relative aspect-square w-full overflow-hidden">
+        <div
+          aria-hidden
+          className="absolute inset-0 flex items-center justify-center"
+          style={{
+            background:
+              'radial-gradient(120% 80% at 30% 20%, rgba(107,133,112,0.22), transparent 60%), radial-gradient(120% 80% at 80% 90%, rgba(160,90,22,0.18), transparent 65%), linear-gradient(180deg, #0F2417 0%, #1E3A2A 100%)',
+          }}
+        >
+          <div className="h-24 w-24 md:h-28 md:w-28 text-bone/50 transition duration-500 group-hover:text-bone/80 group-hover:scale-105">
+            {xpert.icon}
           </div>
-        )}
+        </div>
 
-        {/* Kind chip, top-left overlay */}
+        {/* Kind chip */}
         <div className="absolute left-4 top-4 z-10">
           <span className="inline-flex items-center rounded-full bg-bone/90 px-3 py-1 text-[10px] md:text-[11px] font-semibold tracking-[0.18em] uppercase text-forest backdrop-blur">
             {xpert.kind}
           </span>
         </div>
-
-        {/* Rotation indicators, only when there's more than one image */}
-        {imageCount > 1 && (
-          <div className="absolute bottom-3 left-1/2 z-10 flex -translate-x-1/2 gap-1.5">
-            {xpert.images.map((src, i) => (
-              <span
-                key={src}
-                className={`h-1 rounded-full transition-all duration-500 ${
-                  i === index ? 'w-6 bg-bone/90' : 'w-1.5 bg-bone/40'
-                }`}
-              />
-            ))}
-          </div>
-        )}
       </div>
 
       {/* Meta */}
-      <div className="flex flex-col gap-1 p-5 md:p-6">
-        <div className="font-serif italic text-[13px] md:text-[14px] text-[#E0B080]">
-          {xpert.specialty}
-        </div>
+      <div className="flex flex-col gap-2 p-5 md:p-6">
         <div className="font-bold tracking-tight text-lg md:text-xl text-bone">
-          {xpert.name}
+          {xpert.archetype}
         </div>
-        <div className="text-[13px] md:text-sm text-bone/60">
-          {xpert.location}
+        <div className="font-serif italic text-[13px] md:text-[14px] text-[#E0B080] leading-snug">
+          {xpert.vibe}
         </div>
       </div>
     </li>
@@ -235,19 +157,23 @@ export function Xperts() {
               <br className="hidden md:block" />{' '}
               <span className="text-bone/80">Powered by locals.</span>
             </h2>
+            <p className="font-serif italic font-medium text-[14px] md:text-[clamp(1.125rem,1.6vw,1.5rem)] leading-snug text-[#E0B080] mt-6 md:mt-8">
+              Stays, activities, rentals, food, transport. One conversation,
+              every booking.
+            </p>
           </div>
           <p className="text-[14px] md:text-lg text-bone/80 leading-relaxed max-w-md">
-            Every excursion, activity, stay, or rental is run by a vetted local
-            Xpert. Certified, insured, paid fairly, and matched to your skill,
-            whether it&rsquo;s your first overnight or your fiftieth summit.
-            These are the people who make your trip real on the ground.
+            Xperts are the lodge keepers, guides, outfitters, cooks, and
+            pilots who make a trip real on the ground. Certified, insured,
+            paid fairly. Xavier matches the right ones to your trip inside
+            the chat, so you never juggle six bookings to get out the door.
           </p>
         </div>
 
         {/* Cards */}
         <ul className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5">
-          {XPERTS.map((x, i) => (
-            <XpertCard key={x.specialty} xpert={x} priority={i < 3} />
+          {XPERTS.map((x) => (
+            <XpertCard key={x.archetype} xpert={x} />
           ))}
         </ul>
 
