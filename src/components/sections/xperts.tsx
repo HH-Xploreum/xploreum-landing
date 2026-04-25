@@ -1,4 +1,7 @@
-import type { ReactNode } from 'react';
+'use client';
+
+import { useEffect, useState } from 'react';
+import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { LINKS } from '@/lib/links';
 
@@ -8,118 +11,129 @@ type Xpert = {
   kind: XpertKind;
   archetype: string;
   vibe: string;
-  icon: ReactNode;
+  images: string[];
 };
 
-const Icon = {
-  lodge: (
-    <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="1.25" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
-      <path d="M6 26 24 10l18 16" />
-      <path d="M10 24v14h28V24" />
-      <path d="M20 38V28h8v10" />
-      <path d="M4 42h40" />
-    </svg>
-  ),
-  horse: (
-    <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="1.25" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
-      <path d="M8 38c0-6 3-11 9-13l3-8 4 3 3-4 4 6c3 1 5 4 5 8v8" />
-      <path d="M14 38v-6" />
-      <path d="M32 38v-6" />
-      <path d="M22 20l2 2" />
-      <circle cx="28" cy="15" r="0.6" fill="currentColor" />
-    </svg>
-  ),
-  ski: (
-    <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="1.25" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
-      <path d="M10 40 36 8" />
-      <path d="M14 40 40 8" />
-      <path d="M9 40h6" />
-      <path d="M13 40h6" />
-      <path d="M34 10l4 4" />
-    </svg>
-  ),
-  snowmobile: (
-    <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="1.25" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
-      <path d="M6 34h10l6-10h12l6 8" />
-      <path d="M6 38h32" />
-      <path d="M22 24l-3-6h8" />
-      <path d="M38 18l-4 6" />
-    </svg>
-  ),
-  food: (
-    <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="1.25" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
-      <path d="M16 6v16a4 4 0 0 1-8 0V6" />
-      <path d="M12 22v20" />
-      <path d="M36 6c-4 2-6 6-6 12s2 8 6 8" />
-      <path d="M36 6v36" />
-    </svg>
-  ),
-  plane: (
-    <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="1.25" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
-      <path d="M24 6c2 0 3 4 3 10v6l14 8v3l-14-4v8l4 3v2l-7-2-7 2v-2l4-3v-8l-14 4v-3l14-8v-6c0-6 1-10 3-10Z" />
-      <path d="M10 40h28" />
-    </svg>
-  ),
-};
+const CDN = 'https://auth.xploreum.io/storage/v1/object/public/landing-assets';
+const img = (name: string) => `${CDN}/${name}.jpg`;
 
 const XPERTS: Xpert[] = [
   {
     kind: 'Stay',
     archetype: 'Lodge keeper',
     vibe: 'Off-grid cabins and lodges only the locals know about.',
-    icon: Icon.lodge,
+    images: [
+      img('lodge-keeper-alpine-lake'),
+      img('lodge-keeper-ice-hotel'),
+      img('lodge-keeper-hillside-cabin'),
+    ],
   },
   {
     kind: 'Activity',
     archetype: 'Trail guide',
     vibe: 'First overnight or fiftieth summit, on foot or in the saddle.',
-    icon: Icon.horse,
+    images: [
+      img('trail-guide-ridge-hike'),
+      img('trail-guide-river-rafting'),
+      img('trail-guide-whale-watching'),
+    ],
   },
   {
     kind: 'Activity',
     archetype: 'Mountain guide',
     vibe: 'Backcountry, alpine, certified. The real route, done safely.',
-    icon: Icon.ski,
+    images: [
+      img('mountain-guide-helping-hand'),
+      img('mountain-guide-ski-jump'),
+      img('mountain-guide-rock-climbing'),
+    ],
   },
   {
     kind: 'Rental',
     archetype: 'Gear outfitter',
     vibe: 'Snowmobile, packraft, fat-bike. The kit, ready when you arrive.',
-    icon: Icon.snowmobile,
+    images: [
+      img('gear-outfitter-backpack-kit'),
+      img('gear-outfitter-camp-kit'),
+      img('gear-outfitter-hike-kit'),
+    ],
   },
   {
     kind: 'Food',
     archetype: 'Local cook',
     vibe: 'The meal that tells you where you are.',
-    icon: Icon.food,
+    images: [
+      img('local-cook-braised-stew'),
+      img('local-cook-plated-fish'),
+      img('local-cook-spread'),
+    ],
   },
   {
     kind: 'Transport',
     archetype: 'Bush pilot',
     vibe: 'Float plane, helicopter, dirt strip. The last leg in.',
-    icon: Icon.plane,
+    images: [
+      img('bush-pilot-biplane'),
+      img('bush-pilot-campervan'),
+      img('bush-pilot-overland-trailer'),
+    ],
   },
 ];
 
-function XpertCard({ xpert }: { xpert: Xpert }) {
+const ROTATION_MS = 4500;
+
+function XpertCard({
+  xpert,
+  startIndex,
+  priority,
+}: {
+  xpert: Xpert;
+  startIndex: number;
+  priority: boolean;
+}) {
+  const [index, setIndex] = useState(startIndex % xpert.images.length);
+  const [paused, setPaused] = useState(false);
+  const imageCount = xpert.images.length;
+
+  useEffect(() => {
+    if (imageCount < 2 || paused) return;
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduceMotion) return;
+
+    const id = window.setInterval(() => {
+      setIndex((i) => (i + 1) % imageCount);
+    }, ROTATION_MS);
+    return () => window.clearInterval(id);
+  }, [imageCount, paused]);
+
   return (
-    <li className="group relative flex flex-col overflow-hidden rounded-2xl border border-bone/15 bg-forest-deep/40 transition hover:border-bone/30 hover:bg-forest-deep/70">
-      {/* Icon panel */}
-      <div className="relative aspect-square w-full overflow-hidden">
+    <li
+      className="group relative flex flex-col overflow-hidden rounded-2xl border border-bone/15 bg-forest-deep/40 transition hover:border-bone/30"
+      onMouseEnter={() => setPaused(true)}
+      onMouseLeave={() => setPaused(false)}
+      onFocus={() => setPaused(true)}
+      onBlur={() => setPaused(false)}
+    >
+      <div className="relative aspect-square w-full overflow-hidden bg-forest-deep">
+        {xpert.images.map((src, i) => (
+          <Image
+            key={src}
+            src={src}
+            alt={i === 0 ? `${xpert.archetype} — ${xpert.vibe}` : ''}
+            fill
+            sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+            priority={priority && i === 0}
+            className={`object-cover transition-opacity duration-[900ms] ease-in-out ${
+              i === index ? 'opacity-100' : 'opacity-0'
+            }`}
+          />
+        ))}
+
         <div
           aria-hidden
-          className="absolute inset-0 flex items-center justify-center"
-          style={{
-            background:
-              'radial-gradient(120% 80% at 30% 20%, rgba(107,133,112,0.22), transparent 60%), radial-gradient(120% 80% at 80% 90%, rgba(160,90,22,0.18), transparent 65%), linear-gradient(180deg, #0F2417 0%, #1E3A2A 100%)',
-          }}
-        >
-          <div className="h-24 w-24 md:h-28 md:w-28 text-bone/50 transition duration-500 group-hover:text-bone/80 group-hover:scale-105">
-            {xpert.icon}
-          </div>
-        </div>
+          className="absolute inset-0 bg-gradient-to-b from-forest-deep/40 via-transparent to-forest-deep/30"
+        />
 
-        {/* Kind chip */}
         <div className="absolute left-4 top-4 z-10">
           <span className="inline-flex items-center rounded-full bg-bone/90 px-3 py-1 text-[10px] md:text-[11px] font-semibold tracking-[0.18em] uppercase text-forest backdrop-blur">
             {xpert.kind}
@@ -127,7 +141,6 @@ function XpertCard({ xpert }: { xpert: Xpert }) {
         </div>
       </div>
 
-      {/* Meta */}
       <div className="flex flex-col gap-2 p-5 md:p-6">
         <div className="font-bold tracking-tight text-lg md:text-xl text-bone">
           {xpert.archetype}
@@ -172,8 +185,13 @@ export function Xperts() {
 
         {/* Cards */}
         <ul className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5">
-          {XPERTS.map((x) => (
-            <XpertCard key={x.archetype} xpert={x} />
+          {XPERTS.map((x, i) => (
+            <XpertCard
+              key={x.archetype}
+              xpert={x}
+              startIndex={i}
+              priority={i < 3}
+            />
           ))}
         </ul>
 
