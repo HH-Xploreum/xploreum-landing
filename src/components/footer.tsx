@@ -1,6 +1,10 @@
+import Image from 'next/image';
 import { LINKS } from '@/lib/links';
 import { TrackedLink } from '@/components/ui/tracked-link';
 import { Wordmark } from '@/components/ui/wordmark';
+
+const FOOTER_WATERMARK =
+  'https://auth.xploreum.io/storage/v1/object/public/landing-assets/footer-watermark.jpg';
 
 export function Footer() {
   const year = new Date().getFullYear();
@@ -25,13 +29,30 @@ export function Footer() {
                   Xperts.
                 </p>
 
-                <div className="mt-8 flex items-center gap-3">
+                <div className="mt-8 flex items-center gap-2.5 flex-wrap">
+                  <SocialIcon href={LINKS.x} label="X" cta="x_twitter">
+                    <XGlyph />
+                  </SocialIcon>
+                  <SocialIcon
+                    href={LINKS.threads}
+                    label="Threads"
+                    cta="threads"
+                  >
+                    <ThreadsGlyph />
+                  </SocialIcon>
                   <SocialIcon
                     href={LINKS.instagram}
                     label="Instagram"
                     cta="instagram"
                   >
                     <InstagramGlyph />
+                  </SocialIcon>
+                  <SocialIcon
+                    href={LINKS.facebook}
+                    label="Facebook"
+                    cta="facebook"
+                  >
+                    <FacebookGlyph />
                   </SocialIcon>
                   <SocialIcon
                     href={LINKS.linkedin}
@@ -41,11 +62,11 @@ export function Footer() {
                     <LinkedInGlyph />
                   </SocialIcon>
                   <SocialIcon
-                    href={`https://x.com/xploreum`}
-                    label="X (Twitter)"
-                    cta="x_twitter"
+                    href={LINKS.bluesky}
+                    label="Bluesky"
+                    cta="bluesky"
                   >
-                    <XGlyph />
+                    <BlueskyGlyph />
                   </SocialIcon>
                 </div>
               </div>
@@ -114,13 +135,19 @@ export function Footer() {
           </div>
         </div>
 
-        {/* Giant watermark wordmark — anchors the page end */}
+        {/* Watermark image — anchors the page end */}
         <div
           aria-hidden
-          className="pointer-events-none select-none relative -mt-6 md:-mt-10"
+          className="pointer-events-none select-none relative -mt-8 md:-mt-12"
         >
-          <div className="text-center font-black tracking-[-0.04em] leading-[0.85] text-[18vw] md:text-[16vw] text-outline-soft">
-            XPLOREUM
+          <div className="relative w-full aspect-[16/5] md:aspect-[16/4]">
+            <Image
+              src={FOOTER_WATERMARK}
+              alt=""
+              fill
+              sizes="100vw"
+              className="object-contain object-bottom opacity-90"
+            />
           </div>
         </div>
       </div>
@@ -227,6 +254,45 @@ function XGlyph() {
       aria-hidden
     >
       <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231 5.45-6.231zm-1.161 17.52h1.833L7.084 4.126H5.117l11.966 15.644z" />
+    </svg>
+  );
+}
+
+function ThreadsGlyph() {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      className="h-[16px] w-[16px]"
+      aria-hidden
+    >
+      <path d="M17.46 11.13c-.08-.04-.17-.08-.25-.11-.15-2.78-1.67-4.37-4.22-4.39h-.04c-1.53 0-2.8.65-3.59 1.84l1.4.96c.59-.89 1.51-1.08 2.19-1.08h.03c.84.01 1.48.25 1.89.73.3.34.5.82.6 1.42-.76-.13-1.58-.17-2.46-.12-2.48.14-4.07 1.59-3.96 3.6.05.99.55 1.85 1.39 2.41.71.48 1.62.71 2.57.66 1.25-.07 2.23-.55 2.91-1.42.52-.66.85-1.51 1-2.59.61.37 1.06.86 1.31 1.45.43 1 .45 2.65-.89 3.99-1.18 1.18-2.59 1.69-4.73 1.7-2.37-.02-4.16-.78-5.32-2.26-1.09-1.39-1.65-3.39-1.67-5.95.02-2.56.58-4.56 1.67-5.94 1.16-1.49 2.95-2.25 5.32-2.27 2.39.02 4.21.78 5.41 2.27.59.73 1.03 1.66 1.32 2.74l1.62-.43c-.36-1.34-.93-2.5-1.69-3.45C16.41 1.07 14.21.13 11.43.11h-.01c-2.78.02-4.96.96-6.47 2.81C3.61 4.51 2.92 6.83 2.9 9.7v.01c.02 2.87.71 5.19 2.05 6.85 1.51 1.85 3.69 2.79 6.47 2.81h.01c2.47-.02 4.21-.66 5.65-2.1 1.88-1.88 1.82-4.24 1.2-5.69-.45-1.04-1.3-1.89-2.46-2.45zm-4.39 4.21c-1.05.06-2.14-.41-2.2-1.42-.04-.75.53-1.59 2.27-1.69.2-.01.39-.02.58-.02.63 0 1.22.06 1.76.18-.2 2.51-1.39 2.89-2.41 2.95z" />
+    </svg>
+  );
+}
+
+function FacebookGlyph() {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      className="h-[16px] w-[16px]"
+      aria-hidden
+    >
+      <path d="M22 12.06C22 6.5 17.52 2 12 2S2 6.5 2 12.06c0 5.02 3.66 9.18 8.44 9.94v-7.03h-2.54v-2.91h2.54v-2.21c0-2.51 1.49-3.9 3.77-3.9 1.09 0 2.24.2 2.24.2v2.47h-1.26c-1.24 0-1.63.77-1.63 1.57v1.87h2.78l-.45 2.91h-2.34V22c4.78-.76 8.45-4.92 8.45-9.94z" />
+    </svg>
+  );
+}
+
+function BlueskyGlyph() {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      className="h-[16px] w-[16px]"
+      aria-hidden
+    >
+      <path d="M6.34 4.5c2.93 2.2 6.08 6.65 7.24 9.04 1.16-2.39 4.31-6.84 7.24-9.04 2.11-1.59 5.53-2.81 5.53 1.1 0 .78-.45 6.55-.71 7.49-.91 3.26-4.23 4.09-7.18 3.59 5.16.88 6.47 3.79 3.64 6.7-5.38 5.52-7.73-1.39-8.33-3.16-.11-.33-.16-.48-.16-.35 0-.13-.05.02-.16.35-.6 1.77-2.95 8.68-8.33 3.16-2.83-2.91-1.52-5.82 3.64-6.7-2.95.5-6.27-.33-7.18-3.59-.26-.94-.71-6.71-.71-7.49 0-3.91 3.42-2.69 5.51-1.1z" />
     </svg>
   );
 }

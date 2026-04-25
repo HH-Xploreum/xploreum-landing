@@ -8,6 +8,10 @@ export const LINKS = {
   about: '#about',
   mobile: '#mobile',
   // social placeholders, swap when ready
+  x: 'https://x.com/xploreum',
+  threads: 'https://threads.net/@xploreum',
   instagram: 'https://instagram.com/xploreum',
+  facebook: 'https://facebook.com/xploreum',
   linkedin: 'https://linkedin.com/company/xploreum',
+  bluesky: 'https://bsky.app/profile/xploreum.io',
 } as const;
