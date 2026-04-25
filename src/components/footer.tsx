@@ -13,7 +13,7 @@ export function Footer() {
       <div className="relative max-w-7xl mx-auto px-4 md:px-6 py-16 md:py-24">
         {/* Footer card */}
         <div className="relative z-10 rounded-[28px] md:rounded-[32px] bg-bone border border-line/60 shadow-[0_30px_80px_-40px_rgba(15,36,23,0.35)]">
-          <div className="px-6 md:px-8 pt-10 md:pt-14 pb-8 md:pb-10">
+          <div className="px-5 md:px-8 pt-10 md:pt-14 pb-8 md:pb-10">
             <div className="grid lg:grid-cols-[1.4fr_1fr_1fr_1fr] gap-10 md:gap-12">
               {/* Brand column */}
               <div>
@@ -67,7 +67,7 @@ export function Footer() {
                 </div>
               </div>
 
-              <div className="grid grid-cols-3 gap-6 sm:gap-8 lg:contents">
+              <div className="grid grid-cols-3 gap-4 sm:gap-8 lg:contents">
                 <FooterCol
                   title="Product"
                   links={[
@@ -147,7 +147,7 @@ function FooterCol({
 }) {
   return (
     <div>
-      <div className="font-bold text-[13px] md:text-[14px] tracking-tight text-forest mb-5">
+      <div className="font-bold text-[13px] md:text-[14px] tracking-tight text-forest mb-5 whitespace-nowrap">
         {title}
       </div>
       <ul className="space-y-3">
@@ -159,7 +159,7 @@ function FooterCol({
               location="footer"
               target={l.external ? '_blank' : undefined}
               rel={l.external ? 'noopener noreferrer' : undefined}
-              className="text-forest/65 hover:text-forest text-[13px] md:text-[14px] transition"
+              className="text-forest/65 hover:text-forest text-[13px] md:text-[14px] transition whitespace-nowrap"
             >
               {l.label}
             </TrackedLink>
