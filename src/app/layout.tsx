@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from 'next';
 import { Urbanist, Cormorant } from 'next/font/google';
 import './globals.css';
+import { PostHogProvider } from '@/components/providers/posthog-provider';
 
 export const viewport: Viewport = {
   width: 'device-width',
@@ -44,7 +45,9 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`${urbanist.variable} ${cormorant.variable}`}>
-      <body className="font-sans bg-bone text-forest antialiased">{children}</body>
+      <body className="font-sans bg-bone text-forest antialiased">
+        <PostHogProvider>{children}</PostHogProvider>
+      </body>
     </html>
   );
 }
