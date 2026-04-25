@@ -218,7 +218,7 @@ export function Xperts() {
               every booking.
             </p>
           </div>
-          <p className="text-[14px] md:text-lg text-bone/80 leading-relaxed max-w-md">
+          <p className="text-[14px] md:text-lg text-bone/80 leading-relaxed">
             Xperts are the lodge keepers, guides, outfitters, cooks, and
             pilots who make a trip real on the ground. Certified, insured,
             paid fairly. Xavier matches the right ones to your trip inside
