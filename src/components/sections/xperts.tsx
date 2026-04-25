@@ -73,9 +73,9 @@ const XPERTS: Xpert[] = [
     archetype: 'Bush pilot',
     vibe: 'Float plane, helicopter, dirt strip. The last leg in.',
     images: [
-      img('bush-pilot-biplane'),
-      img('bush-pilot-campervan'),
-      img('bush-pilot-overland-trailer'),
+      img('bush-pilot-floatplane'),
+      img('bush-pilot-cessna'),
+      img('bush-pilot-snowcat'),
     ],
   },
 ];
