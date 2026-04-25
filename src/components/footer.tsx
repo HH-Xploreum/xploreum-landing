@@ -67,54 +67,56 @@ export function Footer() {
                 </div>
               </div>
 
-              <FooterCol
-                title="Product"
-                links={[
-                  {
-                    label: 'Chat with Xavier',
-                    href: LINKS.chatWithX,
-                    external: true,
-                    cta: 'chat_with_xavier',
-                  },
-                  {
-                    label: 'How it works',
-                    href: LINKS.howItWorks,
-                    cta: 'how_it_works',
-                  },
-                  {
-                    label: 'Meet the Xperts',
-                    href: '#xperts',
-                    cta: 'meet_xperts',
-                  },
-                ]}
-              />
-              <FooterCol
-                title="For Xperts"
-                links={[
-                  {
-                    label: 'Become an Xpert',
-                    href: LINKS.forGuide,
-                    cta: 'become_xpert',
-                  },
-                  {
-                    label: 'Sign in',
-                    href: LINKS.signIn,
-                    external: true,
-                    cta: 'sign_in',
-                  },
-                ]}
-              />
-              <FooterCol
-                title="Company"
-                links={[
-                  { label: 'About', href: LINKS.about, cta: 'about' },
-                  {
-                    label: 'Contact',
-                    href: LINKS.contact,
-                    cta: 'contact',
-                  },
-                ]}
-              />
+              <div className="grid grid-cols-3 gap-6 sm:gap-8 lg:contents">
+                <FooterCol
+                  title="Product"
+                  links={[
+                    {
+                      label: 'Chat with Xavier',
+                      href: LINKS.chatWithX,
+                      external: true,
+                      cta: 'chat_with_xavier',
+                    },
+                    {
+                      label: 'How it works',
+                      href: LINKS.howItWorks,
+                      cta: 'how_it_works',
+                    },
+                    {
+                      label: 'Meet the Xperts',
+                      href: '#xperts',
+                      cta: 'meet_xperts',
+                    },
+                  ]}
+                />
+                <FooterCol
+                  title="For Xperts"
+                  links={[
+                    {
+                      label: 'Become an Xpert',
+                      href: LINKS.forGuide,
+                      cta: 'become_xpert',
+                    },
+                    {
+                      label: 'Sign in',
+                      href: LINKS.signIn,
+                      external: true,
+                      cta: 'sign_in',
+                    },
+                  ]}
+                />
+                <FooterCol
+                  title="Company"
+                  links={[
+                    { label: 'About', href: LINKS.about, cta: 'about' },
+                    {
+                      label: 'Contact',
+                      href: LINKS.contact,
+                      cta: 'contact',
+                    },
+                  ]}
+                />
+              </div>
             </div>
 
             {/* Divider + bottom row inside the card */}
