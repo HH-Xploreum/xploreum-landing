@@ -120,15 +120,48 @@ export function Footer() {
             </div>
 
             {/* Divider + bottom row inside the card */}
-            <div className="mt-10 md:mt-14 pt-6 md:pt-7 border-t border-line/60 flex flex-col md:flex-row md:items-center md:justify-between gap-4 text-[12px] md:text-[13px] text-forest/55 tracking-wide">
+            <div className="mt-10 md:mt-14 pt-6 md:pt-7 border-t border-line/60 flex flex-col md:flex-row md:items-center md:justify-between gap-4 md:gap-6 text-[12px] md:text-[13px] text-forest/55 tracking-wide">
               <span>
                 © {year} Xploreum, Inc. · San Francisco · Montréal
               </span>
-              <div className="flex items-center gap-6">
-                <span className="font-semibold text-[10px] tracking-[0.22em] uppercase text-forest/50">
-                  Launching iOS &amp; Android · 2026
-                </span>
-              </div>
+              <nav
+                aria-label="Legal"
+                className="flex flex-wrap items-center gap-x-5 gap-y-2"
+              >
+                <TrackedLink
+                  href={LINKS.terms}
+                  cta="terms"
+                  location="footer"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-forest transition"
+                >
+                  Terms &amp; Conditions
+                </TrackedLink>
+                <TrackedLink
+                  href={LINKS.acceptableUse}
+                  cta="acceptable_use"
+                  location="footer"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-forest transition"
+                >
+                  Acceptable Use
+                </TrackedLink>
+                <TrackedLink
+                  href={LINKS.paymentTerms}
+                  cta="payment_terms"
+                  location="footer"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-forest transition"
+                >
+                  Payment Terms
+                </TrackedLink>
+              </nav>
+              <span className="font-semibold text-[10px] tracking-[0.22em] uppercase text-forest/50">
+                Launching iOS &amp; Android · 2026
+              </span>
             </div>
           </div>
         </div>

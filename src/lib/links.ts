@@ -14,4 +14,8 @@ export const LINKS = {
   facebook: 'https://www.facebook.com/people/Xploreum/61572506130787/',
   linkedin: 'https://www.linkedin.com/company/106347949/',
   bluesky: 'https://bsky.app/profile/xploreum.bsky.social',
+  // legal
+  terms: 'https://go.xploreum.io/platform/xplorer-terms-and-conditions',
+  acceptableUse: 'https://go.xploreum.io/platform/acceptable-use-policy',
+  paymentTerms: 'https://go.xploreum.io/platform/payment-terms',
 } as const;
