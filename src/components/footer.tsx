@@ -1,5 +1,6 @@
 import { LINKS } from '@/lib/links';
 import { TrackedLink } from '@/components/ui/tracked-link';
+import { WaitlistForm } from '@/components/ui/waitlist-form';
 import { Wordmark } from '@/components/ui/wordmark';
 
 export function Footer() {
@@ -119,8 +120,21 @@ export function Footer() {
               </div>
             </div>
 
+            {/* Launch waitlist CTA — promotes the launching tag into an active capture */}
+            <div className="mt-10 md:mt-14 pt-8 md:pt-10 border-t border-line/60 flex flex-col md:flex-row md:items-center md:justify-between gap-6 md:gap-10">
+              <div className="max-w-md">
+                <div className="font-semibold text-[10px] md:text-[11px] tracking-[0.22em] uppercase text-forest/60 mb-2">
+                  Launching iOS &amp; Android · 2026
+                </div>
+                <p className="font-bold text-forest text-[1.125rem] md:text-[1.375rem] tracking-tight leading-tight">
+                  Be the first to know when we launch.
+                </p>
+              </div>
+              <WaitlistForm source="footer" />
+            </div>
+
             {/* Divider + bottom row inside the card */}
-            <div className="mt-10 md:mt-14 pt-6 md:pt-7 border-t border-line/60 flex flex-col md:flex-row md:items-center md:justify-between gap-4 md:gap-6 text-[12px] md:text-[13px] text-forest/55 tracking-wide">
+            <div className="mt-8 md:mt-10 pt-6 md:pt-7 border-t border-line/60 flex flex-col md:flex-row md:items-center md:justify-between gap-4 md:gap-6 text-[12px] md:text-[13px] text-forest/55 tracking-wide">
               <span>
                 © {year} Xploreum, Inc. · San Francisco · Montréal
               </span>
@@ -159,9 +173,6 @@ export function Footer() {
                   Payment Terms
                 </TrackedLink>
               </nav>
-              <span className="font-semibold text-[10px] tracking-[0.22em] uppercase text-forest/50">
-                Launching iOS &amp; Android · 2026
-              </span>
             </div>
           </div>
         </div>
