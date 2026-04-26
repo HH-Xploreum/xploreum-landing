@@ -13,7 +13,7 @@ export function Footer() {
       <div className="relative max-w-7xl mx-auto px-4 md:px-6 py-16 md:py-24">
         {/* Footer card */}
         <div className="relative z-10 rounded-[28px] md:rounded-[32px] bg-bone border border-line/60 shadow-[0_30px_80px_-40px_rgba(15,36,23,0.35)]">
-          <div className="px-5 md:px-12 pt-10 md:pt-14 pb-8 md:pb-10">
+          <div className="px-5 md:px-16 pt-10 md:pt-14 pb-8 md:pb-10">
             <div className="grid lg:grid-cols-[1.4fr_auto] gap-10 md:gap-20">
               {/* Brand column */}
               <div>
