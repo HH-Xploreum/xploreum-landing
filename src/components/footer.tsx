@@ -146,18 +146,22 @@ export function Footer() {
                   href={LINKS.terms}
                   cta="terms"
                   location="footer"
-                  target="_blank"
-                  rel="noopener noreferrer"
                   className="hover:text-forest transition"
                 >
-                  Terms &amp; Conditions
+                  Terms
+                </TrackedLink>
+                <TrackedLink
+                  href={LINKS.privacy}
+                  cta="privacy"
+                  location="footer"
+                  className="hover:text-forest transition"
+                >
+                  Privacy
                 </TrackedLink>
                 <TrackedLink
                   href={LINKS.acceptableUse}
                   cta="acceptable_use"
                   location="footer"
-                  target="_blank"
-                  rel="noopener noreferrer"
                   className="hover:text-forest transition"
                 >
                   Acceptable Use
@@ -166,11 +170,17 @@ export function Footer() {
                   href={LINKS.paymentTerms}
                   cta="payment_terms"
                   location="footer"
-                  target="_blank"
-                  rel="noopener noreferrer"
                   className="hover:text-forest transition"
                 >
                   Payment Terms
+                </TrackedLink>
+                <TrackedLink
+                  href={LINKS.legal}
+                  cta="legal_index"
+                  location="footer"
+                  className="hover:text-forest transition"
+                >
+                  All legal
                 </TrackedLink>
               </nav>
             </div>

@@ -15,7 +15,14 @@ export const LINKS = {
   linkedin: 'https://www.linkedin.com/company/106347949/',
   bluesky: 'https://bsky.app/profile/xploreum.bsky.social',
   // legal
-  terms: 'https://go.xploreum.io/platform/xplorer-terms-and-conditions',
-  acceptableUse: 'https://go.xploreum.io/platform/acceptable-use-policy',
-  paymentTerms: 'https://go.xploreum.io/platform/payment-terms',
+  legal: '/legal',
+  terms: '/legal/terms',
+  thrillmasterTerms: '/legal/thrillmaster-terms',
+  privacy: '/legal/privacy',
+  acceptableUse: '/legal/acceptable-use',
+  paymentTerms: '/legal/payment-terms',
+  contentLicensing: '/legal/content-licensing',
+  codeOfConduct: '/legal/code-of-conduct',
+  safetyGuidelines: '/legal/safety-guidelines',
+  cookies: '/legal/cookies',
 } as const;
