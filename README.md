@@ -209,7 +209,6 @@ Nine MDX files in `content/legal/` with YAML frontmatter (`title`, `slug`, `effe
 Deployed to **Vercel** via automatic git integration.
 
 - **Production**: https://xploreum.io
-- **Default preview**: https://project-v4c46.vercel.app
 - Every push to `main` triggers a rebuild (~60s)
 
 **Workflow**: commit directly to `main` for routine changes. Use a feature branch + PR only for risky/experimental work or when a throwaway preview URL is needed.

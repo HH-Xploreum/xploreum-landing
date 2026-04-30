@@ -1,6 +1,6 @@
 # Xploreum Landing
 
-Next.js 15 + Tailwind v4 landing page. Deployed to Vercel → https://xploreum.io (default URL: https://project-v4c46.vercel.app)
+Next.js 15 + Tailwind v4 landing page. Deployed to Vercel → https://xploreum.io
 
 ## Workflow
 
